@@ -1,4 +1,4 @@
-﻿import { db } from './database';
+import { db } from './database';
 import type { Category, Product, Customer, StoreSettings, CashShift } from '../types';
 
 export const DEFAULT_SETTINGS: StoreSettings = {
@@ -346,32 +346,59 @@ export const SEED_CUSTOMERS: Customer[] = [
   },
 ];
 
-export async function initializeDatabase(): Promise<void> {
-  const existingProducts = await db.products.count();
-  if (existingProducts === 0) {
-    await db.categories.bulkAdd(SEED_CATEGORIES);
-    await db.products.bulkAdd(SEED_PRODUCTS);
-    await db.customers.bulkAdd(SEED_CUSTOMERS);
-    await db.settings.put(DEFAULT_SETTINGS);
+let initPromise: Promise<void> | null = null;
 
-    // Create an initial open shift for immediate testing
-    const initialShift: CashShift = {
-      id: 'shift-' + Date.now(),
-      cashierName: DEFAULT_SETTINGS.cashierName,
-      openedAt: new Date().toISOString(),
-      status: 'open',
-      startingCash: 2000,
-      cashSales: 0,
-      cardSales: 0,
-      bkashSales: 0,
-      nagadSales: 0,
-      dueSales: 0,
-      totalSales: 0,
-      totalOrders: 0,
-      cashIn: 0,
-      cashOut: 0,
-      expectedCashInDrawer: 2000,
-    };
-    await db.shifts.put(initialShift);
-  }
+export async function initializeDatabase(): Promise<void> {
+  if (initPromise) return initPromise;
+
+  initPromise = (async () => {
+    try {
+      const existingCategories = await db.categories.count();
+      if (existingCategories === 0) {
+        await db.categories.bulkPut(SEED_CATEGORIES);
+      }
+
+      const existingProducts = await db.products.count();
+      if (existingProducts === 0) {
+        await db.products.bulkPut(SEED_PRODUCTS);
+      }
+
+      const existingCustomers = await db.customers.count();
+      if (existingCustomers === 0) {
+        await db.customers.bulkPut(SEED_CUSTOMERS);
+      }
+
+      const existingSettings = await db.settings.get('default-settings');
+      if (!existingSettings) {
+        await db.settings.put(DEFAULT_SETTINGS);
+      }
+
+      const existingShifts = await db.shifts.count();
+      if (existingShifts === 0) {
+        const initialShift: CashShift = {
+          id: 'shift-' + Date.now(),
+          cashierName: DEFAULT_SETTINGS.cashierName,
+          openedAt: new Date().toISOString(),
+          status: 'open',
+          startingCash: 2000,
+          cashSales: 0,
+          cardSales: 0,
+          bkashSales: 0,
+          nagadSales: 0,
+          dueSales: 0,
+          totalSales: 0,
+          totalOrders: 0,
+          cashIn: 0,
+          cashOut: 0,
+          expectedCashInDrawer: 2000,
+        };
+        await db.shifts.put(initialShift);
+      }
+    } catch {
+      // Fallback
+    }
+  })();
+
+  return initPromise;
 }
+
