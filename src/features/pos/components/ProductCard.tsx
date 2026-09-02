@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Plus, Package } from 'lucide-react';
 import type { Product } from '../../../types';
 import { formatCurrency } from '../../../utils/formatters';
@@ -79,7 +79,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           e.stopPropagation();
           if (!isOutOfStock) onSelect(product);
         }}
-        className={`mt-2.5 flex w-full items-center justify-center gap-1 py-1.5 rounded-xl border text-xs font-bold transition-all cursor-pointer ${
+        className={`mt-2.5 flex w-full items-center justify-center gap-1 py-1.5 rounded-lg border text-xs font-bold transition-all cursor-pointer ${
           isOutOfStock
             ? 'border-slate-200 text-slate-400 bg-slate-100 dark:border-slate-800 dark:bg-slate-800'
             : 'border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200 group-hover:bg-emerald-600 group-hover:text-white group-hover:border-emerald-600 shadow-2xs'
