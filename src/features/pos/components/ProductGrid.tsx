@@ -1,4 +1,4 @@
-﻿import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import {
   Search,
   LayoutGrid,
@@ -143,7 +143,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
       </div>
 
       {/* 📦 PRODUCT CARDS GRID */}
-      <div className="flex-1 overflow-y-auto pr-1">
+      <div className="flex-1 overflow-y-auto no-scrollbar">
         {filteredProducts.length === 0 ? (
           <div className="flex h-64 flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-200 dark:border-slate-800 p-8 text-center">
             <ShoppingBag className="h-12 w-12 text-slate-300 dark:text-slate-600 stroke-1 mb-2" />

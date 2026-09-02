@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import {
   User,
   Trash2,
@@ -144,7 +144,7 @@ export const CartPanel: React.FC<CartPanelProps> = ({ settings }) => {
       </div>
 
       {/* 🛒 ITEM LIST */}
-      <div className="flex-1 overflow-y-auto p-3 sm:p-3.5 space-y-2">
+      <div className="flex-1 overflow-y-auto no-scrollbar p-3 sm:p-3.5 space-y-2">
         {items.length === 0 ? (
           <div className="flex h-full flex-col items-center justify-center text-center p-6 text-slate-400">
             <Sparkles className="h-10 w-10 text-slate-300 dark:text-slate-700 stroke-1 mb-2" />
