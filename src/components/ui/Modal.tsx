@@ -1,4 +1,4 @@
-﻿import React, { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { X } from 'lucide-react';
 import { cn } from '../../utils/cn';
 
@@ -45,7 +45,7 @@ export const Modal: React.FC<ModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-4 overflow-y-auto">
       {/* Backdrop */}
       <div
         className="fixed inset-0 bg-slate-950/60 backdrop-blur-xs transition-opacity animate-in fade-in duration-200"
@@ -56,7 +56,7 @@ export const Modal: React.FC<ModalProps> = ({
       {/* Modal Card */}
       <div
         className={cn(
-          'relative w-full rounded-2xl bg-white p-6 shadow-2xl transition-all dark:bg-slate-900 border border-slate-200 dark:border-slate-800 z-10 animate-in zoom-in-95 duration-150 max-h-[90vh] flex flex-col',
+          'relative w-full rounded-2xl bg-white p-4 sm:p-6 shadow-2xl transition-all dark:bg-slate-900 border border-slate-200 dark:border-slate-800 z-10 animate-in zoom-in-95 duration-150 max-h-[92vh] flex flex-col',
           maxWidths[maxWidth]
         )}
         role="dialog"

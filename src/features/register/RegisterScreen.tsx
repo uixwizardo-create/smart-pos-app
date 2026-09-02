@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import {
   Calculator,
   ArrowUpRight,
@@ -97,160 +97,159 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({ settings }) => {
   };
 
   return (
-    <div className="flex h-[calc(100vh-70px)] flex-col p-6 space-y-4 overflow-y-auto">
+    <div className="flex h-[calc(100vh-60px)] md:h-[calc(100vh-64px)] flex-col p-3 md:p-6 space-y-3 md:space-y-4 overflow-y-auto">
       {/* Top Header */}
-      <div className="flex flex-wrap items-center justify-between gap-4">
+      <div className="flex flex-wrap items-center justify-between gap-2 md:gap-4 shrink-0">
         <div>
-          <h2 className="text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
-            <Calculator className="w-7 h-7 text-sky-600" />
-            Cash Drawer & Register Shifts
+          <h2 className="text-lg md:text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+            <Calculator className="w-5 h-5 md:w-7 md:h-7 text-sky-600" />
+            Cash Register & Shifts
           </h2>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Manage daily cash float, cashier reconciliation, petty expenses, and day-end closing
+          <p className="text-[11px] md:text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+            Manage cash drawer float, expenses, and day-end closing
           </p>
         </div>
 
         {currentShift ? (
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-1.5 md:gap-2">
             <Button
               variant="outline"
-              size="md"
+              size="sm"
               onClick={() => {
                 setMovementType('cash_out');
                 setIsMovementModalOpen(true);
               }}
             >
-              <ArrowDownLeft className="w-4 h-4 mr-1 text-rose-500" />
-              Cash Out (Expense)
+              <ArrowDownLeft className="w-3.5 h-3.5 mr-1 text-rose-500" />
+              <span>Expense</span>
             </Button>
             <Button
               variant="outline"
-              size="md"
+              size="sm"
               onClick={() => {
                 setMovementType('cash_in');
                 setIsMovementModalOpen(true);
               }}
             >
-              <ArrowUpRight className="w-4 h-4 mr-1 text-emerald-500" />
-              Cash In (Float)
+              <ArrowUpRight className="w-3.5 h-3.5 mr-1 text-emerald-500" />
+              <span>Cash In</span>
             </Button>
             <Button
               variant="destructive"
-              size="md"
+              size="sm"
               onClick={() => {
                 setCountedCash(currentShift.expectedCashInDrawer.toString());
                 setIsCloseModalOpen(true);
               }}
             >
-              <Lock className="w-4 h-4 mr-1.5" />
-              Close Shift (Day End)
+              <Lock className="w-3.5 h-3.5 mr-1" />
+              <span>Close Shift</span>
             </Button>
           </div>
         ) : (
           <Button
             variant="success"
-            size="lg"
+            size="md"
             onClick={() => setIsOpenShiftModalOpen(true)}
           >
-            <Unlock className="w-5 h-5 mr-1.5" />
-            Open New Register Shift
+            <Unlock className="w-4 h-4 mr-1.5" />
+            <span>Open Register Shift</span>
           </Button>
         )}
       </div>
 
       {/* Active Shift Dashboard */}
       {currentShift ? (
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 md:gap-4 shrink-0">
           {/* Expected Cash in Drawer */}
-          <div className="rounded-2xl border border-sky-200 bg-sky-50/70 p-5 dark:border-sky-900 dark:bg-sky-950/30">
+          <div className="rounded-2xl border border-sky-200 bg-sky-50/70 p-3.5 md:p-5 dark:border-sky-900 dark:bg-sky-950/30">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold uppercase tracking-wider text-sky-800 dark:text-sky-300">
-                Expected in Drawer
+              <span className="text-[10px] md:text-xs font-bold uppercase tracking-wider text-sky-800 dark:text-sky-300 truncate">
+                Expected Cash
               </span>
-              <span className="flex h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
             </div>
-            <div className="text-3xl font-black text-sky-900 dark:text-white mt-1">
+            <div className="text-xl md:text-3xl font-black text-sky-900 dark:text-white mt-1 truncate">
               {formatCurrency(currentShift.expectedCashInDrawer, settings.currencySymbol)}
             </div>
-            <div className="text-[11px] text-sky-700 dark:text-sky-300 mt-2">
-              Float: {formatCurrency(currentShift.startingCash, settings.currencySymbol)} • Cash Sales: {formatCurrency(currentShift.cashSales, settings.currencySymbol)}
+            <div className="text-[10px] text-sky-700 dark:text-sky-300 mt-1 truncate">
+              Float: {formatCurrency(currentShift.startingCash, settings.currencySymbol)}
             </div>
           </div>
 
           {/* Digital Sales */}
-          <div className="rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-              Digital / Card Sales
+          <div className="rounded-2xl border border-slate-200 bg-white p-3.5 md:p-5 dark:border-slate-800 dark:bg-slate-900">
+            <span className="text-[10px] md:text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 truncate block">
+              Digital Sales
             </span>
-            <div className="text-3xl font-black text-slate-900 dark:text-white mt-1">
+            <div className="text-xl md:text-3xl font-black text-slate-900 dark:text-white mt-1 truncate">
               {formatCurrency(
                 currentShift.bkashSales + currentShift.nagadSales + currentShift.cardSales,
                 settings.currencySymbol
               )}
             </div>
-            <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-2">
-              bKash: {formatCurrency(currentShift.bkashSales, settings.currencySymbol)} • Card: {formatCurrency(currentShift.cardSales, settings.currencySymbol)}
+            <div className="text-[10px] text-slate-400 mt-1 truncate">
+              bKash / Card
             </div>
           </div>
 
           {/* Total Turnover */}
-          <div className="rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+          <div className="rounded-2xl border border-slate-200 bg-white p-3.5 md:p-5 dark:border-slate-800 dark:bg-slate-900">
+            <span className="text-[10px] md:text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 truncate block">
               Total Shift Sales
             </span>
-            <div className="text-3xl font-black text-emerald-600 dark:text-emerald-400 mt-1">
+            <div className="text-xl md:text-3xl font-black text-emerald-600 dark:text-emerald-400 mt-1 truncate">
               {formatCurrency(currentShift.totalSales, settings.currencySymbol)}
             </div>
-            <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-2">
-              Completed Orders: <b>{currentShift.totalOrders}</b>
+            <div className="text-[10px] text-slate-400 mt-1 truncate">
+              Orders: <b>{currentShift.totalOrders}</b>
             </div>
           </div>
 
           {/* Cashier Info */}
-          <div className="rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-              Active Cashier
+          <div className="rounded-2xl border border-slate-200 bg-white p-3.5 md:p-5 dark:border-slate-800 dark:bg-slate-900">
+            <span className="text-[10px] md:text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 truncate block">
+              Cashier
             </span>
-            <div className="text-lg font-bold text-slate-900 dark:text-white mt-1">
+            <div className="text-sm md:text-lg font-bold text-slate-900 dark:text-white mt-1 truncate">
               {currentShift.cashierName}
             </div>
-            <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-2">
+            <div className="text-[10px] text-slate-400 mt-1 truncate">
               Opened: {formatDateTime(currentShift.openedAt)}
             </div>
           </div>
         </div>
       ) : (
-        <div className="rounded-2xl border-2 border-dashed border-amber-300 bg-amber-50/50 p-6 text-center dark:border-amber-900/50 dark:bg-amber-950/20">
-          <AlertTriangle className="w-10 h-10 text-amber-500 mx-auto mb-2" />
-          <h3 className="text-lg font-bold text-amber-900 dark:text-amber-200">
+        <div className="rounded-2xl border-2 border-dashed border-amber-300 bg-amber-50/50 p-4 md:p-6 text-center dark:border-amber-900/50 dark:bg-amber-950/20 shrink-0">
+          <AlertTriangle className="w-8 h-8 md:w-10 md:h-10 text-amber-500 mx-auto mb-1.5" />
+          <h3 className="text-sm md:text-lg font-bold text-amber-900 dark:text-amber-200">
             No Cash Shift is Currently Open
           </h3>
-          <p className="text-xs text-amber-700 dark:text-amber-400 mt-1">
-            Open a shift with initial starting cash before processing sales to ensure accurate cash reconciliation.
+          <p className="text-[11px] md:text-xs text-amber-700 dark:text-amber-400 mt-0.5">
+            Open a shift with initial starting cash before processing sales.
           </p>
         </div>
       )}
 
       {/* Shift History Table */}
-      <div className="flex-1 flex flex-col space-y-2 pt-2">
-        <h3 className="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
-          <History className="w-4 h-4" />
-          Shift Closing History & Discrepancy Audits
+      <div className="flex-1 flex flex-col space-y-2 pt-1 overflow-hidden">
+        <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+          <History className="w-3.5 h-3.5" />
+          Shift Closing History
         </h3>
 
-        <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xs dark:border-slate-800 dark:bg-slate-900">
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-sm">
-              <thead className="bg-slate-50 text-xs font-bold uppercase tracking-wider text-slate-500 dark:bg-slate-800 dark:text-slate-400">
+        <div className="flex-1 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xs dark:border-slate-800 dark:bg-slate-900">
+          <div className="overflow-x-auto h-full">
+            <table className="w-full text-left text-xs md:text-sm">
+              <thead className="sticky top-0 bg-slate-50 text-[10px] md:text-xs font-bold uppercase tracking-wider text-slate-500 dark:bg-slate-800 dark:text-slate-400 border-b border-slate-200 dark:border-slate-700">
                 <tr>
-                  <th className="px-4 py-3.5">Cashier</th>
-                  <th className="px-4 py-3.5">Opened</th>
-                  <th className="px-4 py-3.5">Closed</th>
-                  <th className="px-4 py-3.5 text-right">Total Sales</th>
-                  <th className="px-4 py-3.5 text-right">Expected Cash</th>
-                  <th className="px-4 py-3.5 text-right">Counted Cash</th>
-                  <th className="px-4 py-3.5 text-right">Difference (Over/Short)</th>
-                  <th className="px-4 py-3.5 text-center">Status</th>
+                  <th className="px-3 md:px-4 py-3">Cashier</th>
+                  <th className="px-3 md:px-4 py-3 hidden sm:table-cell">Opened</th>
+                  <th className="px-3 md:px-4 py-3 text-right">Total Sales</th>
+                  <th className="px-3 md:px-4 py-3 text-right hidden sm:table-cell">Expected</th>
+                  <th className="px-3 md:px-4 py-3 text-right hidden md:table-cell">Counted</th>
+                  <th className="px-3 md:px-4 py-3 text-right">Difference</th>
+                  <th className="px-3 md:px-4 py-3 text-center">Status</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 dark:divide-slate-800 font-medium">
@@ -260,41 +259,38 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({ settings }) => {
 
                   return (
                     <tr key={s.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/50">
-                      <td className="px-4 py-3 font-bold text-slate-900 dark:text-white">
+                      <td className="px-3 md:px-4 py-2.5 md:py-3 font-bold text-slate-900 dark:text-white text-xs md:text-sm">
                         {s.cashierName}
                       </td>
-                      <td className="px-4 py-3 text-xs text-slate-500">
+                      <td className="px-3 md:px-4 py-3 text-xs text-slate-500 hidden sm:table-cell">
                         {formatDateTime(s.openedAt)}
                       </td>
-                      <td className="px-4 py-3 text-xs text-slate-500">
-                        {s.closedAt ? formatDateTime(s.closedAt) : '— (Active)'}
-                      </td>
-                      <td className="px-4 py-3 text-right font-bold">
+                      <td className="px-3 md:px-4 py-3 text-right font-bold text-xs md:text-sm">
                         {formatCurrency(s.totalSales, settings.currencySymbol)}
                       </td>
-                      <td className="px-4 py-3 text-right text-slate-600 dark:text-slate-300">
+                      <td className="px-3 md:px-4 py-3 text-right text-slate-500 hidden sm:table-cell text-xs">
                         {formatCurrency(s.expectedCashInDrawer, settings.currencySymbol)}
                       </td>
-                      <td className="px-4 py-3 text-right font-bold text-slate-900 dark:text-white">
+                      <td className="px-3 md:px-4 py-3 text-right font-bold text-slate-900 dark:text-white hidden md:table-cell text-xs">
                         {s.actualCountedCash !== undefined
                           ? formatCurrency(s.actualCountedCash, settings.currencySymbol)
                           : '—'}
                       </td>
-                      <td className="px-4 py-3 text-right font-bold">
+                      <td className="px-3 md:px-4 py-3 text-right font-bold text-xs">
                         {isClosed ? (
                           diff === 0 ? (
-                            <span className="text-emerald-600">Exact Matched (0.00)</span>
+                            <span className="text-emerald-600">Matched (0)</span>
                           ) : diff > 0 ? (
-                            <span className="text-sky-600">+{formatCurrency(diff, settings.currencySymbol)} (Over)</span>
+                            <span className="text-sky-600">+{formatCurrency(diff, settings.currencySymbol)}</span>
                           ) : (
-                            <span className="text-rose-600">{formatCurrency(diff, settings.currencySymbol)} (Short)</span>
+                            <span className="text-rose-600">{formatCurrency(diff, settings.currencySymbol)}</span>
                           )
                         ) : (
                           '—'
                         )}
                       </td>
-                      <td className="px-4 py-3 text-center">
-                        <Badge variant={isClosed ? 'neutral' : 'success'}>
+                      <td className="px-3 md:px-4 py-3 text-center">
+                        <Badge variant={isClosed ? 'neutral' : 'success'} size="sm">
                           {s.status}
                         </Badge>
                       </td>
@@ -314,7 +310,7 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({ settings }) => {
         title="Open Register Shift"
         maxWidth="sm"
       >
-        <form onSubmit={handleOpenShift} className="space-y-4">
+        <form onSubmit={handleOpenShift} className="space-y-3.5">
           <Input
             label="Cashier Name *"
             required
@@ -343,14 +339,13 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({ settings }) => {
       <Modal
         isOpen={isCloseModalOpen}
         onClose={() => setIsCloseModalOpen(false)}
-        title="Close Register Shift (Day End)"
-        description="Count the actual physical cash inside the register drawer"
+        title="Close Register Shift"
         maxWidth="md"
       >
-        <form onSubmit={handleCloseShift} className="space-y-4">
-          <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800 space-y-1">
+        <form onSubmit={handleCloseShift} className="space-y-3.5">
+          <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800 space-y-1">
             <div className="flex justify-between text-xs text-slate-500">
-              <span>Expected Cash in Drawer:</span>
+              <span>Expected in Drawer:</span>
               <span className="font-bold text-slate-900 dark:text-white">
                 {currentShift && formatCurrency(currentShift.expectedCashInDrawer, settings.currencySymbol)}
               </span>
@@ -358,7 +353,7 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({ settings }) => {
           </div>
 
           <Input
-            label={`Actual Physical Cash Counted (${settings.currencySymbol}) *`}
+            label={`Physical Cash Counted (${settings.currencySymbol}) *`}
             type="number"
             required
             value={countedCash}
@@ -366,10 +361,10 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({ settings }) => {
           />
 
           <Input
-            label="Closing Notes / Comments"
+            label="Closing Notes"
             value={closingNote}
             onChange={(e) => setClosingNote(e.target.value)}
-            placeholder="e.g. End of shift, cash handed over to manager"
+            placeholder="e.g. End of day cash reconciled"
           />
 
           <div className="flex justify-end gap-2 pt-2">
@@ -377,7 +372,7 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({ settings }) => {
               Cancel
             </Button>
             <Button type="submit" variant="destructive">
-              Confirm & Close Shift
+              Confirm & Close
             </Button>
           </div>
         </form>
@@ -387,10 +382,10 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({ settings }) => {
       <Modal
         isOpen={isMovementModalOpen}
         onClose={() => setIsMovementModalOpen(false)}
-        title="Record Cash Drawer Movement"
+        title="Cash Drawer Movement"
         maxWidth="sm"
       >
-        <form onSubmit={handleRecordMovement} className="space-y-4">
+        <form onSubmit={handleRecordMovement} className="space-y-3.5">
           <div className="flex gap-2">
             <button
               type="button"
@@ -401,7 +396,7 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({ settings }) => {
                   : 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300'
               }`}
             >
-              Cash Out (Expense / Payout)
+              Cash Out (Expense)
             </button>
             <button
               type="button"
@@ -412,7 +407,7 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({ settings }) => {
                   : 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300'
               }`}
             >
-              Cash In (Float Top-up)
+              Cash In (Float)
             </button>
           </div>
 
@@ -425,11 +420,11 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({ settings }) => {
           />
 
           <Input
-            label="Reason / Note *"
+            label="Reason *"
             required
             value={movementReason}
             onChange={(e) => setMovementReason(e.target.value)}
-            placeholder="e.g. Bought receipt paper roll"
+            placeholder="e.g. Bought receipts rolls"
           />
 
           <div className="flex justify-end gap-2 pt-2">
@@ -437,7 +432,7 @@ export const RegisterScreen: React.FC<RegisterScreenProps> = ({ settings }) => {
               Cancel
             </Button>
             <Button type="submit" variant="primary">
-              Record Movement
+              Save
             </Button>
           </div>
         </form>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import {
   Settings,
   Store,
@@ -50,36 +50,34 @@ export const SettingsScreen: React.FC = () => {
   };
 
   return (
-    <div className="flex h-[calc(100vh-70px)] flex-col p-6 space-y-5 overflow-y-auto max-w-5xl mx-auto">
+    <div className="flex h-[calc(100vh-60px)] md:h-[calc(100vh-64px)] flex-col p-3 md:p-6 space-y-4 md:space-y-5 overflow-y-auto max-w-5xl mx-auto">
       {/* Top Header */}
-      <div className="flex flex-wrap items-center justify-between gap-4">
+      <div className="flex flex-wrap items-center justify-between gap-2 md:gap-4 shrink-0">
         <div>
-          <h2 className="text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
-            <Settings className="w-7 h-7 text-sky-600" />
-            Store Settings & Configuration
+          <h2 className="text-lg md:text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+            <Settings className="w-5 h-5 md:w-7 md:h-7 text-sky-600" />
+            Store Settings & Preferences
           </h2>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Configure store invoice identity, receipt paper width, taxes, and system sound preferences
+          <p className="text-[11px] md:text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+            Configure store receipt header, printer paper width, tax rates, and sounds
           </p>
         </div>
 
-        <div className="flex items-center gap-2">
-          <Button variant="outline" size="md" onClick={handleExportBackup}>
-            <Download className="w-4 h-4 mr-1.5" />
-            Export JSON Backup
-          </Button>
-        </div>
+        <Button variant="outline" size="sm" onClick={handleExportBackup}>
+          <Download className="w-4 h-4 mr-1.5" />
+          <span>Export Backup</span>
+        </Button>
       </div>
 
-      <form onSubmit={handleSave} className="space-y-6">
+      <form onSubmit={handleSave} className="space-y-4 md:space-y-6">
         {/* Store Profile Card */}
-        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs dark:border-slate-800 dark:bg-slate-900 space-y-4">
-          <h3 className="text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+        <div className="rounded-2xl border border-slate-200 bg-white p-4 md:p-6 shadow-xs dark:border-slate-800 dark:bg-slate-900 space-y-3 md:space-y-4">
+          <h3 className="text-xs md:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-2.5">
             <Store className="w-4 h-4 text-sky-600" />
             Store Profile (Printed on Invoices)
           </h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
             <Input
               label="Store English Name *"
               required
@@ -97,25 +95,25 @@ export const SettingsScreen: React.FC = () => {
               onChange={(e) => setForm({ ...form, branchName: e.target.value })}
             />
             <Input
-              label="Contact Mobile / Phone *"
+              label="Phone *"
               required
               value={form.phone}
               onChange={(e) => setForm({ ...form, phone: e.target.value })}
             />
             <Input
-              label="Contact Email"
+              label="Email"
               type="email"
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
             />
             <Input
-              label="VAT / BIN Registration Number"
+              label="VAT / BIN Number"
               value={form.vatRegistrationNumber}
               onChange={(e) => setForm({ ...form, vatRegistrationNumber: e.target.value })}
             />
-            <div className="md:col-span-2">
+            <div className="sm:col-span-2">
               <Input
-                label="Full Physical Address *"
+                label="Store Address *"
                 required
                 value={form.address}
                 onChange={(e) => setForm({ ...form, address: e.target.value })}
@@ -125,24 +123,24 @@ export const SettingsScreen: React.FC = () => {
         </div>
 
         {/* POS Behavior & Receipt Setup Card */}
-        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs dark:border-slate-800 dark:bg-slate-900 space-y-4">
-          <h3 className="text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+        <div className="rounded-2xl border border-slate-200 bg-white p-4 md:p-6 shadow-xs dark:border-slate-800 dark:bg-slate-900 space-y-3 md:space-y-4">
+          <h3 className="text-xs md:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-2.5">
             <Printer className="w-4 h-4 text-sky-600" />
-            Receipt Printing & Tax Rates
+            Receipt Printing & Taxes
           </h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-1.5">
+              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-1">
                 Thermal Paper Width
               </label>
               <select
                 value={form.paperSize}
                 onChange={(e) => setForm({ ...form, paperSize: e.target.value as '58mm' | '80mm' })}
-                className="h-11 w-full rounded-xl border border-slate-300 bg-white px-3 text-sm focus:border-sky-500 focus:outline-none dark:border-slate-700 dark:bg-slate-900 dark:text-white"
+                className="h-10 w-full rounded-xl border border-slate-300 bg-white px-3 text-xs focus:border-sky-500 focus:outline-none dark:border-slate-700 dark:bg-slate-900 dark:text-white"
               >
-                <option value="80mm">80mm (Standard POS Thermal)</option>
-                <option value="58mm">58mm (Compact Mobile POS)</option>
+                <option value="80mm">80mm (Standard POS)</option>
+                <option value="58mm">58mm (Compact)</option>
               </select>
             </div>
 
@@ -153,14 +151,14 @@ export const SettingsScreen: React.FC = () => {
             />
 
             <Input
-              label="Default VAT / Tax Rate (%)"
+              label="VAT Rate (%)"
               type="number"
               value={form.defaultTaxRate.toString()}
               onChange={(e) => setForm({ ...form, defaultTaxRate: parseFloat(e.target.value) || 0 })}
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 pt-1">
             <Input
               label="Receipt Header Note"
               value={form.receiptHeaderNote}
@@ -174,8 +172,8 @@ export const SettingsScreen: React.FC = () => {
           </div>
 
           {/* Feature Toggles */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-3 border-t border-slate-100 dark:border-slate-800">
-            <label className="flex items-center gap-3 p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 md:gap-4 pt-2 border-t border-slate-100 dark:border-slate-800">
+            <label className="flex items-center gap-2.5 p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer">
               <input
                 type="checkbox"
                 checked={form.enableSound}
@@ -183,11 +181,11 @@ export const SettingsScreen: React.FC = () => {
                 className="h-4 w-4 rounded-md text-sky-600"
               />
               <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
-                Audio Feedback (Scan & Cash Beep)
+                Audio Beeps
               </span>
             </label>
 
-            <label className="flex items-center gap-3 p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer">
+            <label className="flex items-center gap-2.5 p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer">
               <input
                 type="checkbox"
                 checked={form.enableTax}
@@ -195,11 +193,11 @@ export const SettingsScreen: React.FC = () => {
                 className="h-4 w-4 rounded-md text-sky-600"
               />
               <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
-                Enable VAT / Tax Calculation
+                Enable VAT
               </span>
             </label>
 
-            <label className="flex items-center gap-3 p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer">
+            <label className="flex items-center gap-2.5 p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer">
               <input
                 type="checkbox"
                 checked={form.autoPrintReceipt}
@@ -207,21 +205,21 @@ export const SettingsScreen: React.FC = () => {
                 className="h-4 w-4 rounded-md text-sky-600"
               />
               <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
-                Auto-Prompt Receipt on Sale
+                Auto-Prompt Print
               </span>
             </label>
           </div>
         </div>
 
         {/* Save Button */}
-        <div className="flex justify-end gap-3 pt-2">
+        <div className="flex justify-end gap-3 pt-1">
           <Button
             type="submit"
             variant="primary"
-            size="xl"
+            size="lg"
             isLoading={isSaving}
           >
-            <Save className="w-5 h-5 mr-2" />
+            <Save className="w-4 h-4 mr-2" />
             Save Store Settings
           </Button>
         </div>
