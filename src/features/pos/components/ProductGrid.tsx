@@ -1,120 +1,140 @@
 ﻿import React, { useState, useMemo } from 'react';
-import { Search, Sparkles, ShoppingBag, Coffee, Cookie, Milk, Apple, LayoutGrid, X, Barcode } from 'lucide-react';
+import {
+  Search,
+  LayoutGrid,
+  ShoppingBag,
+  Apple,
+  Coffee,
+  Sparkles,
+  Milk,
+  Cookie,
+  Beef,
+  Flame,
+  X,
+} from 'lucide-react';
 import type { Product, Category } from '../../../types';
 import { ProductCard } from './ProductCard';
 
 interface ProductGridProps {
   products: Product[];
   categories: Category[];
-  currencySymbol?: string;
+  currencySymbol: string;
   onSelectProduct: (product: Product) => void;
-  searchInputRef?: React.RefObject<HTMLInputElement | null>;
+  searchInputRef: React.RefObject<HTMLInputElement | null>;
 }
 
 export const ProductGrid: React.FC<ProductGridProps> = ({
   products,
   categories,
-  currencySymbol = '৳',
+  currencySymbol,
   onSelectProduct,
   searchInputRef,
 }) => {
-  const [selectedCategory, setSelectedCategory] = useState<string>('cat-all');
-  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('all');
 
-  const getCategoryIcon = (iconName?: string) => {
-    switch (iconName) {
-      case 'ShoppingBag':
-        return <ShoppingBag className="w-3.5 h-3.5" />;
-      case 'Coffee':
-        return <Coffee className="w-3.5 h-3.5" />;
-      case 'Cookie':
-        return <Cookie className="w-3.5 h-3.5" />;
-      case 'Milk':
-        return <Milk className="w-3.5 h-3.5" />;
-      case 'Sparkles':
-        return <Sparkles className="w-3.5 h-3.5" />;
-      case 'Apple':
-        return <Apple className="w-3.5 h-3.5" />;
+  const getCategoryIcon = (id: string) => {
+    switch (id) {
+      case 'cat-grocery':
+        return ShoppingBag;
+      case 'cat-beverages':
+        return Coffee;
+      case 'cat-dairy':
+        return Milk;
+      case 'cat-snacks':
+        return Cookie;
+      case 'cat-produce':
+        return Apple;
+      case 'cat-meat':
+        return Beef;
+      case 'cat-household':
+        return Sparkles;
       default:
-        return <LayoutGrid className="w-3.5 h-3.5" />;
+        return LayoutGrid;
     }
   };
 
   const filteredProducts = useMemo(() => {
-    return products.filter((product) => {
-      const matchesCategory =
-        selectedCategory === 'cat-all' || product.categoryId === selectedCategory;
-
-      const q = searchQuery.toLowerCase().trim();
+    return products.filter((p) => {
+      const matchesCat = selectedCategory === 'all' || p.categoryId === selectedCategory;
+      const query = searchQuery.trim().toLowerCase();
       const matchesSearch =
-        !q ||
-        product.name.toLowerCase().includes(q) ||
-        (product.nameBn && product.nameBn.toLowerCase().includes(q)) ||
-        product.barcode.toLowerCase().includes(q) ||
-        product.sku.toLowerCase().includes(q);
-
-      return matchesCategory && matchesSearch;
+        !query ||
+        p.name.toLowerCase().includes(query) ||
+        (p.nameBn && p.nameBn.toLowerCase().includes(query)) ||
+        p.barcode.includes(query) ||
+        p.sku.toLowerCase().includes(query);
+      return matchesCat && matchesSearch;
     });
   }, [products, selectedCategory, searchQuery]);
 
   return (
-    <div className="flex h-full flex-col gap-3.5 overflow-hidden">
-      {/* 🌟 ZONE 1: HERO ACTION SEARCH & BARCODE SCAN BAR */}
-      <div className="relative group">
-        <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center gap-2 pointer-events-none text-sky-600 dark:text-sky-400">
-          <Barcode className="w-5 h-5" />
-        </div>
-        <input
-          ref={searchInputRef}
-          type="text"
-          placeholder="⚡ Scan Barcode or Type Product / SKU (Hot-key: F2)..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="h-13 w-full rounded-2xl border-2 border-slate-200/90 bg-white pl-12 pr-20 text-sm font-semibold text-slate-900 placeholder:text-slate-400 placeholder:font-normal focus:border-sky-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-sky-500/15 dark:border-slate-800 dark:bg-slate-900 dark:text-white dark:focus:border-sky-400 shadow-sm transition-all"
-        />
-        <div className="absolute right-3.5 top-1/2 -translate-y-1/2 flex items-center gap-1.5">
-          {searchQuery ? (
+    <div className="flex h-full flex-col space-y-3 overflow-hidden">
+      {/* 🔍 TOP SEARCH & BARCODE SCANNER BAR (Matching Reference 1 & 3) */}
+      <div className="relative shrink-0">
+        <div className="flex items-center h-12 w-full rounded-2xl border border-slate-200/90 bg-white dark:border-slate-800 dark:bg-slate-900 px-3.5 shadow-xs transition-all focus-within:border-emerald-500 focus-within:ring-2 focus-within:ring-emerald-500/20">
+          <Search className="w-4 h-4 text-slate-400 shrink-0 mr-2.5" />
+          <input
+            ref={searchInputRef}
+            type="text"
+            placeholder="Search items by name, barcode, SKU... (Press F2)"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="h-full flex-1 bg-transparent text-xs sm:text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:outline-none dark:text-white"
+          />
+
+          {searchQuery && (
             <button
+              type="button"
               onClick={() => setSearchQuery('')}
-              className="rounded-lg p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-slate-800"
+              className="p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-white mr-1.5"
             >
-              <X className="w-4 h-4" />
+              <X className="w-3.5 h-3.5" />
             </button>
-          ) : (
-            <kbd className="hidden sm:inline-flex items-center rounded-md border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 text-[11px] font-mono font-bold text-slate-500 dark:text-slate-400">
-              F2
-            </kbd>
           )}
+
+          <div className="hidden sm:flex items-center gap-1 px-2 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-[10px] font-mono font-bold text-slate-500 dark:text-slate-400 border border-slate-200/60 dark:border-slate-700">
+            <span>F2</span>
+          </div>
         </div>
       </div>
 
-      {/* Category Pills Slider - Tactile & Subdued */}
-      <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none select-none shrink-0">
-        {categories.map((cat) => {
-          const isSelected = selectedCategory === cat.id;
-          const count =
-            cat.id === 'cat-all'
-              ? products.length
-              : products.filter((p) => p.categoryId === cat.id).length;
+      {/* 🏷️ CATEGORY PILLS HORIZONTAL BAR (Matching Reference 1 & 3) */}
+      <div className="flex items-center gap-2 overflow-x-auto pb-1 shrink-0 no-scrollbar">
+        {/* All Items Pill */}
+        <button
+          type="button"
+          onClick={() => setSelectedCategory('all')}
+          className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
+            selectedCategory === 'all'
+              ? 'bg-slate-900 dark:bg-emerald-600 text-white shadow-sm'
+              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200/70 dark:border-slate-800 hover:bg-slate-50'
+          }`}
+        >
+          <Flame className="w-3.5 h-3.5 text-current" />
+          <span>All Items ({products.length})</span>
+        </button>
+
+        {/* Category Specific Pills */}
+        {categories.map((c) => {
+          const Icon = getCategoryIcon(c.id);
+          const isSelected = selectedCategory === c.id;
+          const count = products.filter((p) => p.categoryId === c.id).length;
 
           return (
             <button
-              key={cat.id}
+              key={c.id}
               type="button"
-              onClick={() => setSelectedCategory(cat.id)}
-              className={`flex items-center gap-1.5 whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-bold transition-all cursor-pointer ${
+              onClick={() => setSelectedCategory(c.id)}
+              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
                 isSelected
-                  ? 'bg-slate-900 text-white shadow-sm dark:bg-white dark:text-slate-900'
-                  : 'bg-white text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:bg-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-800'
+                  ? 'bg-slate-900 dark:bg-emerald-600 text-white shadow-sm'
+                  : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200/70 dark:border-slate-800 hover:bg-slate-50'
               }`}
             >
-              {getCategoryIcon(cat.iconName)}
-              <span>{cat.name}</span>
-              <span className={`text-[10px] px-1.5 py-0.2 rounded-md ${
-                isSelected
-                  ? 'bg-white/20 text-white dark:bg-slate-900/20 dark:text-slate-900 font-extrabold'
-                  : 'bg-slate-100 dark:bg-slate-800 text-slate-400'
-              }`}>
+              <Icon className="w-3.5 h-3.5 text-current" />
+              <span>{c.name}</span>
+              <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${isSelected ? 'bg-white/20 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}>
                 {count}
               </span>
             </button>
@@ -122,20 +142,20 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
         })}
       </div>
 
-      {/* ZONE 2: PRODUCT CATALOG GRID */}
+      {/* 📦 PRODUCT CARDS GRID */}
       <div className="flex-1 overflow-y-auto pr-1">
         {filteredProducts.length === 0 ? (
-          <div className="flex h-72 flex-col items-center justify-center rounded-3xl border-2 border-dashed border-slate-200 dark:border-slate-800 p-8 text-center bg-white/50 dark:bg-slate-900/30">
-            <Search className="w-10 h-10 text-slate-300 dark:text-slate-600 mb-2" />
-            <h4 className="text-sm font-bold text-slate-700 dark:text-slate-300">
-              No matching products found
-            </h4>
-            <p className="text-xs text-slate-400 mt-1 max-w-xs">
-              Check spelling or clear search filter to see catalog items.
+          <div className="flex h-64 flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-200 dark:border-slate-800 p-8 text-center">
+            <ShoppingBag className="h-12 w-12 text-slate-300 dark:text-slate-600 stroke-1 mb-2" />
+            <p className="text-sm font-bold text-slate-700 dark:text-slate-300">
+              No products found
+            </p>
+            <p className="text-xs text-slate-400 mt-0.5">
+              Try searching with another keyword or barcode.
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-4 pb-2">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2.5 sm:gap-3">
             {filteredProducts.map((product) => (
               <ProductCard
                 key={product.id}

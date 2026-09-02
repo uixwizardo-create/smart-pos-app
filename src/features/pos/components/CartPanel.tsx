@@ -3,11 +3,10 @@ import {
   User,
   Trash2,
   Bookmark,
-  ArrowDownCircle,
-  Tag,
-  CreditCard,
-  ArrowLeft,
-  Barcode,
+  Sparkles,
+  Percent,
+  CheckCircle2,
+  FolderOpen,
 } from 'lucide-react';
 import type { StoreSettings } from '../../../types';
 import { useCartStore } from '../../../store/useCartStore';
@@ -15,8 +14,6 @@ import { CartItemRow } from './CartItemRow';
 import { CustomerPickerModal } from './CustomerPickerModal';
 import { ParkedCartsModal } from './ParkedCartsModal';
 import { PaymentModal } from '../payment/PaymentModal';
-import { Button } from '../../../components/ui/Button';
-import { Modal } from '../../../components/ui/Modal';
 import { formatCurrency } from '../../../utils/formatters';
 import { useToastStore } from '../../../store/useToastStore';
 
@@ -28,122 +25,135 @@ export const CartPanel: React.FC<CartPanelProps> = ({ settings }) => {
   const {
     items,
     customer,
-    discountType,
-    discountValue,
-    holdCarts,
-    setCustomer,
-    setDiscount,
     updateQuantity,
-    updateItemDiscount,
     removeItem,
     clearCart,
     parkCurrentCart,
+    holdCarts,
+    setCustomer,
+    setDiscount,
+    discountType,
+    discountValue,
     getSubtotal,
-    getDiscountTotal,
     getTaxTotal,
+    getDiscountTotal,
     getGrandTotal,
     getTotalItemsCount,
   } = useCartStore();
 
-  const showToast = useToastStore((s) => s.showToast);
-
-  // Modals state
-  const [isCustomerModalOpen, setIsCustomerModalOpen] = useState(false);
+  const [isCustomerPickerOpen, setIsCustomerPickerOpen] = useState(false);
   const [isParkedModalOpen, setIsParkedModalOpen] = useState(false);
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
-  const [isDiscountModalOpen, setIsDiscountModalOpen] = useState(false);
+  const [isDiscountOpen, setIsDiscountOpen] = useState(false);
+  const [discountVal, setDiscountVal] = useState(discountValue ? discountValue.toString() : '');
+  const [localDiscountType, setLocalDiscountType] = useState<'percentage' | 'fixed'>(discountType);
 
-  // Cart discount form state
-  const [cartDiscountInput, setCartDiscountInput] = useState(discountValue.toString());
-  const [cartDiscountTypeInput, setCartDiscountTypeInput] = useState(discountType);
+  const showToast = useToastStore((s) => s.showToast);
 
   const subtotal = getSubtotal();
+  const taxAmount = getTaxTotal();
   const discountTotal = getDiscountTotal();
-  const taxTotal = getTaxTotal();
   const grandTotal = getGrandTotal();
-  const itemsCount = getTotalItemsCount();
+  const totalItems = getTotalItemsCount();
 
-  const handleParkCart = async () => {
+  const handleHoldCart = async () => {
     if (items.length === 0) return;
-    const parked = await parkCurrentCart();
-    if (parked) {
-      showToast('Order Parked', `Order #${parked.holdNumber} has been placed on hold.`, 'info');
-    }
+    await parkCurrentCart();
+    showToast('Order Parked', 'Current order has been saved to parked list (F4)', 'info');
   };
 
-  const handleApplyCartDiscount = () => {
-    const val = parseFloat(cartDiscountInput) || 0;
-    setDiscount(cartDiscountTypeInput, val);
-    setIsDiscountModalOpen(false);
-    showToast('Discount Applied', 'Cart discount updated successfully.', 'success');
+  const handleApplyDiscount = (e: React.FormEvent) => {
+    e.preventDefault();
+    const val = parseFloat(discountVal) || 0;
+    setDiscount(localDiscountType, val);
+    setIsDiscountOpen(false);
+    showToast('Discount Applied', `${val}${localDiscountType === 'percentage' ? '%' : settings.currencySymbol} cart discount applied`, 'success');
   };
 
   return (
-    <div className="flex h-full flex-col rounded-3xl border border-slate-200/90 bg-white shadow-xl shadow-slate-200/50 dark:border-slate-800 dark:bg-slate-900/95 dark:shadow-none overflow-hidden">
-      {/* 🌟 ZONE 3 HERO: THE GIANT TOTAL MONETARY ANCHOR (Eye lands here naturally) */}
-      <div className="bg-slate-900 text-white p-5 dark:bg-slate-950 border-b border-slate-800 select-none">
-        <div className="flex items-center justify-between text-xs text-slate-400 font-semibold uppercase tracking-wider mb-1">
-          <span>Net Payable Total</span>
-          <span className="flex items-center gap-1 text-slate-300 font-bold">
-            {itemsCount} {itemsCount === 1 ? 'item' : 'items'}
-          </span>
+    <div className="flex h-full flex-col rounded-3xl border border-slate-200/80 bg-white dark:border-slate-800 dark:bg-slate-900 shadow-sm overflow-hidden select-none">
+      {/* 🏷️ "Detail Items" HEADER (Matching Reference 1 & 3) */}
+      <div className="flex items-center justify-between p-3.5 sm:p-4 border-b border-slate-100 dark:border-slate-800/80 shrink-0">
+        <div>
+          <h2 className="text-sm sm:text-base font-black text-slate-900 dark:text-white tracking-tight">
+            Detail Items
+          </h2>
+          <p className="text-[11px] text-slate-400 font-medium">
+            {totalItems} {totalItems === 1 ? 'item' : 'items'} selected
+          </p>
         </div>
-        <div className="text-3xl lg:text-4xl font-black text-sky-400 tracking-tight font-mono">
-          {formatCurrency(grandTotal, settings.currencySymbol)}
-        </div>
-      </div>
 
-      {/* Secondary Bar: Customer & Parked Carts */}
-      <div className="flex items-center justify-between gap-2 p-3 bg-slate-50 dark:bg-slate-800/60 border-b border-slate-200/70 dark:border-slate-800">
-        <button
-          type="button"
-          onClick={() => setIsCustomerModalOpen(true)}
-          className="flex flex-1 items-center gap-2 rounded-xl bg-white p-2 text-left hover:bg-slate-100 dark:bg-slate-900 dark:hover:bg-slate-800 transition-colors cursor-pointer border border-slate-200/80 dark:border-slate-700"
-        >
-          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-sky-100 text-sky-700 dark:bg-sky-950 dark:text-sky-300">
-            <User className="h-3.5 w-3.5" />
-          </div>
-          <div className="flex-1 overflow-hidden">
-            <div className="text-xs font-bold text-slate-900 dark:text-white truncate">
-              {customer ? customer.name : 'Walk-in Customer'}
-            </div>
-            <div className="text-[10px] text-slate-400">
-              {customer ? `Pts: ${customer.loyaltyPoints} • Due: ${formatCurrency(customer.currentDue, settings.currencySymbol)}` : 'Tap to attach customer (F8)'}
-            </div>
-          </div>
-        </button>
-
-        {/* Parked Carts Button */}
-        <button
-          type="button"
-          onClick={() => setIsParkedModalOpen(true)}
-          className="relative flex h-10 items-center gap-1.5 rounded-xl border border-slate-200/80 bg-white px-3 text-xs font-bold text-slate-700 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 cursor-pointer"
-          title="Recall Parked Orders"
-        >
-          <ArrowDownCircle className="h-4 w-4 text-sky-600 dark:text-sky-400" />
-          <span>Parked</span>
+        <div className="flex items-center gap-1">
+          {/* Parked / Held Carts Trigger */}
           {holdCarts.length > 0 && (
-            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-sky-600 text-[10px] font-black text-white">
-              {holdCarts.length}
-            </span>
+            <button
+              type="button"
+              onClick={() => setIsParkedModalOpen(true)}
+              className="flex items-center gap-1 px-2.5 py-1 rounded-xl bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 text-xs font-bold border border-amber-200 dark:border-amber-800"
+              title="Parked Carts"
+            >
+              <FolderOpen className="w-3.5 h-3.5" />
+              <span>{holdCarts.length}</span>
+            </button>
           )}
+
+          {/* Park Cart (F4) */}
+          <button
+            type="button"
+            disabled={items.length === 0}
+            onClick={handleHoldCart}
+            className="p-1.5 rounded-xl text-slate-400 hover:bg-slate-100 hover:text-slate-700 dark:hover:bg-slate-800 dark:hover:text-white transition-colors disabled:opacity-30 cursor-pointer"
+            title="Park Order (F4)"
+          >
+            <Bookmark className="w-4 h-4" />
+          </button>
+
+          {/* Clear Cart */}
+          <button
+            type="button"
+            disabled={items.length === 0}
+            onClick={() => clearCart()}
+            className="p-1.5 rounded-xl text-slate-400 hover:bg-rose-50 hover:text-rose-600 dark:hover:bg-rose-950/30 transition-colors disabled:opacity-30 cursor-pointer"
+            title="Clear Cart"
+          >
+            <Trash2 className="w-4 h-4" />
+          </button>
+        </div>
+      </div>
+
+      {/* 👤 CUSTOMER SELECTOR BAR (F8) */}
+      <div className="px-3.5 py-2 border-b border-slate-100 dark:border-slate-800/80 bg-slate-50/60 dark:bg-slate-900/50 shrink-0">
+        <button
+          type="button"
+          onClick={() => setIsCustomerPickerOpen(true)}
+          className="w-full flex items-center justify-between p-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/70 dark:border-slate-700 text-xs font-semibold cursor-pointer hover:border-emerald-500 transition-colors"
+        >
+          <div className="flex items-center gap-2 truncate">
+            <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600">
+              <User className="w-3.5 h-3.5" />
+            </div>
+            <span className="truncate text-slate-800 dark:text-slate-200">
+              {customer ? customer.name : 'Walk-in Customer'}
+            </span>
+          </div>
+
+          <span className="text-[10px] text-slate-400 font-mono font-bold bg-slate-100 dark:bg-slate-700 px-1.5 py-0.5 rounded">
+            F8
+          </span>
         </button>
       </div>
 
-      {/* Cart Items List */}
-      <div className="flex-1 overflow-y-auto p-3 space-y-2">
+      {/* 🛒 ITEM LIST */}
+      <div className="flex-1 overflow-y-auto p-3 sm:p-3.5 space-y-2">
         {items.length === 0 ? (
-          <div className="flex h-full flex-col items-center justify-center text-center p-6 select-none">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-sky-50 dark:bg-sky-950/40 text-sky-600 dark:text-sky-400 mb-3">
-              <Barcode className="w-7 h-7" />
-            </div>
-            <h4 className="text-sm font-bold text-slate-700 dark:text-slate-200">
-              Ready for Next Customer
-            </h4>
-            <div className="flex items-center gap-1.5 text-xs text-sky-600 dark:text-sky-400 font-semibold mt-2 bg-sky-50 dark:bg-sky-950/40 px-3 py-1.5 rounded-xl">
-              <ArrowLeft className="w-3.5 h-3.5 animate-pulse" />
-              <span>Scan barcode or tap items</span>
-            </div>
+          <div className="flex h-full flex-col items-center justify-center text-center p-6 text-slate-400">
+            <Sparkles className="h-10 w-10 text-slate-300 dark:text-slate-700 stroke-1 mb-2" />
+            <p className="text-xs font-bold text-slate-600 dark:text-slate-400">
+              Cart is empty
+            </p>
+            <p className="text-[11px] text-slate-400 mt-0.5">
+              Click items or scan barcode to begin
+            </p>
           </div>
         ) : (
           items.map((item) => (
@@ -151,177 +161,132 @@ export const CartPanel: React.FC<CartPanelProps> = ({ settings }) => {
               key={item.productId}
               item={item}
               currencySymbol={settings.currencySymbol}
-              onUpdateQuantity={updateQuantity}
-              onUpdateDiscount={updateItemDiscount}
+              onUpdateQty={updateQuantity}
               onRemove={removeItem}
             />
           ))
         )}
       </div>
 
-      {/* Calculation Breakdown & Action Bar */}
-      <div className="border-t border-slate-200/80 bg-slate-50/70 p-4 dark:border-slate-800 dark:bg-slate-900/60 space-y-3">
-        {/* Compact summary rows */}
-        <div className="space-y-1 text-xs text-slate-500 dark:text-slate-400">
-          <div className="flex justify-between">
-            <span>Subtotal:</span>
-            <span className="font-bold text-slate-700 dark:text-slate-300">
-              {formatCurrency(subtotal, settings.currencySymbol)}
+      {/* 💳 FINANCIAL BREAKDOWN ("Detail Payment" - Matching Reference 1 & 3) */}
+      <div className="p-3.5 sm:p-4 border-t border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/80 shrink-0 space-y-2">
+        <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+          <span>Sub total</span>
+          <span className="font-mono font-semibold text-slate-800 dark:text-slate-200">
+            {formatCurrency(subtotal, settings.currencySymbol)}
+          </span>
+        </div>
+
+        {settings.enableTax && (
+          <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+            <span>Tax ({settings.defaultTaxRate}%)</span>
+            <span className="font-mono font-semibold text-slate-800 dark:text-slate-200">
+              +{formatCurrency(taxAmount, settings.currencySymbol)}
             </span>
           </div>
+        )}
 
-          <div className="flex justify-between items-center">
+        {/* Discount Row */}
+        <div className="flex items-center justify-between text-xs">
+          <button
+            type="button"
+            onClick={() => setIsDiscountOpen(!isDiscountOpen)}
+            className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-bold hover:underline cursor-pointer"
+          >
+            <Percent className="w-3 h-3" />
+            <span>Discount {discountValue > 0 ? `(${discountValue}${discountType === 'percentage' ? '%' : ''})` : ''}</span>
+          </button>
+          <span className="font-mono font-semibold text-emerald-600 dark:text-emerald-400">
+            -{formatCurrency(discountTotal, settings.currencySymbol)}
+          </span>
+        </div>
+
+        {/* Discount Inline Form */}
+        {isDiscountOpen && (
+          <form onSubmit={handleApplyDiscount} className="flex gap-1.5 pt-1">
+            <input
+              type="number"
+              placeholder="0.00"
+              value={discountVal}
+              onChange={(e) => setDiscountVal(e.target.value)}
+              className="h-8 w-20 rounded-lg border border-slate-300 bg-white px-2 text-xs font-mono dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+            />
             <button
               type="button"
-              onClick={() => {
-                setCartDiscountInput(discountValue.toString());
-                setCartDiscountTypeInput(discountType);
-                setIsDiscountModalOpen(true);
-              }}
-              className="flex items-center gap-1 text-sky-600 hover:text-sky-700 dark:text-sky-400 cursor-pointer font-bold"
+              onClick={() => setLocalDiscountType(localDiscountType === 'percentage' ? 'fixed' : 'percentage')}
+              className="h-8 px-2 rounded-lg bg-slate-200 dark:bg-slate-700 text-xs font-bold"
             >
-              <Tag className="w-3 h-3" />
-              <span>Discount ({discountType === 'percentage' ? `${discountValue}%` : 'Fixed'}):</span>
+              {localDiscountType === 'percentage' ? '%' : settings.currencySymbol}
             </button>
-            <span className="font-bold text-rose-500">
-              -{formatCurrency(discountTotal, settings.currencySymbol)}
-            </span>
-          </div>
+            <button
+              type="submit"
+              className="h-8 px-3 rounded-lg bg-emerald-600 text-white text-xs font-bold"
+            >
+              Apply
+            </button>
+          </form>
+        )}
 
-          {settings.enableTax && (
-            <div className="flex justify-between">
-              <span>VAT ({settings.defaultTaxRate}%):</span>
-              <span className="font-bold text-slate-700 dark:text-slate-300">
-                +{formatCurrency(taxTotal, settings.currencySymbol)}
-              </span>
-            </div>
-          )}
+        {/* Dotted Divider */}
+        <div className="border-b border-dashed border-slate-200 dark:border-slate-700 my-1" />
+
+        {/* Total Payment Row */}
+        <div className="flex items-baseline justify-between pt-0.5">
+          <span className="text-xs sm:text-sm font-extrabold text-slate-900 dark:text-white">
+            Total Payment
+          </span>
+          <span className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white font-mono tracking-tight">
+            {formatCurrency(grandTotal, settings.currencySymbol)}
+          </span>
         </div>
 
-        {/* Secondary Action Row */}
-        <div className="grid grid-cols-2 gap-2 pt-1">
-          <Button
-            type="button"
-            variant="outline"
-            size="sm"
-            disabled={items.length === 0}
-            onClick={handleParkCart}
-            className="text-xs font-bold"
-          >
-            <Bookmark className="w-3.5 h-3.5 mr-1 text-sky-600" />
-            Park (F4)
-          </Button>
-
-          <Button
-            type="button"
-            variant="outline"
-            size="sm"
-            disabled={items.length === 0}
-            onClick={clearCart}
-            className="text-xs font-bold hover:bg-rose-50 hover:text-rose-600 dark:hover:bg-rose-950/30"
-          >
-            <Trash2 className="w-3.5 h-3.5 mr-1 text-rose-500" />
-            Clear
-          </Button>
-        </div>
-
-        {/* Big High-Confidence Checkout Button */}
-        <Button
+        {/* 🟢 RADIANT EMERALD CHECKOUT CTA (Matching Reference 1 & 3 "Place an Order") */}
+        <button
           type="button"
-          variant="success"
-          size="xl"
           disabled={items.length === 0}
           onClick={() => setIsPaymentModalOpen(true)}
-          className="w-full h-14 text-base font-black shadow-lg shadow-emerald-600/25 cursor-pointer"
+          className={`mt-2 flex w-full items-center justify-between p-3.5 rounded-2xl text-white font-black text-sm transition-all shadow-lg ${
+            items.length === 0
+              ? 'bg-slate-300 dark:bg-slate-800 opacity-50 cursor-not-allowed shadow-none'
+              : 'bg-emerald-600 hover:bg-emerald-500 shadow-emerald-600/30 hover:shadow-emerald-600/50 cursor-pointer active:scale-98'
+          }`}
         >
-          <CreditCard className="w-5 h-5 mr-2" />
-          PAY BILL • {formatCurrency(grandTotal, settings.currencySymbol)} (F9)
-        </Button>
+          <span className="flex items-center gap-2">
+            <CheckCircle2 className="w-5 h-5" />
+            <span>Place an Order</span>
+          </span>
+
+          <span className="px-2.5 py-1 rounded-xl bg-emerald-700/60 text-xs font-mono font-bold">
+            F9
+          </span>
+        </button>
       </div>
 
-      {/* Modals */}
+      {/* Customer Picker Modal */}
       <CustomerPickerModal
-        isOpen={isCustomerModalOpen}
-        onClose={() => setIsCustomerModalOpen(false)}
+        isOpen={isCustomerPickerOpen}
+        onClose={() => setIsCustomerPickerOpen(false)}
+        onSelectCustomer={(c) => {
+          setCustomer(c);
+          setIsCustomerPickerOpen(false);
+        }}
         selectedCustomer={customer}
-        onSelectCustomer={setCustomer}
         currencySymbol={settings.currencySymbol}
       />
 
+      {/* Parked Carts Modal */}
       <ParkedCartsModal
         isOpen={isParkedModalOpen}
         onClose={() => setIsParkedModalOpen(false)}
         currencySymbol={settings.currencySymbol}
       />
 
+      {/* Checkout & Payment Modal */}
       <PaymentModal
         isOpen={isPaymentModalOpen}
         onClose={() => setIsPaymentModalOpen(false)}
         settings={settings}
       />
-
-      {/* Cart Discount Modal */}
-      <Modal
-        isOpen={isDiscountModalOpen}
-        onClose={() => setIsDiscountModalOpen(false)}
-        title="Apply Cart Discount"
-        maxWidth="sm"
-      >
-        <div className="space-y-4">
-          <div className="flex gap-2">
-            <button
-              type="button"
-              onClick={() => setCartDiscountTypeInput('fixed')}
-              className={`flex-1 py-2 rounded-xl text-xs font-bold border ${
-                cartDiscountTypeInput === 'fixed'
-                  ? 'bg-sky-600 text-white border-sky-600'
-                  : 'bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300'
-              }`}
-            >
-              Fixed ({settings.currencySymbol})
-            </button>
-            <button
-              type="button"
-              onClick={() => setCartDiscountTypeInput('percentage')}
-              className={`flex-1 py-2 rounded-xl text-xs font-bold border ${
-                cartDiscountTypeInput === 'percentage'
-                  ? 'bg-sky-600 text-white border-sky-600'
-                  : 'bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300'
-              }`}
-            >
-              Percentage (%)
-            </button>
-          </div>
-
-          <div>
-            <label className="text-xs font-semibold text-slate-600 dark:text-slate-300 block mb-1">
-              Discount Value:
-            </label>
-            <input
-              type="number"
-              min="0"
-              value={cartDiscountInput}
-              onChange={(e) => setCartDiscountInput(e.target.value)}
-              className="h-11 w-full rounded-xl border border-slate-300 bg-white px-3 text-base font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-500 dark:bg-slate-900 dark:text-white dark:border-slate-700"
-            />
-          </div>
-
-          <div className="flex justify-end gap-2 pt-2">
-            <Button
-              variant="outline"
-              onClick={() => {
-                setDiscount('fixed', 0);
-                setIsDiscountModalOpen(false);
-              }}
-            >
-              Remove
-            </Button>
-            <Button variant="primary" onClick={handleApplyCartDiscount}>
-              Apply
-            </Button>
-          </div>
-        </div>
-      </Modal>
     </div>
   );
 };

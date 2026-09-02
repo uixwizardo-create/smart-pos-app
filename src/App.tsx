@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { initializeDatabase } from './db/seedData';
 import { useSettingsStore } from './store/useSettingsStore';
 import { useRegisterStore } from './store/useRegisterStore';
-import { AppHeader, type NavTab } from './components/layout/AppHeader';
+import { AppSidebar, type NavTab } from './components/layout/AppSidebar';
 import { PosScreen } from './features/pos/PosScreen';
 import { InventoryScreen } from './features/inventory/InventoryScreen';
 import { SalesHistoryScreen } from './features/sales/SalesHistoryScreen';
@@ -45,14 +45,14 @@ export function App() {
 
   if (!isDbReady || isSettingsLoading) {
     return (
-      <div className="flex h-screen w-screen flex-col items-center justify-center bg-slate-900 text-white select-none">
-        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-sky-600 shadow-xl shadow-sky-600/40 animate-bounce">
+      <div className="flex h-screen w-screen flex-col items-center justify-center bg-slate-950 text-white select-none">
+        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-600 shadow-xl shadow-emerald-600/40 animate-bounce">
           <Store className="h-9 w-9 text-white" />
         </div>
         <h2 className="mt-4 text-lg font-black tracking-wide">
           Initializing Smart POS Terminal...
         </h2>
-        <p className="text-xs text-slate-400 mt-1">
+        <p className="text-xs text-slate-400 mt-1 font-mono">
           Loading IndexedDB Offline Database & Seed Inventory
         </p>
       </div>
@@ -60,9 +60,9 @@ export function App() {
   }
 
   return (
-    <div className="flex h-screen w-screen flex-col bg-slate-50 dark:bg-[#090d16] text-slate-900 dark:text-slate-100 overflow-hidden font-sans">
-      {/* Top Application Header */}
-      <AppHeader
+    <div className="flex h-screen w-screen bg-[#f6f8fb] dark:bg-[#0b0f19] text-slate-900 dark:text-slate-100 overflow-hidden">
+      {/* 🚀 Left Minimalist Navigation Rail (Image 1 & 3 Reference) */}
+      <AppSidebar
         activeTab={activeTab}
         onTabChange={setActiveTab}
         settings={settings}
@@ -70,8 +70,8 @@ export function App() {
         onOpenHelpModal={() => setIsHelpOpen(true)}
       />
 
-      {/* Main Active View */}
-      <main className="flex-1 overflow-hidden">
+      {/* Main Screen Canvas */}
+      <main className="flex-1 h-screen overflow-hidden pb-14 md:pb-0">
         {activeTab === 'pos' && <PosScreen settings={settings} />}
         {activeTab === 'inventory' && <InventoryScreen settings={settings} />}
         {activeTab === 'sales' && <SalesHistoryScreen settings={settings} />}

@@ -1,4 +1,4 @@
-﻿import { create } from 'zustand';
+import { create } from 'zustand';
 import type { Product, Customer, OrderItem, HoldCart } from '../types';
 import { soundManager } from '../utils/audio';
 import { OrderService } from '../services/order.service';
@@ -79,6 +79,7 @@ export const useCartStore = create<CartState>((set, get) => ({
         barcode: product.barcode,
         name: product.name,
         nameBn: product.nameBn,
+        imageUrl: product.imageUrl,
         unitPrice: product.salePrice,
         costPrice: product.costPrice,
         quantity,

@@ -1,4 +1,4 @@
-﻿export type PaymentMethod = 'cash' | 'card' | 'bkash' | 'nagad' | 'due' | 'split';
+export type PaymentMethod = 'cash' | 'card' | 'bkash' | 'nagad' | 'due' | 'split';
 
 export type OrderStatus = 'completed' | 'refunded' | 'cancelled';
 
@@ -14,6 +14,7 @@ export interface OrderItem {
   barcode: string;
   name: string;
   nameBn?: string;
+  imageUrl?: string;
   unitPrice: number;
   costPrice: number;
   quantity: number;
