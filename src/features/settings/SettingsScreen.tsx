@@ -5,6 +5,7 @@ import {
   Printer,
   Download,
   Save,
+  ChevronDown,
 } from 'lucide-react';
 import type { StoreSettings } from '../../types';
 import { useSettingsStore } from '../../store/useSettingsStore';
@@ -50,15 +51,15 @@ export const SettingsScreen: React.FC = () => {
   };
 
   return (
-    <div className="flex h-[calc(100vh-60px)] md:h-[calc(100vh-64px)] flex-col p-3 md:p-6 space-y-4 md:space-y-5 overflow-y-auto max-w-5xl mx-auto">
+    <div className="flex h-full flex-col p-4 sm:p-6 space-y-5 overflow-y-auto max-w-5xl mx-auto">
       {/* Top Header */}
-      <div className="flex flex-wrap items-center justify-between gap-2 md:gap-4 shrink-0">
+      <div className="flex flex-wrap items-center justify-between gap-3 shrink-0">
         <div>
-          <h2 className="text-lg md:text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
-            <Settings className="w-5 h-5 md:w-7 md:h-7 text-sky-600" />
+          <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+            <Settings className="w-6 h-6 text-emerald-600" />
             Store Settings & Preferences
           </h2>
-          <p className="text-[11px] md:text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
             Configure store receipt header, printer paper width, tax rates, and sounds
           </p>
         </div>
@@ -69,15 +70,15 @@ export const SettingsScreen: React.FC = () => {
         </Button>
       </div>
 
-      <form onSubmit={handleSave} className="space-y-4 md:space-y-6">
+      <form onSubmit={handleSave} className="space-y-5">
         {/* Store Profile Card */}
-        <div className="rounded-2xl border border-slate-200 bg-white p-4 md:p-6 shadow-xs dark:border-slate-800 dark:bg-slate-900 space-y-3 md:space-y-4">
-          <h3 className="text-xs md:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-2.5">
-            <Store className="w-4 h-4 text-sky-600" />
+        <div className="rounded-3xl border border-slate-200/80 bg-white p-5 sm:p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900 space-y-4">
+          <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+            <Store className="w-4 h-4 text-emerald-600" />
             Store Profile (Printed on Invoices)
           </h3>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
             <Input
               label="Store English Name *"
               required
@@ -123,25 +124,28 @@ export const SettingsScreen: React.FC = () => {
         </div>
 
         {/* POS Behavior & Receipt Setup Card */}
-        <div className="rounded-2xl border border-slate-200 bg-white p-4 md:p-6 shadow-xs dark:border-slate-800 dark:bg-slate-900 space-y-3 md:space-y-4">
-          <h3 className="text-xs md:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-2.5">
-            <Printer className="w-4 h-4 text-sky-600" />
+        <div className="rounded-3xl border border-slate-200/80 bg-white p-5 sm:p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900 space-y-4">
+          <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+            <Printer className="w-4 h-4 text-emerald-600" />
             Receipt Printing & Taxes
           </h3>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-4">
             <div>
               <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-1">
                 Thermal Paper Width
               </label>
-              <select
-                value={form.paperSize}
-                onChange={(e) => setForm({ ...form, paperSize: e.target.value as '58mm' | '80mm' })}
-                className="h-10 w-full rounded-xl border border-slate-300 bg-white px-3 text-xs focus:border-sky-500 focus:outline-none dark:border-slate-700 dark:bg-slate-900 dark:text-white"
-              >
-                <option value="80mm">80mm (Standard POS)</option>
-                <option value="58mm">58mm (Compact)</option>
-              </select>
+              <div className="relative">
+                <select
+                  value={form.paperSize}
+                  onChange={(e) => setForm({ ...form, paperSize: e.target.value as '58mm' | '80mm' })}
+                  className="h-10 w-full appearance-none rounded-2xl border border-slate-200 bg-white pl-3.5 pr-9 text-xs font-semibold focus:border-emerald-500 focus:outline-none dark:border-slate-700 dark:bg-slate-900 dark:text-white cursor-pointer"
+                >
+                  <option value="80mm">80mm (Standard POS)</option>
+                  <option value="58mm">58mm (Compact)</option>
+                </select>
+                <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+              </div>
             </div>
 
             <Input
@@ -158,7 +162,7 @@ export const SettingsScreen: React.FC = () => {
             />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 pt-1">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 pt-1">
             <Input
               label="Receipt Header Note"
               value={form.receiptHeaderNote}
@@ -172,37 +176,37 @@ export const SettingsScreen: React.FC = () => {
           </div>
 
           {/* Feature Toggles */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 md:gap-4 pt-2 border-t border-slate-100 dark:border-slate-800">
-            <label className="flex items-center gap-2.5 p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-slate-100 dark:border-slate-800">
+            <label className="flex items-center gap-2.5 p-3 rounded-2xl border border-slate-200/80 dark:border-slate-800 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-850">
               <input
                 type="checkbox"
                 checked={form.enableSound}
                 onChange={(e) => setForm({ ...form, enableSound: e.target.checked })}
-                className="h-4 w-4 rounded-md text-sky-600"
+                className="h-4 w-4 rounded-md text-emerald-600 focus:ring-emerald-500"
               />
               <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
                 Audio Beeps
               </span>
             </label>
 
-            <label className="flex items-center gap-2.5 p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer">
+            <label className="flex items-center gap-2.5 p-3 rounded-2xl border border-slate-200/80 dark:border-slate-800 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-850">
               <input
                 type="checkbox"
                 checked={form.enableTax}
                 onChange={(e) => setForm({ ...form, enableTax: e.target.checked })}
-                className="h-4 w-4 rounded-md text-sky-600"
+                className="h-4 w-4 rounded-md text-emerald-600 focus:ring-emerald-500"
               />
               <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
                 Enable VAT
               </span>
             </label>
 
-            <label className="flex items-center gap-2.5 p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer">
+            <label className="flex items-center gap-2.5 p-3 rounded-2xl border border-slate-200/80 dark:border-slate-800 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-850">
               <input
                 type="checkbox"
                 checked={form.autoPrintReceipt}
                 onChange={(e) => setForm({ ...form, autoPrintReceipt: e.target.checked })}
-                className="h-4 w-4 rounded-md text-sky-600"
+                className="h-4 w-4 rounded-md text-emerald-600 focus:ring-emerald-500"
               />
               <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
                 Auto-Prompt Print

@@ -7,6 +7,7 @@ import {
   Edit2,
   Trash2,
   Barcode,
+  ChevronDown,
 } from 'lucide-react';
 import type { Product, Category, StoreSettings } from '../../types';
 import { ProductService } from '../../services/product.service';
@@ -161,27 +162,27 @@ export const InventoryScreen: React.FC<InventoryScreenProps> = ({ settings }) =>
   const lowStockCount = products.filter((p) => p.stock <= p.minStockAlert).length;
 
   return (
-    <div className="flex h-[calc(100vh-60px)] md:h-[calc(100vh-64px)] flex-col p-3 md:p-6 space-y-3 md:space-y-4 overflow-y-auto">
+    <div className="flex h-full flex-col p-4 sm:p-6 space-y-4 overflow-y-auto">
       {/* Header & Controls */}
-      <div className="flex flex-wrap items-center justify-between gap-2 md:gap-4 shrink-0">
+      <div className="flex flex-wrap items-center justify-between gap-3 shrink-0">
         <div>
-          <h2 className="text-lg md:text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
-            <Package className="w-5 h-5 md:w-7 md:h-7 text-sky-600" />
+          <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+            <Package className="w-6 h-6 text-emerald-600" />
             Inventory & Stock
           </h2>
-          <p className="text-[11px] md:text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
             Manage product catalog, barcode numbers, and stock levels
           </p>
         </div>
 
         <Button variant="primary" size="md" onClick={handleOpenAddModal}>
-          <Plus className="w-4 h-4 mr-1" />
+          <Plus className="w-4 h-4 mr-1.5" />
           <span>Add Product</span>
         </Button>
       </div>
 
       {/* Filter Bar */}
-      <div className="flex flex-wrap items-center gap-2 md:gap-3 bg-white dark:bg-slate-900 p-3 md:p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xs shrink-0">
+      <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 bg-white dark:bg-slate-900 p-3 sm:p-4 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-xs shrink-0">
         <div className="relative flex-1 min-w-[200px]">
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
           <input
@@ -189,30 +190,34 @@ export const InventoryScreen: React.FC<InventoryScreenProps> = ({ settings }) =>
             placeholder="Search name, SKU, or barcode..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="h-9 md:h-10 w-full rounded-xl border border-slate-200 bg-slate-50 pl-10 pr-3 text-xs md:text-sm focus:border-sky-500 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+            className="h-10 w-full rounded-2xl border border-slate-200/80 bg-slate-50 pl-10 pr-3 text-xs sm:text-sm font-semibold focus:border-emerald-500 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
           />
         </div>
 
-        <select
-          value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-          className="h-9 md:h-10 rounded-xl border border-slate-200 bg-slate-50 px-2.5 text-xs font-bold text-slate-700 focus:border-sky-500 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
-        >
-          <option value="all">All Categories ({products.length})</option>
-          {categories.map((c) => (
-            <option key={c.id} value={c.id}>
-              {c.name}
-            </option>
-          ))}
-        </select>
+        {/* 🎯 FIXED DROPDOWN WITH CHEVRON ICON & PERFECT PADDING */}
+        <div className="relative">
+          <select
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+            className="h-10 appearance-none rounded-2xl border border-slate-200/80 bg-slate-50 pl-3.5 pr-9 text-xs font-bold text-slate-700 focus:border-emerald-500 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 cursor-pointer"
+          >
+            <option value="all">All Categories ({products.length})</option>
+            {categories.map((c) => (
+              <option key={c.id} value={c.id}>
+                {c.name}
+              </option>
+            ))}
+          </select>
+          <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+        </div>
 
         <button
           type="button"
           onClick={() => setFilterLowStock(!filterLowStock)}
-          className={`flex items-center gap-1.5 h-9 md:h-10 px-2.5 md:px-3 rounded-xl border text-xs font-bold transition-colors cursor-pointer ${
+          className={`flex items-center gap-1.5 h-10 px-3.5 rounded-2xl border text-xs font-bold transition-all cursor-pointer ${
             filterLowStock
               ? 'bg-amber-500 text-slate-950 border-amber-500 shadow-xs'
-              : 'bg-slate-50 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700 hover:bg-slate-100'
+              : 'bg-slate-50 text-slate-700 border-slate-200/80 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700 hover:bg-slate-100'
           }`}
         >
           <AlertTriangle className="w-3.5 h-3.5" />
@@ -222,21 +227,21 @@ export const InventoryScreen: React.FC<InventoryScreenProps> = ({ settings }) =>
       </div>
 
       {/* Inventory Table Container */}
-      <div className="flex-1 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xs dark:border-slate-800 dark:bg-slate-900">
+      <div className="flex-1 overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
         <div className="overflow-x-auto h-full">
-          <table className="w-full text-left text-xs md:text-sm">
-            <thead className="sticky top-0 bg-slate-50 text-[10px] md:text-xs font-bold uppercase tracking-wider text-slate-500 dark:bg-slate-800/80 dark:text-slate-400 border-b border-slate-200 dark:border-slate-700">
+          <table className="w-full text-left text-xs sm:text-sm">
+            <thead className="sticky top-0 bg-slate-50/90 backdrop-blur-xs text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-400 dark:bg-slate-800/90 dark:text-slate-400 border-b border-slate-100 dark:border-slate-800">
               <tr>
-                <th className="px-3 md:px-4 py-3">Product</th>
-                <th className="px-3 md:px-4 py-3 hidden sm:table-cell">Barcode/SKU</th>
-                <th className="px-3 md:px-4 py-3 hidden md:table-cell">Category</th>
-                <th className="px-3 md:px-4 py-3 text-right hidden sm:table-cell">Cost</th>
-                <th className="px-3 md:px-4 py-3 text-right">Price</th>
-                <th className="px-3 md:px-4 py-3 text-center">Stock</th>
-                <th className="px-3 md:px-4 py-3 text-right">Actions</th>
+                <th className="px-4 py-3.5">Product</th>
+                <th className="px-4 py-3.5 hidden sm:table-cell">Barcode/SKU</th>
+                <th className="px-4 py-3.5 hidden md:table-cell">Category</th>
+                <th className="px-4 py-3.5 text-right hidden sm:table-cell">Cost</th>
+                <th className="px-4 py-3.5 text-right">Price</th>
+                <th className="px-4 py-3.5 text-center">Stock</th>
+                <th className="px-4 py-3.5 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100 dark:divide-slate-800 font-medium">
+            <tbody className="divide-y divide-slate-100 dark:divide-slate-800/80 font-medium">
               {filteredProducts.length === 0 ? (
                 <tr>
                   <td colSpan={7} className="py-12 text-center text-slate-400 text-xs">
@@ -250,23 +255,23 @@ export const InventoryScreen: React.FC<InventoryScreenProps> = ({ settings }) =>
                   return (
                     <tr
                       key={p.id}
-                      className="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
+                      className="hover:bg-slate-50/80 dark:hover:bg-slate-800/50 transition-colors"
                     >
-                      <td className="px-3 md:px-4 py-2.5 md:py-3">
-                        <div className="flex items-center gap-2 md:gap-3">
+                      <td className="px-4 py-3">
+                        <div className="flex items-center gap-3">
                           {p.imageUrl ? (
                             <img
                               src={p.imageUrl}
                               alt={p.name}
-                              className="h-8 w-8 md:h-9 md:w-9 rounded-lg object-cover bg-slate-100 shrink-0"
+                              className="h-9 w-9 rounded-xl object-cover bg-slate-100 shrink-0 border border-slate-200/60 dark:border-slate-700"
                             />
                           ) : (
-                            <div className="flex h-8 w-8 md:h-9 md:w-9 items-center justify-center rounded-lg bg-slate-100 text-slate-500 dark:bg-slate-800 shrink-0">
+                            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-100 text-slate-400 dark:bg-slate-800 shrink-0 border border-slate-200/60 dark:border-slate-700">
                               <Package className="h-4 w-4" />
                             </div>
                           )}
                           <div className="min-w-0">
-                            <div className="font-bold text-slate-900 dark:text-white truncate max-w-[140px] md:max-w-none text-xs md:text-sm">
+                            <div className="font-bold text-slate-900 dark:text-white truncate max-w-[160px] md:max-w-none text-xs sm:text-sm">
                               {p.name}
                             </div>
                             <div className="text-[10px] text-slate-400 sm:hidden">
@@ -275,22 +280,22 @@ export const InventoryScreen: React.FC<InventoryScreenProps> = ({ settings }) =>
                           </div>
                         </div>
                       </td>
-                      <td className="px-3 md:px-4 py-3 font-mono text-[11px] text-slate-600 dark:text-slate-300 hidden sm:table-cell">
+                      <td className="px-4 py-3 font-mono text-[11px] text-slate-600 dark:text-slate-300 hidden sm:table-cell">
                         <div>{p.barcode}</div>
                         <div className="text-[10px] text-slate-400">{p.sku}</div>
                       </td>
-                      <td className="px-3 md:px-4 py-3 hidden md:table-cell">
-                        <span className="rounded-md bg-slate-100 dark:bg-slate-800 px-2 py-0.5 text-xs text-slate-700 dark:text-slate-300 font-semibold">
+                      <td className="px-4 py-3 hidden md:table-cell">
+                        <span className="rounded-lg bg-slate-100 dark:bg-slate-800 px-2.5 py-1 text-xs text-slate-700 dark:text-slate-300 font-semibold">
                           {cat ? cat.name : p.categoryId}
                         </span>
                       </td>
-                      <td className="px-3 md:px-4 py-3 text-right text-slate-500 dark:text-slate-400 hidden sm:table-cell text-xs">
+                      <td className="px-4 py-3 text-right text-slate-500 dark:text-slate-400 hidden sm:table-cell text-xs font-mono">
                         {formatCurrency(p.costPrice, settings.currencySymbol)}
                       </td>
-                      <td className="px-3 md:px-4 py-3 text-right font-bold text-slate-900 dark:text-white text-xs md:text-sm">
+                      <td className="px-4 py-3 text-right font-black text-slate-900 dark:text-white text-xs sm:text-sm font-mono">
                         {formatCurrency(p.salePrice, settings.currencySymbol)}
                       </td>
-                      <td className="px-3 md:px-4 py-3 text-center">
+                      <td className="px-4 py-3 text-center">
                         {isLow ? (
                           <Badge variant="warning" size="sm">
                             {p.stock} {p.unit}
@@ -301,12 +306,12 @@ export const InventoryScreen: React.FC<InventoryScreenProps> = ({ settings }) =>
                           </Badge>
                         )}
                       </td>
-                      <td className="px-3 md:px-4 py-3 text-right">
+                      <td className="px-4 py-3 text-right">
                         <div className="flex items-center justify-end gap-1">
                           <button
                             type="button"
                             onClick={() => handleOpenEditModal(p)}
-                            className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 hover:text-sky-600 dark:hover:bg-slate-800"
+                            className="rounded-xl p-2 text-slate-400 hover:bg-slate-100 hover:text-emerald-600 dark:hover:bg-slate-800 transition-colors"
                             title="Edit"
                           >
                             <Edit2 className="w-3.5 h-3.5" />
@@ -314,7 +319,7 @@ export const InventoryScreen: React.FC<InventoryScreenProps> = ({ settings }) =>
                           <button
                             type="button"
                             onClick={() => handleDeleteProduct(p.id, p.name)}
-                            className="rounded-lg p-1.5 text-slate-400 hover:bg-rose-50 hover:text-rose-600 dark:hover:bg-rose-950/30"
+                            className="rounded-xl p-2 text-slate-400 hover:bg-rose-50 hover:text-rose-600 dark:hover:bg-rose-950/30 transition-colors"
                             title="Delete"
                           >
                             <Trash2 className="w-3.5 h-3.5" />
@@ -337,8 +342,8 @@ export const InventoryScreen: React.FC<InventoryScreenProps> = ({ settings }) =>
         title={editingProduct ? 'Edit Product Details' : 'Add New Inventory Product'}
         maxWidth="xl"
       >
-        <form onSubmit={handleSaveProduct} className="space-y-3.5">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <form onSubmit={handleSaveProduct} className="space-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
             <Input
               label="Product English Name *"
               required
@@ -354,44 +359,50 @@ export const InventoryScreen: React.FC<InventoryScreenProps> = ({ settings }) =>
             />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
             <div>
               <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-1">
                 Category *
               </label>
-              <select
-                value={formCategory}
-                onChange={(e) => setFormCategory(e.target.value)}
-                className="h-10 w-full rounded-xl border border-slate-300 bg-white px-3 text-xs focus:border-sky-500 focus:outline-none dark:border-slate-700 dark:bg-slate-900 dark:text-white"
-              >
-                {categories.map((c) => (
-                  <option key={c.id} value={c.id}>
-                    {c.name}
-                  </option>
-                ))}
-              </select>
+              <div className="relative">
+                <select
+                  value={formCategory}
+                  onChange={(e) => setFormCategory(e.target.value)}
+                  className="h-10 w-full appearance-none rounded-2xl border border-slate-200 bg-white pl-3.5 pr-9 text-xs font-semibold focus:border-emerald-500 focus:outline-none dark:border-slate-700 dark:bg-slate-900 dark:text-white cursor-pointer"
+                >
+                  {categories.map((c) => (
+                    <option key={c.id} value={c.id}>
+                      {c.name}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+              </div>
             </div>
 
             <div>
               <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-1">
                 Unit Type *
               </label>
-              <select
-                value={formUnit}
-                onChange={(e) => setFormUnit(e.target.value as Product['unit'])}
-                className="h-10 w-full rounded-xl border border-slate-300 bg-white px-3 text-xs focus:border-sky-500 focus:outline-none dark:border-slate-700 dark:bg-slate-900 dark:text-white"
-              >
-                <option value="pcs">Pieces (pcs)</option>
-                <option value="packet">Packet</option>
-                <option value="box">Box</option>
-                <option value="kg">Kilogram (kg)</option>
-                <option value="gm">Gram (gm)</option>
-                <option value="ltr">Liter (ltr)</option>
-              </select>
+              <div className="relative">
+                <select
+                  value={formUnit}
+                  onChange={(e) => setFormUnit(e.target.value as Product['unit'])}
+                  className="h-10 w-full appearance-none rounded-2xl border border-slate-200 bg-white pl-3.5 pr-9 text-xs font-semibold focus:border-emerald-500 focus:outline-none dark:border-slate-700 dark:bg-slate-900 dark:text-white cursor-pointer"
+                >
+                  <option value="pcs">Pieces (pcs)</option>
+                  <option value="packet">Packet</option>
+                  <option value="box">Box</option>
+                  <option value="kg">Kilogram (kg)</option>
+                  <option value="gm">Gram (gm)</option>
+                  <option value="ltr">Liter (ltr)</option>
+                </select>
+                <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+              </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
             <Input
               label="Barcode *"
               required
@@ -407,7 +418,7 @@ export const InventoryScreen: React.FC<InventoryScreenProps> = ({ settings }) =>
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-3.5">
             <Input
               label={`Cost (${settings.currencySymbol})`}
               type="number"
@@ -423,7 +434,7 @@ export const InventoryScreen: React.FC<InventoryScreenProps> = ({ settings }) =>
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-3.5">
             <Input
               label="Stock Units *"
               type="number"
