@@ -1,24 +1,56 @@
 ﻿import { db } from '../db/database';
 import type { Product, Category, NewProductInput } from '../types';
 
+const CANONICAL_SEED_IMAGES: Record<string, string> = {
+  'prod-001': '/images/products/coca-cola.jpg',
+  'prod-002': '/images/products/sprite.jpg',
+  'prod-003': '/images/products/red-bull.jpg',
+  'prod-004': '/images/products/miniket-rice.jpg',
+  'prod-005': '/images/products/soybean-oil.jpg',
+  'prod-006': '/images/products/sugar.jpg',
+  'prod-007': '/images/products/milk-bread.jpg',
+  'prod-008': '/images/products/oreo.jpg',
+  'prod-009': '/images/products/liquid-milk.jpg',
+  'prod-010': '/images/products/brown-eggs.jpg',
+  'prod-011': '/images/products/dove-soap.jpg',
+  'prod-012': '/images/products/red-apple.jpg',
+  'prod-013': '/images/products/banana.jpg',
+  'prod-014': '/images/products/nescafe-coffee.jpg',
+  'prod-015': '/images/products/maggi-noodles.jpg',
+};
+
+function normalizeProduct(p: Product): Product {
+  const canonical = CANONICAL_SEED_IMAGES[p.id];
+  if (canonical && p.imageUrl !== canonical) {
+    // Sync IndexedDB in background
+    db.products.update(p.id, { imageUrl: canonical }).catch(() => {});
+    return { ...p, imageUrl: canonical };
+  }
+  return p;
+}
+
 export class ProductService {
   static async getAllProducts(): Promise<Product[]> {
-    return await db.products.toArray();
+    const list = await db.products.toArray();
+    return list.map(normalizeProduct);
   }
 
   static async getActiveProducts(): Promise<Product[]> {
-    return await db.products.filter(p => p.isActive).toArray();
+    const list = await db.products.filter(p => p.isActive).toArray();
+    return list.map(normalizeProduct);
   }
 
   static async getProductById(id: string): Promise<Product | undefined> {
-    return await db.products.get(id);
+    const p = await db.products.get(id);
+    return p ? normalizeProduct(p) : undefined;
   }
 
   static async getProductByBarcode(barcode: string): Promise<Product | undefined> {
     const trimmed = barcode.trim();
-    return await db.products
-      .filter(p => p.isActive && (p.barcode === trimmed || p.sku.toLowerCase() === trimmed.toLowerCase()))
+    const p = await db.products
+      .filter(prod => prod.isActive && (prod.barcode === trimmed || prod.sku.toLowerCase() === trimmed.toLowerCase()))
       .first();
+    return p ? normalizeProduct(p) : undefined;
   }
 
   static async createProduct(input: NewProductInput): Promise<Product> {

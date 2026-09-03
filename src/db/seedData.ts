@@ -46,7 +46,7 @@ export const SEED_PRODUCTS: Product[] = [
     stock: 64,
     minStockAlert: 10,
     unit: 'pcs',
-    imageUrl: 'https://images.unsplash.com/photo-1554866585-cd94860890b7?w=500&auto=format&fit=crop&q=80',
+    imageUrl: '/images/products/coca-cola.jpg',
     isActive: true,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -63,7 +63,7 @@ export const SEED_PRODUCTS: Product[] = [
     stock: 45,
     minStockAlert: 10,
     unit: 'pcs',
-    imageUrl: 'https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?w=500&auto=format&fit=crop&q=80',
+    imageUrl: '/images/products/sprite.jpg',
     isActive: true,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -80,7 +80,7 @@ export const SEED_PRODUCTS: Product[] = [
     stock: 22,
     minStockAlert: 5,
     unit: 'pcs',
-    imageUrl: 'https://images.unsplash.com/photo-1543253687-c931c8e01820?w=500&auto=format&fit=crop&q=80',
+    imageUrl: '/images/products/red-bull.jpg',
     isActive: true,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -97,7 +97,7 @@ export const SEED_PRODUCTS: Product[] = [
     stock: 35,
     minStockAlert: 8,
     unit: 'packet',
-    imageUrl: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=500&auto=format&fit=crop&q=80',
+    imageUrl: '/images/products/miniket-rice.jpg',
     isActive: true,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -114,7 +114,7 @@ export const SEED_PRODUCTS: Product[] = [
     stock: 50,
     minStockAlert: 12,
     unit: 'ltr',
-    imageUrl: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=500&auto=format&fit=crop&q=80',
+    imageUrl: '/images/products/soybean-oil.jpg',
     isActive: true,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -131,7 +131,7 @@ export const SEED_PRODUCTS: Product[] = [
     stock: 4,
     minStockAlert: 10,
     unit: 'kg',
-    imageUrl: 'https://images.unsplash.com/photo-1587735243615-c03f25aaff15?w=500&auto=format&fit=crop&q=80',
+    imageUrl: '/images/products/sugar.jpg',
     isActive: true,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -148,7 +148,7 @@ export const SEED_PRODUCTS: Product[] = [
     stock: 18,
     minStockAlert: 5,
     unit: 'packet',
-    imageUrl: 'https://images.unsplash.com/photo-1589367920969-ab8e050bbb04?w=500&auto=format&fit=crop&q=80',
+    imageUrl: '/images/products/milk-bread.jpg',
     isActive: true,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -165,7 +165,7 @@ export const SEED_PRODUCTS: Product[] = [
     stock: 80,
     minStockAlert: 15,
     unit: 'packet',
-    imageUrl: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=500&auto=format&fit=crop&q=80',
+    imageUrl: '/images/products/oreo.jpg',
     isActive: true,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -182,7 +182,7 @@ export const SEED_PRODUCTS: Product[] = [
     stock: 25,
     minStockAlert: 8,
     unit: 'ltr',
-    imageUrl: 'https://images.unsplash.com/photo-1563636619-e9143da7973b?w=500&auto=format&fit=crop&q=80',
+    imageUrl: '/images/products/liquid-milk.jpg',
     isActive: true,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -199,7 +199,7 @@ export const SEED_PRODUCTS: Product[] = [
     stock: 30,
     minStockAlert: 6,
     unit: 'box',
-    imageUrl: 'https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=500&auto=format&fit=crop&q=80',
+    imageUrl: '/images/products/brown-eggs.jpg',
     isActive: true,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -216,7 +216,7 @@ export const SEED_PRODUCTS: Product[] = [
     stock: 42,
     minStockAlert: 10,
     unit: 'pcs',
-    imageUrl: 'https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?w=500&auto=format&fit=crop&q=80',
+    imageUrl: '/images/products/dove-soap.jpg',
     isActive: true,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -233,7 +233,7 @@ export const SEED_PRODUCTS: Product[] = [
     stock: 15,
     minStockAlert: 5,
     unit: 'kg',
-    imageUrl: 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=500&auto=format&fit=crop&q=80',
+    imageUrl: '/images/products/red-apple.jpg',
     isActive: true,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -250,7 +250,7 @@ export const SEED_PRODUCTS: Product[] = [
     stock: 20,
     minStockAlert: 4,
     unit: 'box',
-    imageUrl: 'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=500&auto=format&fit=crop&q=80',
+    imageUrl: '/images/products/banana.jpg',
     isActive: true,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -267,7 +267,7 @@ export const SEED_PRODUCTS: Product[] = [
     stock: 12,
     minStockAlert: 3,
     unit: 'pcs',
-    imageUrl: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?w=500&auto=format&fit=crop&q=80',
+    imageUrl: '/images/products/nescafe-coffee.jpg',
     isActive: true,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -284,7 +284,7 @@ export const SEED_PRODUCTS: Product[] = [
     stock: 55,
     minStockAlert: 10,
     unit: 'packet',
-    imageUrl: 'https://images.unsplash.com/photo-1612927601601-6638404737ce?w=500&auto=format&fit=crop&q=80',
+    imageUrl: '/images/products/maggi-noodles.jpg',
     isActive: true,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -358,18 +358,8 @@ export async function initializeDatabase(): Promise<void> {
         await db.categories.bulkPut(SEED_CATEGORIES);
       }
 
-      const existingProducts = await db.products.count();
-      if (existingProducts === 0) {
-        await db.products.bulkPut(SEED_PRODUCTS);
-      } else {
-        // Sync seed products to use the consistent studio packshot photos
-        for (const p of SEED_PRODUCTS) {
-          const item = await db.products.get(p.id);
-          if (item && item.imageUrl !== p.imageUrl) {
-            await db.products.update(p.id, { imageUrl: p.imageUrl });
-          }
-        }
-      }
+      // Always synchronize seed products with updated studio packshot assets
+      await db.products.bulkPut(SEED_PRODUCTS);
 
       const existingCustomers = await db.customers.count();
       if (existingCustomers === 0) {
