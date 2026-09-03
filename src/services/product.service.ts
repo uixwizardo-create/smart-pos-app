@@ -1,4 +1,4 @@
-﻿import { db } from '../db/database';
+import { db } from '../db/database';
 import type { Product, Category, NewProductInput } from '../types';
 
 const CANONICAL_SEED_IMAGES: Record<string, string> = {
@@ -85,7 +85,8 @@ export class ProductService {
   }
 
   static async getCategories(): Promise<Category[]> {
-    return await db.categories.orderBy('order').toArray();
+    const list = await db.categories.orderBy('order').toArray();
+    return list.filter((c) => c.id !== 'cat-all' && c.name.toLowerCase() !== 'all products');
   }
 
   static async createCategory(category: Category): Promise<void> {

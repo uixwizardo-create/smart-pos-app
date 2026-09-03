@@ -116,7 +116,9 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
         </button>
 
         {/* Category Specific Pills */}
-        {categories.map((c) => {
+        {categories
+          .filter((c) => c.id !== 'cat-all' && c.name.toLowerCase() !== 'all products')
+          .map((c) => {
           const Icon = getCategoryIcon(c.id);
           const isSelected = selectedCategory === c.id;
           const count = products.filter((p) => p.categoryId === c.id).length;

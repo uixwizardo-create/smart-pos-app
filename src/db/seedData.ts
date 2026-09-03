@@ -24,8 +24,7 @@ export const DEFAULT_SETTINGS: StoreSettings = {
 };
 
 export const SEED_CATEGORIES: Category[] = [
-  { id: 'cat-all', name: 'All Products', nameBn: 'সকল পণ্য', iconName: 'LayoutGrid', order: 0 },
-  { id: 'cat-grocery', name: 'Grocery & Staples', nameBn: 'মুদি ও চাল-ডাল', iconName: 'ShoppingBag', color: 'emerald', order: 1 },
+  { id: 'cat-grocery', name: 'Grocery & Staples', nameBn: 'মুদি ও নিত্যপণ্য', iconName: 'ShoppingBag', color: 'emerald', order: 1 },
   { id: 'cat-beverages', name: 'Beverages & Drinks', nameBn: 'পানীয় ও জুস', iconName: 'Coffee', color: 'amber', order: 2 },
   { id: 'cat-bakery', name: 'Bakery & Snacks', nameBn: 'বেকারি ও স্ন্যাকস', iconName: 'Cookie', color: 'orange', order: 3 },
   { id: 'cat-dairy', name: 'Dairy & Eggs', nameBn: 'দুধ ও ডিম', iconName: 'Milk', color: 'blue', order: 4 },
@@ -357,6 +356,8 @@ export async function initializeDatabase(): Promise<void> {
       if (existingCategories === 0) {
         await db.categories.bulkPut(SEED_CATEGORIES);
       }
+      // Remove any lingering cat-all record from IndexedDB
+      await db.categories.delete('cat-all');
 
       // Always synchronize seed products with updated studio packshot assets
       await db.products.bulkPut(SEED_PRODUCTS);
