@@ -27,12 +27,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       }`}
     >
       {/* Product Image Container */}
-      <div className="relative aspect-4/3 w-full overflow-hidden rounded-xl bg-slate-50 dark:bg-slate-800/50 mb-2.5">
+      <div className="relative aspect-4/3 w-full overflow-hidden rounded-xl bg-gradient-to-b from-slate-50 to-slate-100/80 dark:from-slate-800/60 dark:to-slate-800/40 p-2 flex items-center justify-center mb-2.5">
         {product.imageUrl ? (
           <img
             src={product.imageUrl}
             alt={product.name}
-            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+            className="h-full w-full object-contain filter drop-shadow-md transition-transform duration-300 group-hover:scale-108"
             loading="lazy"
           />
         ) : (

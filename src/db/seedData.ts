@@ -66,7 +66,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/water-based-sealer.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -83,7 +83,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/water-based-sealer.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -100,7 +100,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/water-based-sealer.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -117,7 +117,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/weather-care-ext-sealer.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -134,7 +134,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/weather-care-ext-sealer.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -151,7 +151,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/weather-care-ext-sealer.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -168,7 +168,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/damp-proof-primer-sealer.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -185,7 +185,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/damp-proof-primer-sealer.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -202,7 +202,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/damp-proof-primer-sealer.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -219,7 +219,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/damp-proof-primer-sealer.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -236,7 +236,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/damp-proof-primer-sealer.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -253,7 +253,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/damp-proof-primer-sealer.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -270,7 +270,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/all-rounder-ext-sealer.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -287,7 +287,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/all-rounder-ext-sealer.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -304,7 +304,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/all-rounder-ext-sealer.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -321,7 +321,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-putty.svg",
+    "imageUrl": "/images/products/rainbow/water-based-putty.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -338,7 +338,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-putty.svg",
+    "imageUrl": "/images/products/rainbow/water-based-putty.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -355,7 +355,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/feather-silk.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -372,7 +372,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/feather-silk.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -389,7 +389,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/feather-silk.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -406,7 +406,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/acroplast-plastic-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -423,7 +423,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/acroplast-plastic-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -440,7 +440,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/acroplast-plastic-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -457,7 +457,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/acroflat-spd-distemper.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -474,7 +474,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/acroflat-spd-distemper.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -491,7 +491,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/acroflat-spd-distemper.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -508,7 +508,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/all-rounder-ext-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -525,7 +525,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/all-rounder-ext-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -542,7 +542,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/all-rounder-ext-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -559,7 +559,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/weather-care-ext-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -576,7 +576,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/weather-care-ext-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -593,7 +593,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/weather-care-ext-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -610,7 +610,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-putty.svg",
+    "imageUrl": "/images/products/rainbow/rockcem-cement-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -627,7 +627,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-putty.svg",
+    "imageUrl": "/images/products/rainbow/rockcem-cement-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -644,7 +644,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-putty.svg",
+    "imageUrl": "/images/products/rainbow/rockcem-cement-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -661,7 +661,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/anti-bacterial-int-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -678,7 +678,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/anti-bacterial-int-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -695,7 +695,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/anti-bacterial-int-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -712,7 +712,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/all-rounder-int-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -729,7 +729,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/all-rounder-int-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -746,7 +746,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/all-rounder-int-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -763,7 +763,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/synglo-super-gloss-enamel.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -780,7 +780,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/synglo-super-gloss-enamel.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -797,7 +797,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/hammer-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -814,7 +814,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/hammer-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -831,7 +831,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/hammer-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -848,7 +848,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/hammer-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -865,7 +865,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -882,7 +882,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -899,7 +899,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -916,7 +916,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -933,7 +933,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -950,7 +950,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -967,7 +967,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -984,7 +984,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1001,7 +1001,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1018,7 +1018,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1035,7 +1035,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1052,7 +1052,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1069,7 +1069,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/synglo-super-gloss-enamel.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1086,7 +1086,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/synglo-super-gloss-enamel.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1103,7 +1103,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/synglo-super-gloss-enamel.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1120,7 +1120,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/synglo-super-gloss-enamel.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1137,7 +1137,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/synglo-super-gloss-enamel.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1154,7 +1154,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/synglo-super-gloss-enamel.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1171,7 +1171,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/synglo-super-gloss-enamel.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1188,7 +1188,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/synglo-super-gloss-enamel.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1205,7 +1205,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/synglo-super-gloss-enamel.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1222,7 +1222,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/synglo-super-gloss-enamel.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1239,7 +1239,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/synglo-super-gloss-enamel.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1256,7 +1256,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/synglo-super-gloss-enamel.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1273,7 +1273,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/synglo-super-gloss-enamel.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1290,7 +1290,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/synglo-super-gloss-enamel.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1307,7 +1307,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/synglo-super-gloss-enamel.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1324,7 +1324,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/synglo-super-gloss-enamel.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1341,7 +1341,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/synglo-super-gloss-enamel.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1358,7 +1358,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1375,7 +1375,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1392,7 +1392,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1409,7 +1409,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1426,7 +1426,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1443,7 +1443,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1460,7 +1460,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1477,7 +1477,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1494,7 +1494,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1511,7 +1511,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1528,7 +1528,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1545,7 +1545,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1562,7 +1562,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1579,7 +1579,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1596,7 +1596,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/marine-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1613,7 +1613,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/marine-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1630,7 +1630,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1647,7 +1647,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1664,7 +1664,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1681,7 +1681,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1698,7 +1698,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1715,7 +1715,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1732,7 +1732,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/sea-queen.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1749,7 +1749,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/sea-queen.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1766,7 +1766,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1783,7 +1783,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1800,7 +1800,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1817,7 +1817,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1834,7 +1834,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-putty.svg",
+    "imageUrl": "/images/products/rainbow/rockcem-cement-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1851,7 +1851,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-putty.svg",
+    "imageUrl": "/images/products/rainbow/rockcem-cement-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1868,7 +1868,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-putty.svg",
+    "imageUrl": "/images/products/rainbow/rockcem-cement-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1885,7 +1885,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-putty.svg",
+    "imageUrl": "/images/products/rainbow/rockcem-cement-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -1902,7 +1902,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-putty.svg",
+    "imageUrl": "/images/products/rainbow/rockcem-cement-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2191,7 +2191,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-putty.svg",
+    "imageUrl": "/images/products/rainbow/self-leveling-epoxy-floor.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2208,7 +2208,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-putty.svg",
+    "imageUrl": "/images/products/rainbow/self-leveling-epoxy-floor.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2225,7 +2225,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2242,7 +2242,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2259,7 +2259,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/self-leveling-epoxy-floor.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2276,7 +2276,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/weather-care-ext-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2293,7 +2293,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/weather-care-ext-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2310,7 +2310,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/weather-care-ext-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2327,7 +2327,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/weather-care-ext-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2344,7 +2344,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/weather-care-ext-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2361,7 +2361,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/weather-care-ext-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2378,7 +2378,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/weather-care-ext-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2395,7 +2395,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/weather-care-ext-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2412,7 +2412,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/weather-care-ext-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2429,7 +2429,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/weather-care-ext-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2446,7 +2446,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/weather-care-ext-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2463,7 +2463,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/weather-care-ext-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2480,7 +2480,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/acroflat-spd-distemper.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2497,7 +2497,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/acroflat-spd-distemper.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2514,7 +2514,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/acroflat-spd-distemper.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2531,7 +2531,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/acroflat-spd-distemper.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2548,7 +2548,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/acroflat-spd-distemper.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2565,7 +2565,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/acroflat-spd-distemper.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2582,7 +2582,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/synglo-super-gloss-enamel.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2599,7 +2599,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/synglo-super-gloss-enamel.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2616,7 +2616,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/synglo-super-gloss-enamel.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2633,7 +2633,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/synglo-super-gloss-enamel.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2650,7 +2650,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/synglo-super-gloss-enamel.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2667,7 +2667,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/synglo-super-gloss-enamel.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2684,7 +2684,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/synglo-super-gloss-enamel.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2701,7 +2701,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/synglo-super-gloss-enamel.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2718,7 +2718,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/feather-silk.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2735,7 +2735,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/feather-silk.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2752,7 +2752,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/feather-silk.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2769,7 +2769,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/feather-silk.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2786,7 +2786,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/feather-silk.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2803,7 +2803,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/feather-silk.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2820,7 +2820,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/feather-silk.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2837,7 +2837,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/feather-silk.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2854,7 +2854,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/feather-silk.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2871,7 +2871,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/feather-silk.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2888,7 +2888,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/feather-silk.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2905,7 +2905,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/feather-silk.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2922,7 +2922,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/acroplast-plastic-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2939,7 +2939,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/acroplast-plastic-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2956,7 +2956,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/acroplast-plastic-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2973,7 +2973,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/acroplast-plastic-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -2990,7 +2990,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/acroplast-plastic-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3007,7 +3007,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/acroplast-plastic-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3024,7 +3024,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/acroplast-plastic-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3041,7 +3041,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/acroplast-plastic-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3058,7 +3058,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/acroplast-plastic-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3075,7 +3075,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/acroplast-plastic-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3092,7 +3092,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/acroplast-plastic-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3109,7 +3109,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/acroplast-plastic-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3126,7 +3126,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/all-rounder-ext-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3143,7 +3143,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/all-rounder-ext-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3160,7 +3160,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/all-rounder-ext-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3177,7 +3177,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/all-rounder-ext-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3194,7 +3194,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/all-rounder-ext-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3211,7 +3211,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/all-rounder-ext-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3228,7 +3228,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/all-rounder-ext-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3245,7 +3245,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/all-rounder-ext-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3262,7 +3262,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/all-rounder-ext-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3279,7 +3279,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/all-rounder-ext-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3296,7 +3296,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/all-rounder-ext-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3313,7 +3313,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/all-rounder-ext-emulsion.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3330,7 +3330,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/acroplast-plastic-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3347,7 +3347,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/acroplast-plastic-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3364,7 +3364,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/acroplast-plastic-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3381,7 +3381,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-putty.svg",
+    "imageUrl": "/images/products/rainbow/acroplast-plastic-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3398,7 +3398,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-putty.svg",
+    "imageUrl": "/images/products/rainbow/acroplast-plastic-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3415,7 +3415,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-putty.svg",
+    "imageUrl": "/images/products/rainbow/acroplast-plastic-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3432,7 +3432,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-putty.svg",
+    "imageUrl": "/images/products/rainbow/water-based-putty.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3449,7 +3449,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-putty.svg",
+    "imageUrl": "/images/products/rainbow/water-based-putty.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3466,7 +3466,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-putty.svg",
+    "imageUrl": "/images/products/rainbow/acroplast-plastic-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3483,7 +3483,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-putty.svg",
+    "imageUrl": "/images/products/rainbow/acroplast-plastic-paint.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3500,7 +3500,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3517,7 +3517,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3534,7 +3534,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "pcs",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/synglo-super-gloss-enamel.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3551,7 +3551,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "pcs",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/feather-silk.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3568,7 +3568,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "pcs",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/feather-silk.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3585,7 +3585,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "pcs",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/synglo-super-gloss-enamel.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3602,7 +3602,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "pcs",
-    "imageUrl": "/images/products/paint-can-091l.svg",
+    "imageUrl": "/images/products/rainbow/synglo-super-gloss-enamel.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3619,7 +3619,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/synglo-super-gloss-enamel.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3636,7 +3636,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/synglo-super-gloss-enamel.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3653,7 +3653,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-drum-18l.svg",
+    "imageUrl": "/images/products/rainbow/synglo-super-gloss-enamel.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3670,7 +3670,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-gallon.svg",
+    "imageUrl": "/images/products/rainbow/synglo-super-gloss-enamel.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3687,7 +3687,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-putty.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3704,7 +3704,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3721,7 +3721,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3738,7 +3738,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3755,7 +3755,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3772,7 +3772,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3789,7 +3789,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3806,7 +3806,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3823,7 +3823,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3840,7 +3840,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3857,7 +3857,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3874,7 +3874,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3891,7 +3891,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3908,7 +3908,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3925,7 +3925,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3942,7 +3942,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3959,7 +3959,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3976,7 +3976,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -3993,7 +3993,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4010,7 +4010,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4027,7 +4027,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4044,7 +4044,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4061,7 +4061,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4078,7 +4078,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4095,7 +4095,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4112,7 +4112,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4129,7 +4129,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4146,7 +4146,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4163,7 +4163,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4180,7 +4180,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/water-based-putty.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4197,7 +4197,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4214,7 +4214,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4231,7 +4231,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4248,7 +4248,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4265,7 +4265,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4282,7 +4282,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4299,7 +4299,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4316,7 +4316,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4333,7 +4333,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4350,7 +4350,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 8,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4367,7 +4367,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 16,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-wood.svg",
+    "imageUrl": "/images/products/rainbow/wood-care.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4384,7 +4384,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4401,7 +4401,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4418,7 +4418,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4435,7 +4435,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4452,7 +4452,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4469,7 +4469,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/water-based-putty.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4486,7 +4486,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4503,7 +4503,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4520,7 +4520,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/synthetic-undercoat.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4537,7 +4537,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4554,7 +4554,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "kg",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4571,7 +4571,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4588,7 +4588,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4605,7 +4605,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4622,7 +4622,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4639,7 +4639,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4656,7 +4656,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4673,7 +4673,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4690,7 +4690,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4707,7 +4707,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4724,7 +4724,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4741,7 +4741,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4758,7 +4758,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4775,7 +4775,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4792,7 +4792,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4809,7 +4809,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4826,7 +4826,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4843,7 +4843,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4860,7 +4860,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4877,7 +4877,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4894,7 +4894,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4911,7 +4911,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4928,7 +4928,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4945,7 +4945,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4962,7 +4962,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4979,7 +4979,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -4996,7 +4996,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -5013,7 +5013,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -5030,7 +5030,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -5047,7 +5047,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -5064,7 +5064,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -5081,7 +5081,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -5098,7 +5098,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -5115,7 +5115,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -5132,7 +5132,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -5149,7 +5149,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -5166,7 +5166,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -5183,7 +5183,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -5200,7 +5200,7 @@ export const SEED_PRODUCTS: Product[] = [
     "stock": 32,
     "minStockAlert": 3,
     "unit": "ltr",
-    "imageUrl": "/images/products/paint-auto.svg",
+    "imageUrl": "/images/products/rainbow/osaka-auto-refinish.png",
     "isActive": true,
     "createdAt": "2026-10-05T12:00:00.000Z",
     "updatedAt": "2026-10-05T12:00:00.000Z"
@@ -5234,13 +5234,13 @@ export async function initializeDatabase(): Promise<void> {
 
   try {
     const existingProducts = await db.products.toArray();
-    // Re-sync if product count doesn't match or items lack verified format
+    // Re-sync if products don't use official rainbow images or count doesn't match
     const isOldCatalog =
       existingProducts.length !== SEED_PRODUCTS.length ||
-      existingProducts.some((p) => !p.nameBn || !p.nameBn.startsWith('Pack:') || p.name.includes('(1 Ltr)'));
+      existingProducts.some((p) => !p.imageUrl?.includes('/rainbow/'));
 
     if (isOldCatalog) {
-      console.log('Syncing database with Rainbow Paints 303 verified products...');
+      console.log('Syncing database with Rainbow Paints official PNG images...');
       await db.products.clear();
       await db.categories.clear();
 
@@ -5251,7 +5251,7 @@ export async function initializeDatabase(): Promise<void> {
       if (!existingSettings) {
         await db.settings.put(DEFAULT_SETTINGS);
       }
-      console.log('Database synced with verified Rainbow Paints catalog.');
+      console.log('Database synced with official Rainbow Paints PNG catalog.');
       return;
     }
 
