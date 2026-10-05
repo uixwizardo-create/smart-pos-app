@@ -77,8 +77,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               </span>
             )}
           </div>
-          <span className="text-[10px] font-semibold text-slate-400 dark:text-slate-400 shrink-0 ml-1">
-            {product.stock} {product.unit}
+          <span className="text-[10px] font-medium text-slate-400 dark:text-slate-400 shrink-0 ml-1">
+            Stock: <strong className="font-bold text-slate-600 dark:text-slate-300">{product.stock}</strong> pcs
           </span>
         </div>
       </div>
