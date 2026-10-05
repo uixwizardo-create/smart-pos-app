@@ -17,6 +17,8 @@ import {
   X,
   ChevronLeft,
   ChevronRight,
+  ArrowUpDown,
+  RotateCcw,
 } from 'lucide-react';
 import type { Product, Category } from '../../../types';
 import { ProductCard } from './ProductCard';
@@ -29,6 +31,30 @@ interface ProductGridProps {
   searchInputRef: React.RefObject<HTMLInputElement | null>;
 }
 
+const SIZE_FILTERS = [
+  { id: 'all', label: 'All Sizes' },
+  { id: '18L', label: '18L Drum' },
+  { id: '3.64L', label: '3.64L Gallon' },
+  { id: '0.91L', label: '0.91L Can' },
+  { id: '25kg', label: '25Kg Putty' },
+  { id: 'colorant', label: '1000ml Colorant' },
+];
+
+const BASE_FILTERS = [
+  { id: 'all', label: 'All Bases' },
+  { id: 'rb-1', label: 'RB-1' },
+  { id: 'rb-2', label: 'RB-2' },
+  { id: 'rb-3', label: 'RB-3' },
+  { id: 'rb-n', label: 'RB-N' },
+];
+
+const SORT_OPTIONS = [
+  { id: 'default', label: 'Default Order' },
+  { id: 'price-asc', label: 'Price: Low → High' },
+  { id: 'price-desc', label: 'Price: High → Low' },
+  { id: 'margin-desc', label: 'Highest Margin (Discount %)' },
+];
+
 export const ProductGrid: React.FC<ProductGridProps> = ({
   products,
   categories,
@@ -38,6 +64,9 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedSize, setSelectedSize] = useState('all');
+  const [selectedBase, setSelectedBase] = useState('all');
+  const [sortBy, setSortBy] = useState('default');
   const categoryScrollRef = React.useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -97,46 +126,101 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
   const filteredProducts = useMemo(() => {
     const rawQuery = searchQuery.trim().toLowerCase();
 
-    // When no search query, filter by selected category
-    if (!rawQuery) {
-      return selectedCategory === 'all'
-        ? products
-        : products.filter((p) => p.categoryId === selectedCategory);
-    }
-
     // Helper: normalize alphanumeric strings (handles "rb1", "rb-1", "rb 1", "0.91l", etc.)
     const normalize = (str: string) => str.toLowerCase().replace(/[^a-z0-9]/g, '');
     const cleanQuery = normalize(rawQuery);
 
-    // When searching, perform global search across all categories
-    return products.filter((p) => {
-      // 1. Direct substring match
-      const rawMatch =
-        p.name.toLowerCase().includes(rawQuery) ||
-        (p.nameBn && p.nameBn.toLowerCase().includes(rawQuery)) ||
-        p.barcode.toLowerCase().includes(rawQuery) ||
-        p.sku.toLowerCase().includes(rawQuery);
+    const matchesSize = (p: Product, size: string) => {
+      if (size === 'all') return true;
+      const text = (p.name + ' ' + (p.nameBn || '')).toLowerCase();
+      if (size === '18L') return text.includes('18 l') || text.includes('18.2') || text.includes('drum');
+      if (size === '3.64L') return text.includes('3.6') || text.includes('gallon');
+      if (size === '0.91L') return text.includes('0.9') || text.includes('0.455') || text.includes('1 ltr') || text.includes('quarter');
+      if (size === '25kg') return text.includes('kg') || text.includes('putty') || text.includes('cement');
+      if (size === 'colorant') return text.includes('1000 ml') || text.includes('colorant');
+      return true;
+    };
 
-      if (rawMatch) return true;
+    const matchesBase = (p: Product, base: string) => {
+      if (base === 'all') return true;
+      const clean = normalize(p.name + ' ' + (p.nameBn || ''));
+      if (base === 'rb-1') return clean.includes('rb1');
+      if (base === 'rb-2') return clean.includes('rb2');
+      if (base === 'rb-3') return clean.includes('rb3');
+      if (base === 'rb-n') return clean.includes('rbn');
+      return true;
+    };
 
-      // 2. Normalized alphanumeric match
-      if (cleanQuery) {
-        const cleanName = normalize(p.name);
-        const cleanSubtitle = normalize(p.nameBn || '');
-        const cleanBarcode = normalize(p.barcode);
-        const cleanSku = normalize(p.sku);
+    const result = products.filter((p) => {
+      // 1. Category Filter (searches across all if query typed, otherwise matches selected category)
+      const matchesCat = !rawQuery ? (selectedCategory === 'all' || p.categoryId === selectedCategory) : true;
+      if (!matchesCat) return false;
 
-        return (
-          cleanName.includes(cleanQuery) ||
-          cleanSubtitle.includes(cleanQuery) ||
-          cleanBarcode.includes(cleanQuery) ||
-          cleanSku.includes(cleanQuery)
-        );
+      // 2. Pack Size Filter
+      if (!matchesSize(p, selectedSize)) return false;
+
+      // 3. Tinting Base Filter
+      if (!matchesBase(p, selectedBase)) return false;
+
+      // 4. Search Query Match
+      if (rawQuery) {
+        const rawMatch =
+          p.name.toLowerCase().includes(rawQuery) ||
+          (p.nameBn && p.nameBn.toLowerCase().includes(rawQuery)) ||
+          p.barcode.toLowerCase().includes(rawQuery) ||
+          p.sku.toLowerCase().includes(rawQuery);
+
+        if (rawMatch) return true;
+
+        if (cleanQuery) {
+          const cleanName = normalize(p.name);
+          const cleanSubtitle = normalize(p.nameBn || '');
+          const cleanBarcode = normalize(p.barcode);
+          const cleanSku = normalize(p.sku);
+
+          return (
+            cleanName.includes(cleanQuery) ||
+            cleanSubtitle.includes(cleanQuery) ||
+            cleanBarcode.includes(cleanQuery) ||
+            cleanSku.includes(cleanQuery)
+          );
+        }
+        return false;
       }
 
-      return false;
+      return true;
     });
-  }, [products, selectedCategory, searchQuery]);
+
+    // 5. Sorting
+    if (sortBy === 'price-asc') {
+      result.sort((a, b) => a.salePrice - b.salePrice);
+    } else if (sortBy === 'price-desc') {
+      result.sort((a, b) => b.salePrice - a.salePrice);
+    } else if (sortBy === 'margin-desc') {
+      result.sort((a, b) => {
+        const marginA = a.costPrice > 0 ? (a.salePrice - a.costPrice) / a.salePrice : 0;
+        const marginB = b.costPrice > 0 ? (b.salePrice - b.costPrice) / b.salePrice : 0;
+        return marginB - marginA;
+      });
+    }
+
+    return result;
+  }, [products, selectedCategory, searchQuery, selectedSize, selectedBase, sortBy]);
+
+  const hasActiveFilters =
+    searchQuery !== '' ||
+    selectedCategory !== 'all' ||
+    selectedSize !== 'all' ||
+    selectedBase !== 'all' ||
+    sortBy !== 'default';
+
+  const resetAllFilters = () => {
+    setSearchQuery('');
+    setSelectedCategory('all');
+    setSelectedSize('all');
+    setSelectedBase('all');
+    setSortBy('default');
+  };
 
   return (
     <div className="flex h-full flex-col space-y-3 overflow-hidden">
@@ -258,6 +342,91 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
             </button>
           </div>
         )}
+      </div>
+
+      {/* 🎯 SECONDARY SMART PAINT FILTERS (Pack Size, Tinting Base & Sorting) */}
+      <div className="flex flex-wrap items-center justify-between gap-2 px-0.5 py-0.5 shrink-0">
+        {/* Left: Pack Size & Base Pill Groups */}
+        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
+          {/* Pack Size Pills */}
+          <div className="flex items-center bg-slate-100 dark:bg-slate-800/90 p-0.5 rounded-xl border border-slate-200/80 dark:border-slate-700/80 shrink-0">
+            {SIZE_FILTERS.map((s) => (
+              <button
+                key={s.id}
+                type="button"
+                onClick={() => setSelectedSize(s.id)}
+                className={`px-2.5 py-1 rounded-lg font-bold text-[11px] transition-all cursor-pointer whitespace-nowrap ${
+                  selectedSize === s.id
+                    ? 'bg-white dark:bg-slate-900 text-emerald-600 dark:text-emerald-400 shadow-2xs'
+                    : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200'
+                }`}
+              >
+                {s.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Divider */}
+          <div className="h-4 w-px bg-slate-200 dark:bg-slate-800 shrink-0" />
+
+          {/* Tinting Machine Base Pills */}
+          <div className="flex items-center bg-amber-500/10 dark:bg-amber-500/15 p-0.5 rounded-xl border border-amber-500/30 shrink-0">
+            <span className="px-2 text-[10px] font-black tracking-wider text-amber-700 dark:text-amber-400 uppercase">
+              Base:
+            </span>
+            {BASE_FILTERS.map((b) => (
+              <button
+                key={b.id}
+                type="button"
+                onClick={() => setSelectedBase(b.id)}
+                className={`px-2.5 py-1 rounded-lg font-black text-[11px] transition-all cursor-pointer whitespace-nowrap ${
+                  selectedBase === b.id
+                    ? 'bg-amber-500 text-white shadow-2xs'
+                    : 'text-amber-800/90 dark:text-amber-300 hover:text-amber-950 dark:hover:text-white'
+                }`}
+              >
+                {b.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Right: Sort & Filter Reset Status */}
+        <div className="flex items-center gap-2 shrink-0 ml-auto">
+          {/* Active Result Count */}
+          <span className="text-[11px] font-semibold text-slate-400 dark:text-slate-500 hidden sm:inline">
+            <strong className="text-slate-700 dark:text-slate-300 font-bold">{filteredProducts.length}</strong> items
+          </span>
+
+          {/* Sort Selector */}
+          <div className="flex items-center gap-1.5 bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-xl px-2.5 py-1 shadow-2xs">
+            <ArrowUpDown className="w-3 h-3 text-slate-400 shrink-0" />
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="bg-transparent text-[11px] font-bold text-slate-700 dark:text-slate-200 focus:outline-none cursor-pointer pr-1"
+            >
+              {SORT_OPTIONS.map((o) => (
+                <option key={o.id} value={o.id} className="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200">
+                  {o.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Reset Filters Button */}
+          {hasActiveFilters && (
+            <button
+              type="button"
+              onClick={resetAllFilters}
+              className="flex items-center gap-1 px-2.5 py-1 rounded-xl bg-rose-50 text-rose-600 hover:bg-rose-100 dark:bg-rose-950/40 dark:text-rose-400 text-[11px] font-bold transition-all cursor-pointer border border-rose-200/70 dark:border-rose-900/60 shadow-2xs"
+              title="Reset all filters"
+            >
+              <RotateCcw className="w-3 h-3" />
+              <span>Reset</span>
+            </button>
+          )}
+        </div>
       </div>
 
       {/* 📦 PRODUCT CARDS GRID */}
