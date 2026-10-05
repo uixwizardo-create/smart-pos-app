@@ -15,6 +15,8 @@ import {
   Flame,
   ShoppingBag,
   X,
+  ChevronLeft,
+  ChevronRight,
 } from 'lucide-react';
 import type { Product, Category } from '../../../types';
 import { ProductCard } from './ProductCard';
@@ -36,6 +38,34 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const categoryScrollRef = React.useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  const checkScroll = React.useCallback(() => {
+    if (categoryScrollRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = categoryScrollRef.current;
+      setCanScrollLeft(scrollLeft > 6);
+      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 6);
+    }
+  }, []);
+
+  React.useEffect(() => {
+    checkScroll();
+    const handleResize = () => checkScroll();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [checkScroll, categories]);
+
+  const scrollCategories = (direction: 'left' | 'right') => {
+    if (categoryScrollRef.current) {
+      categoryScrollRef.current.scrollBy({
+        left: direction === 'left' ? -260 : 260,
+        behavior: 'smooth',
+      });
+      setTimeout(checkScroll, 300);
+    }
+  };
 
   const getCategoryIcon = (id: string) => {
     switch (id) {
@@ -110,48 +140,94 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
       </div>
 
       {/* 🏷️ CATEGORY PILLS HORIZONTAL BAR (Matching Reference 1 & 3) */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-1 shrink-0 no-scrollbar">
-        {/* All Items Pill */}
-        <button
-          type="button"
-          onClick={() => setSelectedCategory('all')}
-          className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
-            selectedCategory === 'all'
-              ? 'bg-slate-900 dark:bg-emerald-600 text-white shadow-sm'
-              : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200/70 dark:border-slate-800 hover:bg-slate-50'
-          }`}
-        >
-          <Flame className="w-3.5 h-3.5 text-current" />
-          <span>All Items ({products.length})</span>
-        </button>
-
-        {/* Category Specific Pills */}
-        {categories
-          .filter((c) => c.id !== 'cat-all' && c.name.toLowerCase() !== 'all products')
-          .map((c) => {
-          const Icon = getCategoryIcon(c.id);
-          const isSelected = selectedCategory === c.id;
-          const count = products.filter((p) => p.categoryId === c.id).length;
-
-          return (
+      <div className="relative flex items-center shrink-0">
+        {/* Left Arrow Button */}
+        {canScrollLeft && (
+          <div className="absolute left-0 top-0 bottom-1 z-10 flex items-center pr-4 bg-gradient-to-r from-slate-50 via-slate-50/90 to-transparent dark:from-slate-950 dark:via-slate-950/90 pointer-events-none">
             <button
-              key={c.id}
               type="button"
-              onClick={() => setSelectedCategory(c.id)}
-              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
-                isSelected
-                  ? 'bg-slate-900 dark:bg-emerald-600 text-white shadow-sm'
-                  : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200/70 dark:border-slate-800 hover:bg-slate-50'
-              }`}
+              onClick={() => scrollCategories('left')}
+              className="pointer-events-auto flex h-7 w-7 items-center justify-center rounded-full bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 shadow-md border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 hover:scale-105 transition-all cursor-pointer"
+              title="Previous categories"
             >
-              <Icon className="w-3.5 h-3.5 text-current" />
-              <span>{c.name}</span>
-              <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${isSelected ? 'bg-white/20 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}>
-                {count}
-              </span>
+              <ChevronLeft className="w-4 h-4" />
             </button>
-          );
-        })}
+          </div>
+        )}
+
+        {/* Scrollable Category Container */}
+        <div
+          ref={categoryScrollRef}
+          onScroll={checkScroll}
+          onWheel={(e) => {
+            if (e.deltaY !== 0) {
+              e.currentTarget.scrollLeft += e.deltaY;
+            }
+          }}
+          className="flex items-center gap-2 overflow-x-auto pb-1 shrink-0 no-scrollbar scroll-smooth w-full px-0.5"
+        >
+          {/* All Items Pill */}
+          <button
+            type="button"
+            onClick={(e) => {
+              setSelectedCategory('all');
+              e.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
+            }}
+            className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
+              selectedCategory === 'all'
+                ? 'bg-slate-900 dark:bg-emerald-600 text-white shadow-sm'
+                : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200/70 dark:border-slate-800 hover:bg-slate-50'
+            }`}
+          >
+            <Flame className="w-3.5 h-3.5 text-current" />
+            <span>All Items ({products.length})</span>
+          </button>
+
+          {/* Category Specific Pills */}
+          {categories
+            .filter((c) => c.id !== 'cat-all' && c.name.toLowerCase() !== 'all products')
+            .map((c) => {
+            const Icon = getCategoryIcon(c.id);
+            const isSelected = selectedCategory === c.id;
+            const count = products.filter((p) => p.categoryId === c.id).length;
+
+            return (
+              <button
+                key={c.id}
+                type="button"
+                onClick={(e) => {
+                  setSelectedCategory(c.id);
+                  e.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
+                }}
+                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
+                  isSelected
+                    ? 'bg-slate-900 dark:bg-emerald-600 text-white shadow-sm'
+                    : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200/70 dark:border-slate-800 hover:bg-slate-50'
+                }`}
+              >
+                <Icon className="w-3.5 h-3.5 text-current" />
+                <span>{c.name}</span>
+                <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${isSelected ? 'bg-white/20 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}>
+                  {count}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Right Arrow Button */}
+        {canScrollRight && (
+          <div className="absolute right-0 top-0 bottom-1 z-10 flex items-center pl-4 bg-gradient-to-l from-slate-50 via-slate-50/90 to-transparent dark:from-slate-950 dark:via-slate-950/90 pointer-events-none">
+            <button
+              type="button"
+              onClick={() => scrollCategories('right')}
+              className="pointer-events-auto flex h-7 w-7 items-center justify-center rounded-full bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 shadow-md border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 hover:scale-105 transition-all cursor-pointer"
+              title="More categories"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+        )}
       </div>
 
       {/* 📦 PRODUCT CARDS GRID */}
