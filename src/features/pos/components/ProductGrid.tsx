@@ -95,16 +95,46 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
   };
 
   const filteredProducts = useMemo(() => {
+    const rawQuery = searchQuery.trim().toLowerCase();
+
+    // When no search query, filter by selected category
+    if (!rawQuery) {
+      return selectedCategory === 'all'
+        ? products
+        : products.filter((p) => p.categoryId === selectedCategory);
+    }
+
+    // Helper: normalize alphanumeric strings (handles "rb1", "rb-1", "rb 1", "0.91l", etc.)
+    const normalize = (str: string) => str.toLowerCase().replace(/[^a-z0-9]/g, '');
+    const cleanQuery = normalize(rawQuery);
+
+    // When searching, perform global search across all categories
     return products.filter((p) => {
-      const matchesCat = selectedCategory === 'all' || p.categoryId === selectedCategory;
-      const query = searchQuery.trim().toLowerCase();
-      const matchesSearch =
-        !query ||
-        p.name.toLowerCase().includes(query) ||
-        (p.nameBn && p.nameBn.toLowerCase().includes(query)) ||
-        p.barcode.includes(query) ||
-        p.sku.toLowerCase().includes(query);
-      return matchesCat && matchesSearch;
+      // 1. Direct substring match
+      const rawMatch =
+        p.name.toLowerCase().includes(rawQuery) ||
+        (p.nameBn && p.nameBn.toLowerCase().includes(rawQuery)) ||
+        p.barcode.toLowerCase().includes(rawQuery) ||
+        p.sku.toLowerCase().includes(rawQuery);
+
+      if (rawMatch) return true;
+
+      // 2. Normalized alphanumeric match
+      if (cleanQuery) {
+        const cleanName = normalize(p.name);
+        const cleanSubtitle = normalize(p.nameBn || '');
+        const cleanBarcode = normalize(p.barcode);
+        const cleanSku = normalize(p.sku);
+
+        return (
+          cleanName.includes(cleanQuery) ||
+          cleanSubtitle.includes(cleanQuery) ||
+          cleanBarcode.includes(cleanQuery) ||
+          cleanSku.includes(cleanQuery)
+        );
+      }
+
+      return false;
     });
   }, [products, selectedCategory, searchQuery]);
 
