@@ -61,11 +61,23 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         </div>
 
         {/* Price & Stock Row */}
-        <div className="flex items-baseline justify-between mt-2 pt-1 border-t border-slate-100 dark:border-slate-800/80">
-          <div className="text-sm sm:text-base font-black text-emerald-600 dark:text-emerald-400 font-mono tracking-tight">
-            {formatCurrency(product.salePrice, currencySymbol)}
+        <div className="flex items-end justify-between mt-2 pt-1.5 border-t border-slate-100 dark:border-slate-800/80">
+          <div className="flex flex-col">
+            <div className="flex items-baseline gap-1">
+              <span className="text-sm sm:text-base font-black text-emerald-600 dark:text-emerald-400 font-mono tracking-tight">
+                {formatCurrency(product.salePrice, currencySymbol)}
+              </span>
+              <span className="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase">
+                MRP
+              </span>
+            </div>
+            {product.costPrice > 0 && product.costPrice < product.salePrice && (
+              <span className="text-[10px] font-medium text-slate-400 dark:text-slate-500 font-mono -mt-0.5">
+                DP: {formatCurrency(product.costPrice, currencySymbol)} ({Math.round((1 - product.costPrice / product.salePrice) * 100)}% off)
+              </span>
+            )}
           </div>
-          <span className="text-[10px] font-semibold text-slate-400 dark:text-slate-400">
+          <span className="text-[10px] font-semibold text-slate-400 dark:text-slate-400 shrink-0 ml-1">
             {product.stock} {product.unit}
           </span>
         </div>
