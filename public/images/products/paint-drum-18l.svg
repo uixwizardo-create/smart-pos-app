@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="drumBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0f9ff"/>
+      <stop offset="100%" stop-color="#e0f2fe"/>
+    </linearGradient>
+    <linearGradient id="drumBody" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e2e8f0"/>
+      <stop offset="25%" stop-color="#ffffff"/>
+      <stop offset="75%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#cbd5e1"/>
+    </linearGradient>
+    <linearGradient id="rainbowBand" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="50%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+    <radialGradient id="shadow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(15, 23, 42, 0.28)"/>
+      <stop offset="100%" stop-color="rgba(15, 23, 42, 0)"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="400" rx="32" fill="url(#drumBg)"/>
+  <ellipse cx="200" cy="345" rx="100" ry="22" fill="url(#shadow)"/>
+  <!-- Drum Body -->
+  <path d="M 115 130 L 285 130 L 270 330 L 130 330 Z" fill="url(#drumBody)" stroke="#94a3b8" stroke-width="2"/>
+  <!-- Drum Lid -->
+  <ellipse cx="200" cy="130" rx="85" ry="16" fill="#0284c7" stroke="#0369a1" stroke-width="3"/>
+  <ellipse cx="200" cy="126" rx="72" ry="12" fill="#38bdf8"/>
+  <!-- Handle -->
+  <path d="M 112 145 C 112 75, 288 75, 288 145" fill="none" stroke="#64748b" stroke-width="5" stroke-linecap="round"/>
+  <!-- Brand Label -->
+  <rect x="127" y="170" width="146" height="110" rx="8" fill="url(#rainbowBand)"/>
+  <rect x="133" y="176" width="134" height="98" rx="6" fill="#ffffff"/>
+  <!-- Rainbow Logo Arc -->
+  <path d="M 160 210 A 40 40 0 0 1 240 210" fill="none" stroke="#ef4444" stroke-width="3"/>
+  <path d="M 164 210 A 36 36 0 0 1 236 210" fill="none" stroke="#f59e0b" stroke-width="3"/>
+  <path d="M 168 210 A 32 32 0 0 1 232 210" fill="none" stroke="#10b981" stroke-width="3"/>
+  <path d="M 172 210 A 28 28 0 0 1 228 210" fill="none" stroke="#0284c7" stroke-width="3"/>
+  <text x="200" y="235" font-family="system-ui, sans-serif" font-weight="900" font-size="12" fill="#0f172a" text-anchor="middle" letter-spacing="1">RAINBOW</text>
+  <text x="200" y="250" font-family="system-ui, sans-serif" font-weight="700" font-size="9" fill="#0284c7" text-anchor="middle">PAINTS</text>
+  <rect x="160" y="256" width="80" height="14" rx="4" fill="#0f172a"/>
+  <text x="200" y="266" font-family="system-ui, sans-serif" font-weight="800" font-size="8" fill="#ffffff" text-anchor="middle">18 LTR DRUM</text>
+</svg>

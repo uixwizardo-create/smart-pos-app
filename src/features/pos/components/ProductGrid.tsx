@@ -2,14 +2,18 @@ import React, { useState, useMemo } from 'react';
 import {
   Search,
   LayoutGrid,
-  ShoppingBag,
-  Apple,
-  Coffee,
+  Paintbrush,
+  Sun,
+  ShieldCheck,
   Sparkles,
-  Milk,
-  Cookie,
-  Beef,
+  Trees,
+  Car,
+  Anchor,
+  Droplets,
+  Palette,
+  Layers,
   Flame,
+  ShoppingBag,
   X,
 } from 'lucide-react';
 import type { Product, Category } from '../../../types';
@@ -35,20 +39,26 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
 
   const getCategoryIcon = (id: string) => {
     switch (id) {
-      case 'cat-grocery':
-        return ShoppingBag;
-      case 'cat-beverages':
-        return Coffee;
-      case 'cat-dairy':
-        return Milk;
-      case 'cat-snacks':
-        return Cookie;
-      case 'cat-produce':
-        return Apple;
-      case 'cat-meat':
-        return Beef;
-      case 'cat-household':
+      case 'cat-interior':
+        return Paintbrush;
+      case 'cat-exterior':
+        return Sun;
+      case 'cat-primers':
+        return ShieldCheck;
+      case 'cat-enamel':
         return Sparkles;
+      case 'cat-wood':
+        return Trees;
+      case 'cat-auto':
+        return Car;
+      case 'cat-marine':
+        return Anchor;
+      case 'cat-waterproofing':
+        return Droplets;
+      case 'cat-colorant':
+        return Palette;
+      case 'cat-specialty':
+        return Layers;
       default:
         return LayoutGrid;
     }

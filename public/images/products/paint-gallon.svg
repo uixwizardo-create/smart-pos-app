@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="galBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ecfdf5"/>
+      <stop offset="100%" stop-color="#d1fae5"/>
+    </linearGradient>
+    <linearGradient id="metalCan" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#cbd5e1"/>
+      <stop offset="20%" stop-color="#ffffff"/>
+      <stop offset="80%" stop-color="#f1f5f9"/>
+      <stop offset="100%" stop-color="#94a3b8"/>
+    </linearGradient>
+    <radialGradient id="shadowG" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(15, 23, 42, 0.28)"/>
+      <stop offset="100%" stop-color="rgba(15, 23, 42, 0)"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="400" rx="32" fill="url(#galBg)"/>
+  <ellipse cx="200" cy="340" rx="90" ry="20" fill="url(#shadowG)"/>
+  <!-- Can Body -->
+  <rect x="120" y="140" width="160" height="180" rx="12" fill="url(#metalCan)" stroke="#64748b" stroke-width="2"/>
+  <!-- Metal Rims -->
+  <ellipse cx="200" cy="140" rx="80" ry="18" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>
+  <ellipse cx="200" cy="136" rx="66" ry="14" fill="#10b981" stroke="#059669" stroke-width="2"/>
+  <!-- Handle -->
+  <path d="M 120 170 C 120 90, 280 90, 280 170" fill="none" stroke="#475569" stroke-width="4.5" stroke-linecap="round"/>
+  <!-- Label -->
+  <rect x="128" y="175" width="144" height="120" rx="8" fill="#ffffff" stroke="#10b981" stroke-width="2"/>
+  <path d="M 165 215 A 35 35 0 0 1 235 215" fill="none" stroke="#ef4444" stroke-width="2.5"/>
+  <path d="M 169 215 A 31 31 0 0 1 231 215" fill="none" stroke="#10b981" stroke-width="2.5"/>
+  <path d="M 173 215 A 27 27 0 0 1 227 215" fill="none" stroke="#0284c7" stroke-width="2.5"/>
+  <text x="200" y="238" font-family="system-ui, sans-serif" font-weight="900" font-size="12" fill="#0f172a" text-anchor="middle" letter-spacing="1">RAINBOW</text>
+  <text x="200" y="253" font-family="system-ui, sans-serif" font-weight="700" font-size="9" fill="#059669" text-anchor="middle">GALLON PACK</text>
+  <rect x="155" y="262" width="90" height="16" rx="4" fill="#059669"/>
+  <text x="200" y="274" font-family="system-ui, sans-serif" font-weight="800" font-size="9" fill="#ffffff" text-anchor="middle">3.64 LTR</text>
+</svg>

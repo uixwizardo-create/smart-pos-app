@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="autoBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f1f5f9"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </linearGradient>
+    <linearGradient id="autoCan" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="40%" stop-color="#334155"/>
+      <stop offset="70%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <radialGradient id="shadowA" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(15, 23, 42, 0.28)"/>
+      <stop offset="100%" stop-color="rgba(15, 23, 42, 0)"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="400" rx="32" fill="url(#autoBg)"/>
+  <ellipse cx="200" cy="335" rx="75" ry="18" fill="url(#shadowA)"/>
+  <rect x="135" y="145" width="130" height="175" rx="10" fill="url(#autoCan)" stroke="#0f172a" stroke-width="2"/>
+  <ellipse cx="200" cy="145" rx="65" ry="16" fill="#e11d48"/>
+  <ellipse cx="200" cy="141" rx="50" ry="12" fill="#fb7185"/>
+  <rect x="142" y="180" width="116" height="115" rx="6" fill="#0f172a" stroke="#e11d48" stroke-width="2"/>
+  <text x="200" y="215" font-family="system-ui, sans-serif" font-weight="900" font-size="14" fill="#ffffff" text-anchor="middle" letter-spacing="1">OSAKA</text>
+  <text x="200" y="232" font-family="system-ui, sans-serif" font-weight="800" font-size="9" fill="#e11d48" text-anchor="middle">2K / 1K AUTO</text>
+  <rect x="152" y="248" width="96" height="16" rx="4" fill="#e11d48"/>
+  <text x="200" y="260" font-family="system-ui, sans-serif" font-weight="800" font-size="8" fill="#ffffff" text-anchor="middle">CAR REFINISH</text>
+</svg>

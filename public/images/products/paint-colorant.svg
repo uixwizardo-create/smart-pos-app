@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="colBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fae8ff"/>
+      <stop offset="100%" stop-color="#f5d0fe"/>
+    </linearGradient>
+    <linearGradient id="bottleBody" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e2e8f0"/>
+      <stop offset="40%" stop-color="#ffffff"/>
+      <stop offset="70%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#cbd5e1"/>
+    </linearGradient>
+    <radialGradient id="shadowB" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(15, 23, 42, 0.28)"/>
+      <stop offset="100%" stop-color="rgba(15, 23, 42, 0)"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="400" rx="32" fill="url(#colBg)"/>
+  <ellipse cx="200" cy="340" rx="60" ry="16" fill="url(#shadowB)"/>
+  <!-- Bottle Neck & Cap -->
+  <rect x="182" y="110" width="36" height="35" rx="4" fill="#a855f7" stroke="#7e22ce" stroke-width="2"/>
+  <rect x="175" y="95" width="50" height="18" rx="4" fill="#7e22ce"/>
+  <!-- Bottle Body -->
+  <path d="M 182 145 C 160 160, 150 180, 150 200 L 150 325 C 150 335, 250 335, 250 325 L 250 200 C 250 180, 240 160, 218 145 Z" fill="url(#bottleBody)" stroke="#94a3b8" stroke-width="2"/>
+  <rect x="160" y="200" width="80" height="105" rx="6" fill="#ffffff" stroke="#a855f7" stroke-width="2"/>
+  <circle cx="200" cy="228" r="14" fill="#a855f7"/>
+  <text x="200" y="258" font-family="system-ui, sans-serif" font-weight="900" font-size="10" fill="#0f172a" text-anchor="middle">COLORANT</text>
+  <rect x="168" y="270" width="64" height="14" rx="4" fill="#a855f7"/>
+  <text x="200" y="280" font-family="system-ui, sans-serif" font-weight="800" font-size="7" fill="#ffffff" text-anchor="middle">1000 ML</text>
+</svg>
