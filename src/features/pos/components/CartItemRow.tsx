@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Plus, Minus, Trash2, Package } from 'lucide-react';
 import type { OrderItem } from '../../../types';
 import { formatCurrency } from '../../../utils/formatters';
@@ -37,7 +37,7 @@ export const CartItemRow: React.FC<CartItemRowProps> = ({
           {item.name}
         </h4>
         <div className="text-[10px] text-slate-400 font-medium">
-          {formatCurrency(item.unitPrice, currencySymbol)} / {item.unit}
+          {formatCurrency(item.unitPrice, currencySymbol)} {item.unit ? `/ ${item.unit === 'pcs' ? 'pc' : item.unit}` : ''}
         </div>
       </div>
 
