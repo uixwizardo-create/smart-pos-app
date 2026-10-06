@@ -289,19 +289,27 @@ export function parseProductInfo(rawName: string): ParsedProductInfo {
   name = name.replace(/^SPD\s+/i, 'Acroflat Distemper ');
   name = name.replace(/^All Round Exterior Top Coat\s+/i, 'All Rounder Ext ');
 
-  // 2. Extract Size (e.g. (18 Ltr), (3.64 Ltr), (25 Kg), -1000 ml)
+  // 2. Extract Size (e.g. (18 Ltr), (0.91 Lit), (1Ltr.), (15kg Bucket), - 1000 ml, 0.200 Ltr, etc.)
   let sizeTag: string | null = null;
-  const sizeMatch =
-    name.match(/\(([\d\.]+\s*(?:ltr|kg|ml|gm|l)?)\)/i) ||
-    name.match(/-\s*([\d\.]+\s*(?:ltr|kg|ml|gm|l)?)$/i);
-
-  if (sizeMatch) {
-    sizeTag = sizeMatch[1]
+  const parenMatch = name.match(/\(([\d\.]+\s*(?:ltr|lit|itr|lt|kg|ml|gm|l)[\w\.\s]*)\)/i);
+  if (parenMatch) {
+    sizeTag = parenMatch[1]
+      .replace(/\s*bucket/i, '')
       .replace(/\s+/g, '')
-      .replace(/ltr/i, 'L')
+      .replace(/ltr\.?|lit|itr|lt/i, 'L')
       .replace(/ml/i, 'ml')
       .replace(/kg/i, 'kg');
-    name = name.replace(sizeMatch[0], '').trim();
+    name = name.replace(parenMatch[0], '').trim();
+  } else {
+    const trailMatch = name.match(/(?:-|\s)\s*([\d\.]+\s*(?:ltr|lit|itr|lt|kg|ml|gm|l))\b/i);
+    if (trailMatch) {
+      sizeTag = trailMatch[1]
+        .replace(/\s+/g, '')
+        .replace(/ltr\.?|lit|itr|lt/i, 'L')
+        .replace(/ml/i, 'ml')
+        .replace(/kg/i, 'kg');
+      name = name.replace(trailMatch[0], '').trim();
+    }
   }
 
   // 3. Extract Base (RB-1, RB-2, RB-3, RB-N)
@@ -423,17 +431,23 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           )}
         </div>
 
-        {/* Top-Right: Pack Size Pill or Low Stock Alert */}
+        {/* Top-Right: Inventory Stock Status Pill */}
         <div className="absolute top-2 right-2 z-20 flex items-center gap-1">
-          {isLowStock ? (
-            <span className="rounded-md bg-rose-500 text-white backdrop-blur-xs px-1.5 py-0.5 text-[9px] font-black shadow-2xs">
-              Low: {product.stock}
+          {isOutOfStock ? (
+            <span className="rounded-md bg-rose-600 text-white backdrop-blur-xs px-1.5 py-0.5 text-[9px] font-black shadow-2xs">
+              Out of stock
             </span>
-          ) : sizeTag ? (
-            <span className="rounded-md bg-white/90 dark:bg-slate-900/90 text-slate-700 dark:text-slate-300 border border-slate-200/60 dark:border-slate-700/60 px-1.5 py-0.5 text-[9px] font-extrabold shadow-2xs font-mono">
-              {sizeTag}
+          ) : isLowStock ? (
+            <span className="rounded-md bg-amber-500 text-slate-950 backdrop-blur-xs px-1.5 py-0.5 text-[9px] font-black shadow-2xs flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-rose-600 animate-pulse" />
+              Low: {product.stock} pcs
             </span>
-          ) : null}
+          ) : (
+            <span className="rounded-md bg-white/95 dark:bg-slate-900/95 text-slate-700 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 backdrop-blur-xs px-1.5 py-0.5 text-[9px] font-bold shadow-2xs flex items-center gap-1 font-mono">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+              {product.stock} pcs
+            </span>
+          )}
         </div>
 
         {/* Hover Quick-Add Tactile Indicator */}
@@ -466,7 +480,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </div>
         </div>
 
-        {/* Single-line Price & Stock Row */}
+        {/* Single-line Price & Pack Size Row */}
         <div className="flex items-center justify-between mt-1.5 pt-1.5 border-t border-slate-100 dark:border-slate-800/80">
           <div className="flex flex-col">
             <span className="text-sm sm:text-base font-black text-emerald-600 dark:text-emerald-400 font-mono tracking-tight leading-none">
@@ -479,21 +493,18 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             )}
           </div>
 
-          <div
-            className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-500 dark:text-slate-400 shrink-0"
-            title={`${product.stock} pieces in stock`}
-          >
+          {sizeTag ? (
             <span
-              className={`inline-block w-1.5 h-1.5 rounded-full shrink-0 ${
-                isOutOfStock
-                  ? 'bg-rose-500'
-                  : isLowStock
-                  ? 'bg-amber-500 animate-pulse'
-                  : 'bg-emerald-500'
-              }`}
-            />
-            <span>{product.stock} pcs</span>
-          </div>
+              className="rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/90 dark:border-slate-700/80 px-2 py-0.5 text-[11px] font-black font-mono shadow-2xs shrink-0 tracking-tight"
+              title={`Pack Size: ${sizeTag}`}
+            >
+              {sizeTag}
+            </span>
+          ) : (
+            <span className="text-[11px] font-semibold text-slate-400 dark:text-slate-500 font-mono">
+              {product.unit || '1 pc'}
+            </span>
+          )}
         </div>
       </div>
     </div>
