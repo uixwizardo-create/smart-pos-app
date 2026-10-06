@@ -274,6 +274,7 @@ export function getProductStudioStyle(product: Product): ProductStudioStyle {
 
 export interface ParsedProductInfo {
   cleanName: string;
+  lineName: string;
   sizeTag: string | null;
   baseTag: string | null;
 }
@@ -281,7 +282,14 @@ export interface ParsedProductInfo {
 export function parseProductInfo(rawName: string): ParsedProductInfo {
   let name = rawName.replace(/^Rainbow\s+/i, '').trim();
 
-  // 1. Extract Size (e.g. (18 Ltr), (3.64 Ltr), (25 Kg), -1000 ml)
+  // 1. Expand standard paint catalog abbreviations
+  name = name.replace(/^WC\s+/i, 'Weather Care ');
+  name = name.replace(/^APE\s+/i, 'Acroplast Emulsion ');
+  name = name.replace(/^SSE\s+/i, 'Synglo Enamel ');
+  name = name.replace(/^SPD\s+/i, 'Acroflat Distemper ');
+  name = name.replace(/^All Round Exterior Top Coat\s+/i, 'All Rounder Ext ');
+
+  // 2. Extract Size (e.g. (18 Ltr), (3.64 Ltr), (25 Kg), -1000 ml)
   let sizeTag: string | null = null;
   const sizeMatch =
     name.match(/\(([\d\.]+\s*(?:ltr|kg|ml|gm|l)?)\)/i) ||
@@ -296,7 +304,7 @@ export function parseProductInfo(rawName: string): ParsedProductInfo {
     name = name.replace(sizeMatch[0], '').trim();
   }
 
-  // 2. Extract Base (RB-1, RB-2, RB-3, RB-N)
+  // 3. Extract Base (RB-1, RB-2, RB-3, RB-N)
   let baseTag: string | null = null;
   const baseMatch = name.match(/\b(RB-[123N])\b/i);
   if (baseMatch) {
@@ -304,15 +312,46 @@ export function parseProductInfo(rawName: string): ParsedProductInfo {
     name = name.replace(baseMatch[0], '').replace(/\s+-\s+/, ' ').trim();
   }
 
-  // 3. Clean Colorant Names
+  // 4. Clean Colorant Names
   if (name.startsWith('Bank Colorant-')) {
     name = 'Colorant ' + name.replace('Bank Colorant-', '').replace(/-\s*1000\s*ml/i, '');
   }
 
-  // 4. Clean trailing hyphens or extra whitespace
+  // 5. Clean trailing hyphens or extra whitespace
   name = name.replace(/\s*-\s*$/, '').replace(/\s+/g, ' ').trim();
 
-  return { cleanName: name, sizeTag, baseTag };
+  const cleanName = baseTag ? `${name} (${baseTag})` : name;
+  return { cleanName, lineName: name, sizeTag, baseTag };
+}
+
+function getBaseBadgeClasses(base: string): { chip: string; pill: string } {
+  switch (base) {
+    case 'RB-1':
+      return {
+        chip: 'bg-blue-600 text-white border-blue-400 shadow-blue-500/30',
+        pill: 'bg-blue-50 text-blue-800 border-blue-300 dark:bg-blue-950/80 dark:text-blue-300 dark:border-blue-700',
+      };
+    case 'RB-2':
+      return {
+        chip: 'bg-amber-500 text-slate-950 border-amber-300 shadow-amber-500/30',
+        pill: 'bg-amber-50 text-amber-900 border-amber-300 dark:bg-amber-950/80 dark:text-amber-300 dark:border-amber-700',
+      };
+    case 'RB-3':
+      return {
+        chip: 'bg-indigo-600 text-white border-indigo-400 shadow-indigo-500/30',
+        pill: 'bg-indigo-50 text-indigo-900 border-indigo-300 dark:bg-indigo-950/80 dark:text-indigo-300 dark:border-indigo-700',
+      };
+    case 'RB-N':
+      return {
+        chip: 'bg-purple-700 text-white border-purple-400 shadow-purple-500/30',
+        pill: 'bg-purple-50 text-purple-900 border-purple-300 dark:bg-purple-950/80 dark:text-purple-300 dark:border-purple-700',
+      };
+    default:
+      return {
+        chip: 'bg-amber-500 text-slate-950 border-amber-400',
+        pill: 'bg-amber-50 text-amber-900 border-amber-300',
+      };
+  }
 }
 
 interface ProductCardProps {
@@ -331,7 +370,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   const isOutOfStock = product.stock <= 0;
   const isLowStock = product.stock > 0 && product.stock <= product.minStockAlert;
   const studioStyle = getProductStudioStyle(product);
-  const { cleanName, sizeTag, baseTag } = parseProductInfo(product.name);
+  const { lineName, sizeTag, baseTag } = parseProductInfo(product.name);
+  const baseColors = baseTag ? getBaseBadgeClasses(baseTag) : null;
 
   return (
     <div
@@ -367,10 +407,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
         {/* Top-Left: Tint Base Pill if available, otherwise Studio Line Badge */}
         <div className="absolute top-2 left-2 z-20 flex items-center gap-1">
-          {baseTag ? (
-            <span className="rounded-md bg-amber-500 text-slate-950 px-1.5 py-0.5 text-[9px] font-black shadow-2xs tracking-wider uppercase">
-              {baseTag}
-            </span>
+          {baseTag && baseColors ? (
+            <div
+              className={`flex items-center gap-1 px-2 py-0.5 rounded-lg border text-[11px] font-black uppercase tracking-wider shadow-sm ${baseColors.chip}`}
+            >
+              <span className="text-[9px] opacity-80 font-bold">BASE</span>
+              <span>{baseTag}</span>
+            </div>
           ) : (
             <span
               className={`rounded-md border px-1.5 py-0.5 text-[9px] font-bold shadow-2xs backdrop-blur-xs ${studioStyle.badge}`}
@@ -406,12 +449,21 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       {/* Clean Details */}
       <div className="flex-1 flex flex-col justify-between">
         <div>
-          <h3
-            className="text-xs sm:text-[13px] font-bold text-slate-900 dark:text-white line-clamp-1 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors tracking-tight"
-            title={product.name}
-          >
-            {cleanName}
-          </h3>
+          <div className="flex items-center gap-1.5">
+            <h3
+              className="text-xs sm:text-[13px] font-bold text-slate-900 dark:text-white truncate group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors tracking-tight flex-1"
+              title={product.name}
+            >
+              {lineName}
+            </h3>
+            {baseTag && baseColors && (
+              <span
+                className={`px-1.5 py-0.2 rounded-md text-[10px] font-black tracking-wider uppercase shrink-0 border ${baseColors.chip}`}
+              >
+                {baseTag}
+              </span>
+            )}
+          </div>
         </div>
 
         {/* Single-line Price & Stock Row */}
