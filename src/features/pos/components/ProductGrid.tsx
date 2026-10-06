@@ -24,7 +24,7 @@ import {
   EyeOff,
 } from 'lucide-react';
 import type { Product, Category } from '../../../types';
-import { ProductCard } from './ProductCard';
+import { ProductCard, parseProductInfo } from './ProductCard';
 
 interface ProductGridProps {
   products: Product[];
@@ -39,7 +39,8 @@ const SIZE_FILTERS = [
   { id: '18L', label: '18L Drum' },
   { id: '3.64L', label: '3.64L Gallon' },
   { id: '0.91L', label: '0.91L Can' },
-  { id: '25kg', label: '25Kg Putty' },
+  { id: '0.455L', label: '0.455L Pint' },
+  { id: 'putty', label: '20-25Kg Putty' },
   { id: 'colorant', label: '1000ml Colorant' },
 ];
 
@@ -136,23 +137,45 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
 
     const matchesSize = (p: Product, size: string) => {
       if (size === 'all') return true;
-      const text = (p.name + ' ' + (p.nameBn || '')).toLowerCase();
-      if (size === '18L') return text.includes('18 l') || text.includes('18.2') || text.includes('drum');
-      if (size === '3.64L') return text.includes('3.6') || text.includes('gallon');
-      if (size === '0.91L') return text.includes('0.9') || text.includes('0.455') || text.includes('1 ltr') || text.includes('quarter');
-      if (size === '25kg') return text.includes('kg') || text.includes('putty') || text.includes('cement');
-      if (size === 'colorant') return text.includes('1000 ml') || text.includes('colorant');
-      return true;
+      const { sizeTag } = parseProductInfo(p.name);
+      if (!sizeTag) return false;
+      const s = sizeTag.toLowerCase();
+
+      switch (size) {
+        case '18L':
+          // 18L, 18.2L, 20L, 200L Large Drums
+          return s === '18l' || s === '18.2l' || s === '20l' || s === '200l';
+
+        case '3.64L':
+          // 3.64L, 3.60L, 4L, 5L, 10L, 2L Gallons
+          return s === '3.64l' || s === '3.60l' || s === '4l' || s === '5l' || s === '10l' || s === '2l';
+
+        case '0.91L':
+          // 0.91L, 0.90L, 0.900L, 1L, 1kg Quarter Cans — STRICTLY EXCLUDES 0.455L!
+          return s === '0.91l' || s === '0.90l' || s === '0.900l' || s === '1l' || s === '1kg';
+
+        case '0.455L':
+          // 0.455L, 0.500L, 0.333L, 0.200L, 0.100ml Half-Quarters & Mini Cans
+          return s === '0.455l' || s === '0.500l' || s === '0.333l' || s === '0.200l' || s === '0.100ml';
+
+        case 'putty':
+        case '25kg':
+          // 25kg, 20kg, 40kg, 15kg, 12.4kg, 5.4kg, 5kg, 4kg, 3kg Putty Bags & Buckets
+          return s.includes('kg') && s !== '1kg';
+
+        case 'colorant':
+          // 1000ml tinting machine colorants
+          return s === '1000ml';
+
+        default:
+          return true;
+      }
     };
 
     const matchesBase = (p: Product, base: string) => {
       if (base === 'all') return true;
-      const clean = normalize(p.name + ' ' + (p.nameBn || ''));
-      if (base === 'rb-1') return clean.includes('rb1');
-      if (base === 'rb-2') return clean.includes('rb2');
-      if (base === 'rb-3') return clean.includes('rb3');
-      if (base === 'rb-n') return clean.includes('rbn');
-      return true;
+      const { baseTag } = parseProductInfo(p.name);
+      return baseTag === base.toUpperCase();
     };
 
     const result = products.filter((p) => {
