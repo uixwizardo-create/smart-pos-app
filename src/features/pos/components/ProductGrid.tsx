@@ -19,6 +19,8 @@ import {
   ChevronRight,
   ArrowUpDown,
   RotateCcw,
+  Eye,
+  EyeOff,
 } from 'lucide-react';
 import type { Product, Category } from '../../../types';
 import { ProductCard } from './ProductCard';
@@ -67,6 +69,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
   const [selectedSize, setSelectedSize] = useState('all');
   const [selectedBase, setSelectedBase] = useState('all');
   const [sortBy, setSortBy] = useState('default');
+  const [showCost, setShowCost] = useState(false);
   const categoryScrollRef = React.useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -398,6 +401,21 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
             <strong className="text-slate-700 dark:text-slate-300 font-bold">{filteredProducts.length}</strong> items
           </span>
 
+          {/* Merchant Cost Visibility Toggle (DP / Margin) */}
+          <button
+            type="button"
+            onClick={() => setShowCost(!showCost)}
+            className={`flex items-center gap-1 px-2.5 py-1 rounded-xl text-[11px] font-bold transition-all cursor-pointer border shadow-2xs ${
+              showCost
+                ? 'bg-amber-100 text-amber-900 border-amber-300 dark:bg-amber-950/60 dark:text-amber-200 dark:border-amber-800'
+                : 'bg-white dark:bg-slate-900 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200 border-slate-200/90 dark:border-slate-800'
+            }`}
+            title={showCost ? 'Hide Wholesale Dealer Price (DP)' : 'Show Wholesale Dealer Price (DP)'}
+          >
+            {showCost ? <Eye className="w-3 h-3 text-amber-600 dark:text-amber-400" /> : <EyeOff className="w-3 h-3" />}
+            <span>DP</span>
+          </button>
+
           {/* Sort Selector */}
           <div className="flex items-center gap-1.5 bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-xl px-2.5 py-1 shadow-2xs">
             <ArrowUpDown className="w-3 h-3 text-slate-400 shrink-0" />
@@ -449,6 +467,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
                 product={product}
                 currencySymbol={currencySymbol}
                 onSelect={onSelectProduct}
+                showCost={showCost}
               />
             ))}
           </div>

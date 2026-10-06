@@ -272,32 +272,84 @@ export function getProductStudioStyle(product: Product): ProductStudioStyle {
   };
 }
 
+export interface ParsedProductInfo {
+  cleanName: string;
+  sizeTag: string | null;
+  baseTag: string | null;
+}
+
+export function parseProductInfo(rawName: string): ParsedProductInfo {
+  let name = rawName.replace(/^Rainbow\s+/i, '').trim();
+
+  // 1. Extract Size (e.g. (18 Ltr), (3.64 Ltr), (25 Kg), -1000 ml)
+  let sizeTag: string | null = null;
+  const sizeMatch =
+    name.match(/\(([\d\.]+\s*(?:ltr|kg|ml|gm|l)?)\)/i) ||
+    name.match(/-\s*([\d\.]+\s*(?:ltr|kg|ml|gm|l)?)$/i);
+
+  if (sizeMatch) {
+    sizeTag = sizeMatch[1]
+      .replace(/\s+/g, '')
+      .replace(/ltr/i, 'L')
+      .replace(/ml/i, 'ml')
+      .replace(/kg/i, 'kg');
+    name = name.replace(sizeMatch[0], '').trim();
+  }
+
+  // 2. Extract Base (RB-1, RB-2, RB-3, RB-N)
+  let baseTag: string | null = null;
+  const baseMatch = name.match(/\b(RB-[123N])\b/i);
+  if (baseMatch) {
+    baseTag = baseMatch[1].toUpperCase();
+    name = name.replace(baseMatch[0], '').replace(/\s+-\s+/, ' ').trim();
+  }
+
+  // 3. Clean Colorant Names
+  if (name.startsWith('Bank Colorant-')) {
+    name = 'Colorant ' + name.replace('Bank Colorant-', '').replace(/-\s*1000\s*ml/i, '');
+  }
+
+  // 4. Clean trailing hyphens or extra whitespace
+  name = name.replace(/\s*-\s*$/, '').replace(/\s+/g, ' ').trim();
+
+  return { cleanName: name, sizeTag, baseTag };
+}
+
+interface ProductCardProps {
+  product: Product;
+  currencySymbol: string;
+  onSelect: (product: Product) => void;
+  showCost?: boolean;
+}
+
 export const ProductCard: React.FC<ProductCardProps> = ({
   product,
   currencySymbol,
   onSelect,
+  showCost = false,
 }) => {
   const isOutOfStock = product.stock <= 0;
   const isLowStock = product.stock > 0 && product.stock <= product.minStockAlert;
   const studioStyle = getProductStudioStyle(product);
+  const { cleanName, sizeTag, baseTag } = parseProductInfo(product.name);
 
   return (
     <div
       onClick={() => !isOutOfStock && onSelect(product)}
-      className={`group relative flex flex-col justify-between rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/70 dark:border-slate-800/80 p-3 shadow-xs transition-all duration-200 ${
+      className={`group relative flex flex-col justify-between rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-2.5 shadow-2xs transition-all duration-200 select-none ${
         isOutOfStock
           ? 'opacity-50 cursor-not-allowed bg-slate-50 dark:bg-slate-900/40'
-          : 'hover:shadow-lg hover:shadow-slate-200/50 dark:hover:shadow-slate-950/60 hover:-translate-y-0.5 cursor-pointer active:scale-98'
+          : 'hover:shadow-lg hover:shadow-slate-200/50 dark:hover:shadow-slate-950/60 hover:-translate-y-0.5 hover:border-emerald-500/50 dark:hover:border-emerald-500/40 cursor-pointer active:scale-98'
       }`}
     >
-      {/* Product Image Container with Bucket-Complementary Studio Background & Lighting */}
+      {/* Product Image Canvas with Complementary Studio Backdrop */}
       <div
-        className={`relative aspect-4/3 w-full overflow-hidden rounded-xl bg-gradient-to-b ${studioStyle.bg} p-2 flex items-center justify-center mb-2.5 transition-colors`}
+        className={`relative aspect-4/3 w-full overflow-hidden rounded-xl bg-gradient-to-b ${studioStyle.bg} p-2 flex items-center justify-center mb-2 transition-colors`}
       >
-        {/* Soft Radial Studio Spotlight behind Bucket */}
+        {/* Soft Radial Studio Spotlight */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.75)_0%,transparent_75%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.08)_0%,transparent_75%)] pointer-events-none" />
 
-        {/* Soft Grounded Contact Floor Shadow */}
+        {/* Grounded Floor Contact Shadow */}
         <div className="absolute bottom-2.5 h-2 w-3/5 rounded-[100%] bg-slate-900/15 dark:bg-black/45 blur-[3px] pointer-events-none" />
 
         {product.imageUrl ? (
@@ -313,72 +365,85 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </div>
         )}
 
-        {/* Bucket-Matched Studio Pill Badge */}
-        <span
-          className={`absolute top-2 left-2 z-20 rounded-md border px-1.5 py-0.5 text-[9px] font-bold shadow-2xs backdrop-blur-xs ${studioStyle.badge}`}
-        >
-          {studioStyle.badgeLabel}
-        </span>
+        {/* Top-Left: Tint Base Pill if available, otherwise Studio Line Badge */}
+        <div className="absolute top-2 left-2 z-20 flex items-center gap-1">
+          {baseTag ? (
+            <span className="rounded-md bg-amber-500 text-slate-950 px-1.5 py-0.5 text-[9px] font-black shadow-2xs tracking-wider uppercase">
+              {baseTag}
+            </span>
+          ) : (
+            <span
+              className={`rounded-md border px-1.5 py-0.5 text-[9px] font-bold shadow-2xs backdrop-blur-xs ${studioStyle.badge}`}
+            >
+              {studioStyle.badgeLabel}
+            </span>
+          )}
+        </div>
 
-        {/* Floating Low Stock Warning Pill */}
-        {isLowStock && (
-          <span className="absolute top-2 right-2 z-20 rounded-lg bg-amber-500/90 backdrop-blur-xs px-2 py-0.5 text-[10px] font-extrabold text-slate-950 shadow-xs">
-            Low ({product.stock})
-          </span>
+        {/* Top-Right: Pack Size Pill or Low Stock Alert */}
+        <div className="absolute top-2 right-2 z-20 flex items-center gap-1">
+          {isLowStock ? (
+            <span className="rounded-md bg-rose-500 text-white backdrop-blur-xs px-1.5 py-0.5 text-[9px] font-black shadow-2xs">
+              Low: {product.stock}
+            </span>
+          ) : sizeTag ? (
+            <span className="rounded-md bg-white/90 dark:bg-slate-900/90 text-slate-700 dark:text-slate-300 border border-slate-200/60 dark:border-slate-700/60 px-1.5 py-0.5 text-[9px] font-extrabold shadow-2xs font-mono">
+              {sizeTag}
+            </span>
+          ) : null}
+        </div>
+
+        {/* Hover Quick-Add Tactile Indicator */}
+        {!isOutOfStock && (
+          <div className="absolute bottom-2 right-2 z-20 opacity-0 group-hover:opacity-100 transition-all duration-200 translate-y-1 group-hover:translate-y-0">
+            <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-emerald-600 text-white shadow-md hover:bg-emerald-500">
+              <Plus className="w-3.5 h-3.5" />
+            </div>
+          </div>
         )}
       </div>
 
-      {/* Product Details */}
+      {/* Clean Details */}
       <div className="flex-1 flex flex-col justify-between">
         <div>
-          <h3 className="text-xs sm:text-sm font-extrabold text-slate-900 dark:text-white line-clamp-1 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
-            {product.name}
+          <h3
+            className="text-xs sm:text-[13px] font-bold text-slate-900 dark:text-white line-clamp-1 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors tracking-tight"
+            title={product.name}
+          >
+            {cleanName}
           </h3>
-          <p className="text-[10px] text-slate-400 dark:text-slate-400 truncate mt-0.5">
-            {product.nameBn || product.sku}
-          </p>
         </div>
 
-        {/* Price & Stock Row */}
-        <div className="flex items-end justify-between mt-2 pt-1.5 border-t border-slate-100 dark:border-slate-800/80">
+        {/* Single-line Price & Stock Row */}
+        <div className="flex items-center justify-between mt-1.5 pt-1.5 border-t border-slate-100 dark:border-slate-800/80">
           <div className="flex flex-col">
-            <div className="flex items-baseline gap-1">
-              <span className="text-sm sm:text-base font-black text-emerald-600 dark:text-emerald-400 font-mono tracking-tight">
-                {formatCurrency(product.salePrice, currencySymbol)}
-              </span>
-              <span className="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase">
-                MRP
-              </span>
-            </div>
-            {product.costPrice > 0 && product.costPrice < product.salePrice && (
-              <span className="text-[10px] font-medium text-slate-400 dark:text-slate-500 font-mono -mt-0.5">
-                DP: {formatCurrency(product.costPrice, currencySymbol)} ({Math.round((1 - product.costPrice / product.salePrice) * 100)}% off)
+            <span className="text-sm sm:text-base font-black text-emerald-600 dark:text-emerald-400 font-mono tracking-tight leading-none">
+              {formatCurrency(product.salePrice, currencySymbol)}
+            </span>
+            {showCost && product.costPrice > 0 && (
+              <span className="text-[9px] font-bold text-amber-600 dark:text-amber-400 font-mono mt-0.5">
+                DP: {formatCurrency(product.costPrice, currencySymbol)} ({Math.round((1 - product.costPrice / product.salePrice) * 100)}%)
               </span>
             )}
           </div>
-          <span className="text-[10px] font-medium text-slate-400 dark:text-slate-400 shrink-0 ml-1">
-            Stock: <strong className="font-bold text-slate-600 dark:text-slate-300">{product.stock}</strong> pcs
-          </span>
+
+          <div
+            className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-500 dark:text-slate-400 shrink-0"
+            title={`${product.stock} pieces in stock`}
+          >
+            <span
+              className={`inline-block w-1.5 h-1.5 rounded-full shrink-0 ${
+                isOutOfStock
+                  ? 'bg-rose-500'
+                  : isLowStock
+                  ? 'bg-amber-500 animate-pulse'
+                  : 'bg-emerald-500'
+              }`}
+            />
+            <span>{product.stock} pcs</span>
+          </div>
         </div>
       </div>
-
-      {/* Tactile + Add to cart Button (Matching Reference 1) */}
-      <button
-        type="button"
-        disabled={isOutOfStock}
-        onClick={(e) => {
-          e.stopPropagation();
-          if (!isOutOfStock) onSelect(product);
-        }}
-        className={`mt-2.5 flex w-full items-center justify-center gap-1 py-1.5 rounded-lg border text-xs font-bold transition-all cursor-pointer ${
-          isOutOfStock
-            ? 'border-slate-200 text-slate-400 bg-slate-100 dark:border-slate-800 dark:bg-slate-800'
-            : 'border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200 group-hover:bg-emerald-600 group-hover:text-white group-hover:border-emerald-600 shadow-2xs'
-        }`}
-      >
-        <Plus className="w-3.5 h-3.5" />
-        <span>Add to cart</span>
-      </button>
     </div>
   );
 };
