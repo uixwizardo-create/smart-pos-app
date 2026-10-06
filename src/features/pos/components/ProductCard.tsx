@@ -3,275 +3,6 @@ import { Plus, Package } from 'lucide-react';
 import type { Product } from '../../../types';
 import { formatCurrency } from '../../../utils/formatters';
 
-interface ProductCardProps {
-  product: Product;
-  currencySymbol: string;
-  onSelect: (product: Product) => void;
-}
-
-interface ProductStudioStyle {
-  bg: string;
-  badge: string;
-  badgeLabel: string;
-}
-
-export function getProductStudioStyle(product: Product): ProductStudioStyle {
-  const img = product.imageUrl || '';
-  const name = (product.name + ' ' + (product.nameBn || '')).toLowerCase();
-
-  // 1. Feather Silk Luxury Emulsion (Cyan / Deep Ocean Silk / White bucket)
-  // Complement: Luminous icy cyan / sea-foam silk studio
-  if (img.includes('feather-silk')) {
-    return {
-      bg: 'from-cyan-50/95 via-sky-50/60 to-teal-100/70 dark:from-cyan-950/45 dark:via-sky-950/25 dark:to-teal-900/35',
-      badge: 'bg-cyan-100/90 text-cyan-800 dark:bg-cyan-950/80 dark:text-cyan-300 border-cyan-200/60 dark:border-cyan-800/60',
-      badgeLabel: 'Feather Silk',
-    };
-  }
-
-  // 2. Acroflat Synthetic Distemper (Rich Berry / Ruby Plum bucket)
-  // Complement: Soft blush rose / berry mist studio
-  if (img.includes('acroflat')) {
-    return {
-      bg: 'from-pink-50/95 via-rose-50/60 to-fuchsia-100/70 dark:from-pink-950/45 dark:via-rose-950/25 dark:to-fuchsia-900/35',
-      badge: 'bg-pink-100/90 text-pink-800 dark:bg-pink-950/80 dark:text-pink-300 border-pink-200/60 dark:border-pink-800/60',
-      badgeLabel: 'Acroflat',
-    };
-  }
-
-  // 3. Acroplast Plastic Paint (Vibrant Coral / Crimson Terracotta bucket)
-  // Complement: Soft warm peach / coral sunrise studio
-  if (img.includes('acroplast')) {
-    return {
-      bg: 'from-orange-50/95 via-rose-50/50 to-amber-100/70 dark:from-orange-950/45 dark:via-rose-950/25 dark:to-amber-900/35',
-      badge: 'bg-orange-100/90 text-orange-800 dark:bg-orange-950/80 dark:text-orange-300 border-orange-200/60 dark:border-orange-800/60',
-      badgeLabel: 'Acroplast',
-    };
-  }
-
-  // 4. Anti-Bacterial Interior Emulsion (Botanical Green / Forest Emerald bucket)
-  // Complement: Crisp herbal sage / botanical mint studio
-  if (img.includes('anti-bacterial')) {
-    return {
-      bg: 'from-emerald-50/95 via-teal-50/50 to-green-100/70 dark:from-emerald-950/45 dark:via-teal-950/25 dark:to-green-900/35',
-      badge: 'bg-emerald-100/90 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border-emerald-200/60 dark:border-emerald-800/60',
-      badgeLabel: 'Anti-Bacterial',
-    };
-  }
-
-  // 5. Weather Care Exterior Emulsion (Tropical Aqua-Teal / Sunshine bucket)
-  // Complement: Fresh morning aqua-teal / sky breeze studio
-  if (img.includes('weather-care-ext-emulsion')) {
-    return {
-      bg: 'from-teal-50/95 via-cyan-50/60 to-emerald-100/70 dark:from-teal-950/45 dark:via-cyan-950/25 dark:to-emerald-900/35',
-      badge: 'bg-teal-100/90 text-teal-800 dark:bg-teal-950/80 dark:text-teal-300 border-teal-200/60 dark:border-teal-800/60',
-      badgeLabel: 'Weather Care',
-    };
-  }
-
-  // 6. Weather Care Exterior Sealer (Crimson Rust / Amber bucket)
-  // Complement: Warm terracotta sunset / amber glow studio
-  if (img.includes('weather-care-ext-sealer')) {
-    return {
-      bg: 'from-rose-50/95 via-orange-50/50 to-amber-100/70 dark:from-rose-950/45 dark:via-orange-950/25 dark:to-amber-900/35',
-      badge: 'bg-rose-100/90 text-rose-800 dark:bg-rose-950/80 dark:text-rose-300 border-rose-200/60 dark:border-rose-800/60',
-      badgeLabel: 'WC Sealer',
-    };
-  }
-
-  // 7. All Rounder Interior & Exterior (Royal Violet / Twilight Indigo bucket)
-  // Complement: Regal lavender / twilight lilac mist studio
-  if (img.includes('all-rounder')) {
-    return {
-      bg: 'from-indigo-50/95 via-purple-50/50 to-violet-100/70 dark:from-indigo-950/45 dark:via-purple-950/25 dark:to-violet-900/35',
-      badge: 'bg-indigo-100/90 text-indigo-800 dark:bg-indigo-950/80 dark:text-indigo-300 border-indigo-200/60 dark:border-indigo-800/60',
-      badgeLabel: 'All Rounder',
-    };
-  }
-
-  // 8. Rockcem Cement Paint (Crisp Azure / Cloud Sky Blue bucket)
-  // Complement: Soft azure / morning sky blue studio
-  if (img.includes('rockcem')) {
-    return {
-      bg: 'from-sky-50/95 via-blue-50/50 to-cyan-100/70 dark:from-sky-950/45 dark:via-blue-950/25 dark:to-cyan-900/35',
-      badge: 'bg-sky-100/90 text-sky-800 dark:bg-sky-950/80 dark:text-sky-300 border-sky-200/60 dark:border-sky-800/60',
-      badgeLabel: 'Rockcem',
-    };
-  }
-
-  // 9. Damp Proof Primer Sealer (Seafoam Mint / Turquoise Water Guard bucket)
-  // Complement: Refreshing aquamarine seafoam mist studio
-  if (img.includes('damp-proof')) {
-    return {
-      bg: 'from-teal-50/95 via-emerald-50/50 to-cyan-100/70 dark:from-teal-950/45 dark:via-emerald-950/25 dark:to-cyan-900/35',
-      badge: 'bg-teal-100/90 text-teal-800 dark:bg-teal-950/80 dark:text-teal-300 border-teal-200/60 dark:border-teal-800/60',
-      badgeLabel: 'Damp Proof',
-    };
-  }
-
-  // 10. Water Based Sealer (Bright Tangerine / Golden Apricot bucket)
-  // Complement: Warm sunburst apricot / golden honey studio
-  if (img.includes('water-based-sealer')) {
-    return {
-      bg: 'from-amber-50/95 via-orange-50/50 to-yellow-100/70 dark:from-amber-950/45 dark:via-orange-950/25 dark:to-yellow-900/35',
-      badge: 'bg-amber-100/90 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 border-amber-200/60 dark:border-amber-800/60',
-      badgeLabel: 'Water Sealer',
-    };
-  }
-
-  // 11. Water Based Putty (Warm Ochre Sand / Calcite bucket)
-  // Complement: Soft warm limestone / sandstone cream studio
-  if (img.includes('water-based-putty')) {
-    return {
-      bg: 'from-stone-100/95 via-amber-50/50 to-orange-100/60 dark:from-stone-900/50 dark:via-amber-950/25 dark:to-stone-800/40',
-      badge: 'bg-stone-200/90 text-stone-800 dark:bg-stone-800 dark:text-stone-200 border-stone-300/60 dark:border-stone-700',
-      badgeLabel: 'Wall Putty',
-    };
-  }
-
-  // 12. Synglo Super Gloss Enamel (Brilliant Ruby Magenta / Wine Gloss can)
-  // Complement: Luxury royal wine / rose mist studio
-  if (img.includes('synglo')) {
-    return {
-      bg: 'from-fuchsia-50/95 via-pink-50/50 to-rose-100/70 dark:from-fuchsia-950/45 dark:via-pink-950/25 dark:to-rose-900/35',
-      badge: 'bg-fuchsia-100/90 text-fuchsia-800 dark:bg-fuchsia-950/80 dark:text-fuchsia-300 border-fuchsia-200/60 dark:border-fuchsia-800/60',
-      badgeLabel: 'Super Gloss',
-    };
-  }
-
-  // 13. Synthetic Undercoat & Red Oxide (Olive Chromate / Zinc Slate can)
-  // Complement: Platinum zinc / clean architectural slate studio
-  if (img.includes('synthetic-undercoat')) {
-    return {
-      bg: 'from-slate-100/95 via-zinc-50 to-emerald-50/60 dark:from-slate-800/60 dark:via-zinc-800/40 dark:to-emerald-950/30',
-      badge: 'bg-slate-200/90 text-slate-800 dark:bg-slate-800 dark:text-slate-200 border-slate-300/60 dark:border-slate-700',
-      badgeLabel: 'Undercoat',
-    };
-  }
-
-  // 14. Hammer Paint (Industrial Hammered Finish can)
-  // Complement: Industrial cool steel / titanium slate studio
-  if (img.includes('hammer-paint')) {
-    return {
-      bg: 'from-slate-100/95 via-zinc-100 to-slate-200/70 dark:from-slate-800/70 dark:via-zinc-800/50 dark:to-slate-800/40',
-      badge: 'bg-slate-200/90 text-slate-800 dark:bg-slate-800 dark:text-slate-200 border-slate-300/60 dark:border-slate-700',
-      badgeLabel: 'Hammer Tone',
-    };
-  }
-
-  // 15. Wood Care & Varnish (Warm Cedar / Mahogany / Golden Honey can)
-  // Complement: Rich warm golden honey / amber teak studio
-  if (img.includes('wood-care')) {
-    return {
-      bg: 'from-amber-50/95 via-orange-50/50 to-yellow-100/70 dark:from-amber-950/45 dark:via-orange-950/25 dark:to-yellow-900/35',
-      badge: 'bg-amber-100/90 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 border-amber-200/60 dark:border-amber-800/60',
-      badgeLabel: 'Wood Care',
-    };
-  }
-
-  // 16. Marine Paint & Sea Queen (Deep Ocean Navy & Coral Marine can)
-  // Complement: Deep coastal sea breeze / nautical cyan-slate studio
-  if (img.includes('marine-paint') || img.includes('sea-queen')) {
-    return {
-      bg: 'from-cyan-50/95 via-slate-50 to-teal-100/70 dark:from-cyan-950/45 dark:via-slate-800/35 dark:to-teal-900/35',
-      badge: 'bg-cyan-100/90 text-cyan-800 dark:bg-cyan-950/80 dark:text-cyan-300 border-cyan-200/60 dark:border-cyan-800/60',
-      badgeLabel: 'Marine',
-    };
-  }
-
-  // 17. Epoxy & PU Floor Coating (Architectural Bronze / Epoxy can)
-  // Complement: Modern champagne stone / travertine studio
-  if (img.includes('self-leveling-epoxy') || img.includes('pu-floor')) {
-    return {
-      bg: 'from-stone-100/95 via-amber-50/40 to-neutral-200/60 dark:from-stone-900/50 dark:via-amber-950/25 dark:to-neutral-900/30',
-      badge: 'bg-stone-200/90 text-stone-800 dark:bg-stone-800 dark:text-stone-200 border-stone-300/60 dark:border-stone-700',
-      badgeLabel: 'Epoxy Floor',
-    };
-  }
-
-  // 18. Osaka Auto Refinish (Racing Crimson Red & Metallic Silver / White can)
-  // Complement: High-end showroom silver with subtle warm crimson reflection studio
-  if (img.includes('osaka-auto')) {
-    return {
-      bg: 'from-slate-100/95 via-zinc-50 to-rose-50/70 dark:from-slate-800/65 dark:via-zinc-800/40 dark:to-rose-950/35',
-      badge: 'bg-slate-200/90 text-slate-800 dark:bg-slate-800 dark:text-slate-200 border-slate-300/60 dark:border-slate-700',
-      badgeLabel: 'Osaka Auto',
-    };
-  }
-
-  // 19. Tinting Colorants (Specific pigment shades)
-  if (img.includes('colorant')) {
-    if (name.includes('magenta') || name.includes('violet')) {
-      return {
-        bg: 'from-fuchsia-50/95 via-purple-50/50 to-violet-100/70 dark:from-fuchsia-950/45 dark:via-purple-950/25 dark:to-violet-900/35',
-        badge: 'bg-fuchsia-100/90 text-fuchsia-800 dark:bg-fuchsia-950/80 dark:text-fuchsia-300 border-fuchsia-200/60 dark:border-fuchsia-800/60',
-        badgeLabel: 'Colorant',
-      };
-    }
-    if (name.includes('red') || name.includes('oxide')) {
-      return {
-        bg: 'from-rose-50/95 via-red-50/50 to-rose-100/70 dark:from-rose-950/45 dark:via-red-950/25 dark:to-rose-900/35',
-        badge: 'bg-rose-100/90 text-rose-800 dark:bg-rose-950/80 dark:text-rose-300 border-rose-200/60 dark:border-rose-800/60',
-        badgeLabel: 'Colorant',
-      };
-    }
-    if (name.includes('orange')) {
-      return {
-        bg: 'from-orange-50/95 via-amber-50/50 to-yellow-100/70 dark:from-orange-950/45 dark:via-amber-950/25 dark:to-yellow-900/35',
-        badge: 'bg-orange-100/90 text-orange-800 dark:bg-orange-950/80 dark:text-orange-300 border-orange-200/60 dark:border-orange-800/60',
-        badgeLabel: 'Colorant',
-      };
-    }
-    if (name.includes('yellow')) {
-      return {
-        bg: 'from-yellow-50/95 via-amber-50/50 to-yellow-100/70 dark:from-yellow-950/45 dark:via-amber-950/25 dark:to-yellow-900/35',
-        badge: 'bg-yellow-100/90 text-yellow-800 dark:bg-yellow-950/80 dark:text-yellow-300 border-yellow-200/60 dark:border-yellow-800/60',
-        badgeLabel: 'Colorant',
-      };
-    }
-    if (name.includes('green')) {
-      return {
-        bg: 'from-emerald-50/95 via-teal-50/50 to-green-100/70 dark:from-emerald-950/45 dark:via-teal-950/25 dark:to-green-900/35',
-        badge: 'bg-emerald-100/90 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border-emerald-200/60 dark:border-emerald-800/60',
-        badgeLabel: 'Colorant',
-      };
-    }
-    if (name.includes('blue')) {
-      return {
-        bg: 'from-sky-50/95 via-blue-50/50 to-cyan-100/70 dark:from-sky-950/45 dark:via-blue-950/25 dark:to-cyan-900/35',
-        badge: 'bg-sky-100/90 text-sky-800 dark:bg-sky-950/80 dark:text-sky-300 border-sky-200/60 dark:border-sky-800/60',
-        badgeLabel: 'Colorant',
-      };
-    }
-    if (name.includes('umber') || name.includes('brown')) {
-      return {
-        bg: 'from-amber-50/95 via-stone-50/50 to-amber-100/70 dark:from-amber-950/45 dark:via-stone-950/25 dark:to-amber-900/35',
-        badge: 'bg-amber-100/90 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 border-amber-200/60 dark:border-amber-800/60',
-        badgeLabel: 'Colorant',
-      };
-    }
-    if (name.includes('black')) {
-      return {
-        bg: 'from-slate-100/95 via-zinc-100 to-slate-200/70 dark:from-slate-800/70 dark:via-zinc-800/50 dark:to-slate-800/40',
-        badge: 'bg-slate-200/90 text-slate-800 dark:bg-slate-800 dark:text-slate-200 border-slate-300/60 dark:border-slate-700',
-        badgeLabel: 'Colorant',
-      };
-    }
-    return {
-      bg: 'from-slate-50/95 via-white to-slate-100/70 dark:from-slate-900/50 dark:via-slate-800/30 dark:to-slate-800/40',
-      badge: 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 border-slate-200 dark:border-slate-700',
-      badgeLabel: 'Colorant',
-    };
-  }
-
-  // Default fallback
-  return {
-    bg: 'from-slate-50 via-slate-50 to-slate-100/80 dark:from-slate-800/60 dark:via-slate-800/40 dark:to-slate-800/40',
-    badge: 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 border-slate-200 dark:border-slate-700',
-    badgeLabel: 'Paint',
-  };
-}
-
 export interface ParsedProductInfo {
   cleanName: string;
   lineName: string;
@@ -332,33 +63,45 @@ export function parseProductInfo(rawName: string): ParsedProductInfo {
   return { cleanName, lineName: name, sizeTag, baseTag };
 }
 
-function getBaseBadgeClasses(base: string): { chip: string; pill: string } {
+function getBaseBadgeClasses(base: string): string {
   switch (base) {
     case 'RB-1':
-      return {
-        chip: 'bg-blue-600 text-white border-blue-400 shadow-blue-500/30',
-        pill: 'bg-blue-50 text-blue-800 border-blue-300 dark:bg-blue-950/80 dark:text-blue-300 dark:border-blue-700',
-      };
+      return 'bg-sky-50 text-sky-700 border-sky-200/80 dark:bg-sky-950/60 dark:text-sky-300 dark:border-sky-800/60';
     case 'RB-2':
-      return {
-        chip: 'bg-amber-500 text-slate-950 border-amber-300 shadow-amber-500/30',
-        pill: 'bg-amber-50 text-amber-900 border-amber-300 dark:bg-amber-950/80 dark:text-amber-300 dark:border-amber-700',
-      };
+      return 'bg-amber-50 text-amber-800 border-amber-200/80 dark:bg-amber-950/60 dark:text-amber-300 dark:border-amber-800/60';
     case 'RB-3':
-      return {
-        chip: 'bg-indigo-600 text-white border-indigo-400 shadow-indigo-500/30',
-        pill: 'bg-indigo-50 text-indigo-900 border-indigo-300 dark:bg-indigo-950/80 dark:text-indigo-300 dark:border-indigo-700',
-      };
+      return 'bg-indigo-50 text-indigo-700 border-indigo-200/80 dark:bg-indigo-950/60 dark:text-indigo-300 dark:border-indigo-800/60';
     case 'RB-N':
-      return {
-        chip: 'bg-purple-700 text-white border-purple-400 shadow-purple-500/30',
-        pill: 'bg-purple-50 text-purple-900 border-purple-300 dark:bg-purple-950/80 dark:text-purple-300 dark:border-purple-700',
-      };
+      return 'bg-purple-50 text-purple-700 border-purple-200/80 dark:bg-purple-950/60 dark:text-purple-300 dark:border-purple-800/60';
     default:
-      return {
-        chip: 'bg-amber-500 text-slate-950 border-amber-400',
-        pill: 'bg-amber-50 text-amber-900 border-amber-300',
-      };
+      return 'bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700';
+  }
+}
+
+function getCategoryShortLabel(categoryId: string): string {
+  switch (categoryId) {
+    case 'cat-interior':
+      return 'Interior';
+    case 'cat-exterior':
+      return 'Exterior';
+    case 'cat-primers':
+      return 'Primer';
+    case 'cat-enamel':
+      return 'Enamel';
+    case 'cat-wood':
+      return 'Wood';
+    case 'cat-auto':
+      return 'Auto';
+    case 'cat-marine':
+      return 'Marine';
+    case 'cat-waterproofing':
+      return 'Damp';
+    case 'cat-colorant':
+      return 'Colorant';
+    case 'cat-specialty':
+      return 'Putty';
+    default:
+      return 'Paint';
   }
 }
 
@@ -377,34 +120,28 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 }) => {
   const isOutOfStock = product.stock <= 0;
   const isLowStock = product.stock > 0 && product.stock <= product.minStockAlert;
-  const studioStyle = getProductStudioStyle(product);
   const { lineName, sizeTag, baseTag } = parseProductInfo(product.name);
-  const baseColors = baseTag ? getBaseBadgeClasses(baseTag) : null;
+  const categoryLabel = getCategoryShortLabel(product.categoryId);
 
   return (
     <div
       onClick={() => !isOutOfStock && onSelect(product)}
-      className={`group relative flex flex-col justify-between rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 p-2.5 shadow-2xs transition-all duration-200 select-none ${
+      className={`group relative flex flex-col justify-between rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/70 dark:border-slate-800/80 p-2.5 shadow-2xs hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 hover:-translate-y-0.5 transition-all duration-200 select-none cursor-pointer ${
         isOutOfStock
           ? 'opacity-50 cursor-not-allowed bg-slate-50 dark:bg-slate-900/40'
-          : 'hover:shadow-lg hover:shadow-slate-200/50 dark:hover:shadow-slate-950/60 hover:-translate-y-0.5 hover:border-emerald-500/50 dark:hover:border-emerald-500/40 cursor-pointer active:scale-98'
+          : 'active:scale-98'
       }`}
     >
-      {/* Product Image Canvas with Complementary Studio Backdrop */}
-      <div
-        className={`relative aspect-4/3 w-full overflow-hidden rounded-xl bg-gradient-to-b ${studioStyle.bg} p-2 flex items-center justify-center mb-2 transition-colors`}
-      >
-        {/* Soft Radial Studio Spotlight */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.75)_0%,transparent_75%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.08)_0%,transparent_75%)] pointer-events-none" />
-
-        {/* Grounded Floor Contact Shadow */}
-        <div className="absolute bottom-2.5 h-2 w-3/5 rounded-[100%] bg-slate-900/15 dark:bg-black/45 blur-[3px] pointer-events-none" />
+      {/* 🖼️ Product Packshot Canvas — Neutral Studio Gallery Pedestal */}
+      <div className="relative aspect-4/3 w-full overflow-hidden rounded-xl bg-gradient-to-b from-slate-50/90 to-slate-100/60 dark:from-slate-800/40 dark:to-slate-800/20 p-2 flex items-center justify-center mb-2 transition-colors">
+        {/* Soft Natural Ambient Shadow beneath Packshot */}
+        <div className="absolute bottom-2 h-1.5 w-3/5 rounded-[100%] bg-slate-900/[0.07] dark:bg-black/35 blur-[2.5px] pointer-events-none" />
 
         {product.imageUrl ? (
           <img
             src={product.imageUrl}
             alt={product.name}
-            className="relative z-10 h-full w-full object-contain filter drop-shadow-md transition-transform duration-300 group-hover:scale-108"
+            className="relative z-10 h-full w-full object-contain filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.06)] transition-transform duration-200 group-hover:scale-104"
             loading="lazy"
           />
         ) : (
@@ -413,37 +150,36 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </div>
         )}
 
-        {/* Top-Left: Tint Base Pill if available, otherwise Studio Line Badge */}
-        <div className="absolute top-2 left-2 z-20 flex items-center gap-1">
-          {baseTag && baseColors ? (
-            <div
-              className={`flex items-center gap-1 px-2 py-0.5 rounded-lg border text-[11px] font-black uppercase tracking-wider shadow-sm ${baseColors.chip}`}
-            >
-              <span className="text-[9px] opacity-80 font-bold">BASE</span>
-              <span>{baseTag}</span>
-            </div>
-          ) : (
+        {/* Top-Left: Tint Base Micro-Chip or Subtle Category Pill */}
+        <div className="absolute top-2 left-2 z-20 flex items-center">
+          {baseTag ? (
             <span
-              className={`rounded-md border px-1.5 py-0.5 text-[9px] font-bold shadow-2xs backdrop-blur-xs ${studioStyle.badge}`}
+              className={`rounded-md border px-1.5 py-0.5 text-[10px] font-bold tracking-wider font-mono shadow-2xs ${getBaseBadgeClasses(
+                baseTag
+              )}`}
             >
-              {studioStyle.badgeLabel}
+              {baseTag}
+            </span>
+          ) : (
+            <span className="rounded-md border border-slate-200/60 dark:border-slate-700/60 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xs text-slate-500 dark:text-slate-400 px-1.5 py-0.5 text-[9px] font-semibold tracking-tight shadow-2xs">
+              {categoryLabel}
             </span>
           )}
         </div>
 
-        {/* Top-Right: Inventory Stock Status Pill */}
-        <div className="absolute top-2 right-2 z-20 flex items-center gap-1">
+        {/* Top-Right: Quiet Stock Status Pill */}
+        <div className="absolute top-2 right-2 z-20 flex items-center">
           {isOutOfStock ? (
-            <span className="rounded-md bg-rose-600 text-white backdrop-blur-xs px-1.5 py-0.5 text-[9px] font-black shadow-2xs">
+            <span className="rounded-md bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 border border-rose-200/80 dark:border-rose-800/60 backdrop-blur-xs px-1.5 py-0.5 text-[9px] font-semibold shadow-2xs">
               Out of stock
             </span>
           ) : isLowStock ? (
-            <span className="rounded-md bg-amber-500 text-slate-950 backdrop-blur-xs px-1.5 py-0.5 text-[9px] font-black shadow-2xs flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-rose-600 animate-pulse" />
+            <span className="rounded-md bg-amber-50 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 border border-amber-200/80 dark:border-amber-800/60 backdrop-blur-xs px-1.5 py-0.5 text-[9px] font-semibold shadow-2xs flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
               Low: {product.stock} pcs
             </span>
           ) : (
-            <span className="rounded-md bg-white/95 dark:bg-slate-900/95 text-slate-700 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/80 backdrop-blur-xs px-1.5 py-0.5 text-[9px] font-bold shadow-2xs flex items-center gap-1 font-mono">
+            <span className="rounded-md bg-white/90 dark:bg-slate-900/90 text-slate-600 dark:text-slate-400 border border-slate-200/60 dark:border-slate-700/60 backdrop-blur-xs px-1.5 py-0.5 text-[9px] font-medium shadow-2xs flex items-center gap-1 font-mono">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
               {product.stock} pcs
             </span>
@@ -452,42 +188,33 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
         {/* Hover Quick-Add Tactile Indicator */}
         {!isOutOfStock && (
-          <div className="absolute bottom-2 right-2 z-20 opacity-0 group-hover:opacity-100 transition-all duration-200 translate-y-1 group-hover:translate-y-0">
-            <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-emerald-600 text-white shadow-md hover:bg-emerald-500">
+          <div className="absolute bottom-2 right-2 z-20 opacity-0 group-hover:opacity-100 transition-all duration-150 translate-y-1 group-hover:translate-y-0 pointer-events-none">
+            <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-md">
               <Plus className="w-3.5 h-3.5" />
             </div>
           </div>
         )}
       </div>
 
-      {/* Clean Details */}
+      {/* 🏷️ Product Typographic Details */}
       <div className="flex-1 flex flex-col justify-between">
         <div>
-          <div className="flex items-center gap-1.5">
-            <h3
-              className="text-xs sm:text-[13px] font-bold text-slate-900 dark:text-white truncate group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors tracking-tight flex-1"
-              title={product.name}
-            >
-              {lineName}
-            </h3>
-            {baseTag && baseColors && (
-              <span
-                className={`px-1.5 py-0.2 rounded-md text-[10px] font-black tracking-wider uppercase shrink-0 border ${baseColors.chip}`}
-              >
-                {baseTag}
-              </span>
-            )}
-          </div>
+          <h3
+            className="text-xs sm:text-[13px] font-semibold text-slate-800 dark:text-slate-100 truncate tracking-tight group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors"
+            title={product.name}
+          >
+            {lineName}
+          </h3>
         </div>
 
-        {/* Single-line Price & Pack Size Row */}
-        <div className="flex items-center justify-between mt-1.5 pt-1.5 border-t border-slate-100 dark:border-slate-800/80">
+        {/* 💳 Single-Line Price & Pack Size Row */}
+        <div className="flex items-center justify-between mt-2 pt-1.5 border-t border-slate-100 dark:border-slate-800/80">
           <div className="flex flex-col">
-            <span className="text-sm sm:text-base font-black text-emerald-600 dark:text-emerald-400 font-mono tracking-tight leading-none">
+            <span className="text-sm sm:text-[15px] font-bold text-slate-900 dark:text-white font-mono tracking-tight leading-none">
               {formatCurrency(product.salePrice, currencySymbol)}
             </span>
             {showCost && product.costPrice > 0 && (
-              <span className="text-[9px] font-bold text-amber-600 dark:text-amber-400 font-mono mt-0.5">
+              <span className="text-[9px] font-medium text-amber-600 dark:text-amber-400 font-mono mt-0.5">
                 DP: {formatCurrency(product.costPrice, currencySymbol)} ({Math.round((1 - product.costPrice / product.salePrice) * 100)}%)
               </span>
             )}
@@ -495,13 +222,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
           {sizeTag ? (
             <span
-              className="rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/90 dark:border-slate-700/80 px-2 py-0.5 text-[11px] font-black font-mono shadow-2xs shrink-0 tracking-tight"
+              className="rounded-md bg-slate-100/90 dark:bg-slate-800/90 text-slate-600 dark:text-slate-300 border border-slate-200/60 dark:border-slate-700/60 px-1.5 py-0.5 text-[10px] sm:text-[11px] font-semibold font-mono shadow-2xs shrink-0 tracking-tight"
               title={`Pack Size: ${sizeTag}`}
             >
               {sizeTag}
             </span>
           ) : (
-            <span className="text-[11px] font-semibold text-slate-400 dark:text-slate-500 font-mono">
+            <span className="text-[10px] font-medium text-slate-400 dark:text-slate-500 font-mono">
               {product.unit || '1 pc'}
             </span>
           )}
