@@ -63,6 +63,47 @@ export function parseProductInfo(rawName: string): ParsedProductInfo {
   return { cleanName, lineName: name, sizeTag, baseTag };
 }
 
+export interface PackSizeScale {
+  heightPercent: number;
+  shadowWidthPercent: number;
+}
+
+export function getPackSizeScale(sizeTag: string | null): PackSizeScale {
+  if (!sizeTag) return { heightPercent: 80, shadowWidthPercent: 52 };
+
+  // Parse numeric volume (liters or kg)
+  let val = 1;
+  const match = sizeTag.match(/([\d.]+)\s*(l|kg|ml|gm)?/i);
+  if (match) {
+    const num = parseFloat(match[1]);
+    const unit = (match[2] || 'l').toLowerCase();
+    if (unit === 'ml' || unit === 'gm') {
+      val = num / 1000;
+    } else {
+      val = num;
+    }
+  }
+
+  // 1. Large Drums / Bags (15L - 200L / 15kg - 40kg) -> 95% height, 66% shadow
+  if (val >= 15) {
+    return { heightPercent: 95, shadowWidthPercent: 66 };
+  }
+  // 2. Medium Gallons & Buckets (3L - 10L / 3kg - 10kg) -> 78% height, 52% shadow
+  if (val >= 3) {
+    return { heightPercent: 78, shadowWidthPercent: 52 };
+  }
+  // 3. Small Cans & Quarters (0.8L - 2.5L / 1L / 0.91L) -> 64% height, 42% shadow
+  if (val >= 0.8) {
+    return { heightPercent: 64, shadowWidthPercent: 42 };
+  }
+  // 4. Half Quarters (0.4L - 0.7L / 0.455L) -> 54% height, 34% shadow
+  if (val >= 0.4) {
+    return { heightPercent: 54, shadowWidthPercent: 34 };
+  }
+  // 5. Mini Packs & Bottles (< 0.4L / 0.200L / 100ml) -> 46% height, 28% shadow
+  return { heightPercent: 46, shadowWidthPercent: 28 };
+}
+
 function getBaseBadgeClasses(base: string): string {
   switch (base) {
     case 'RB-1':
@@ -77,7 +118,6 @@ function getBaseBadgeClasses(base: string): string {
       return 'bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700';
   }
 }
-
 
 interface ProductCardProps {
   product: Product;
@@ -95,6 +135,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   const isOutOfStock = product.stock <= 0;
   const isLowStock = product.stock > 0 && product.stock <= product.minStockAlert;
   const { lineName, sizeTag, baseTag } = parseProductInfo(product.name);
+  const { heightPercent, shadowWidthPercent } = getPackSizeScale(sizeTag);
 
   return (
     <div
@@ -105,16 +146,20 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           : 'active:scale-98'
       }`}
     >
-      {/* 🖼️ Product Packshot Canvas — Neutral Studio Gallery Pedestal */}
-      <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-gradient-to-b from-slate-50/90 to-slate-100/60 dark:from-slate-800/40 dark:to-slate-800/20 p-3 flex items-center justify-center mb-2 transition-colors">
-        {/* Soft Natural Ambient Shadow beneath Packshot */}
-        <div className="absolute bottom-2.5 h-1.5 w-3/5 rounded-[100%] bg-slate-900/[0.07] dark:bg-black/35 blur-[2.5px] pointer-events-none" />
+      {/* 🖼️ Product Packshot Canvas — Neutral Studio Gallery Pedestal with Realistic Physical Scale */}
+      <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-gradient-to-b from-slate-50/90 to-slate-100/60 dark:from-slate-800/40 dark:to-slate-800/20 px-3 pb-3 pt-2 flex items-end justify-center mb-2 transition-colors">
+        {/* Soft Natural Ambient Shadow beneath Packshot — Proportionally Scaled */}
+        <div
+          style={{ width: `${shadowWidthPercent}%` }}
+          className="absolute bottom-2.5 h-1.5 rounded-[100%] bg-slate-900/[0.08] dark:bg-black/40 blur-[2.5px] pointer-events-none transition-all duration-300"
+        />
 
         {product.imageUrl ? (
           <img
             src={product.imageUrl}
             alt={product.name}
-            className="relative z-10 h-full w-full object-contain filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.06)] transition-transform duration-200 group-hover:scale-105"
+            style={{ height: `${heightPercent}%` }}
+            className="relative z-10 w-full object-contain object-bottom filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.06)] transition-all duration-200 group-hover:scale-105"
             loading="lazy"
           />
         ) : (
