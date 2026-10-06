@@ -17,6 +17,7 @@ import {
   X,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
   ArrowUpDown,
   RotateCcw,
   Eye,
@@ -350,79 +351,95 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
         )}
       </div>
 
-      {/* 🎯 SECONDARY SMART PAINT FILTERS (Pack Size, Tinting Base & Sorting) */}
+      {/* 🎯 UNIFIED SMART PAINT FILTER RIBBON */}
       <div className="flex flex-wrap items-center justify-between gap-2 px-0.5 py-0.5 shrink-0">
-        {/* Left: Pack Size & Base Pill Groups */}
+        {/* Left: Cohesive Filter Controls */}
         <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
-          {/* Pack Size Pills */}
-          <div className="inline-flex items-center bg-slate-100/80 dark:bg-slate-800/60 p-0.5 rounded-lg border border-slate-200/60 dark:border-slate-700/50 shrink-0">
-            {SIZE_FILTERS.map((s) => (
+          {/* 1. Pack Size Dropdown Chip */}
+          <div
+            className={`relative flex items-center h-8 rounded-lg border text-xs font-medium transition-all shadow-2xs ${
+              selectedSize !== 'all'
+                ? 'bg-slate-900 text-white border-slate-900 dark:bg-white dark:text-slate-900 dark:border-white font-semibold'
+                : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200/80 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
+            }`}
+          >
+            <span className="pl-2.5 pr-1 text-slate-400 dark:text-slate-500 font-normal select-none">
+              Size:
+            </span>
+            <select
+              value={selectedSize}
+              onChange={(e) => setSelectedSize(e.target.value)}
+              className="bg-transparent pl-0.5 pr-6 py-1 text-inherit font-inherit focus:outline-none cursor-pointer appearance-none"
+            >
+              {SIZE_FILTERS.map((s) => (
+                <option key={s.id} value={s.id} className="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200">
+                  {s.label}
+                </option>
+              ))}
+            </select>
+            {selectedSize !== 'all' ? (
               <button
-                key={s.id}
                 type="button"
-                onClick={() => setSelectedSize(s.id)}
-                className={`px-2.5 py-1 rounded-md font-medium text-[11px] transition-all cursor-pointer whitespace-nowrap ${
-                  selectedSize === s.id
-                    ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-2xs font-semibold'
-                    : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200'
-                }`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedSize('all');
+                }}
+                className="absolute right-1.5 p-0.5 rounded hover:bg-white/20 dark:hover:bg-slate-900/20 text-current transition-colors cursor-pointer"
+                title="Clear size filter"
               >
-                {s.label}
+                <X className="w-3 h-3" />
               </button>
-            ))}
+            ) : (
+              <ChevronDown className="w-3.5 h-3.5 absolute right-2 pointer-events-none opacity-50" />
+            )}
           </div>
 
-          {/* Tinting Machine Base Pills */}
-          <div className="inline-flex items-center bg-slate-100/80 dark:bg-slate-800/60 p-0.5 rounded-lg border border-slate-200/60 dark:border-slate-700/50 shrink-0">
-            <span className="px-2 text-[10px] font-bold tracking-wider text-slate-400 dark:text-slate-500 uppercase">
+          {/* 2. Tint Base Dropdown Chip */}
+          <div
+            className={`relative flex items-center h-8 rounded-lg border text-xs font-medium transition-all shadow-2xs ${
+              selectedBase !== 'all'
+                ? 'bg-slate-900 text-white border-slate-900 dark:bg-white dark:text-slate-900 dark:border-white font-semibold'
+                : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200/80 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
+            }`}
+          >
+            <span className="pl-2.5 pr-1 text-slate-400 dark:text-slate-500 font-normal select-none">
               Base:
             </span>
-            {BASE_FILTERS.map((b) => (
+            <select
+              value={selectedBase}
+              onChange={(e) => setSelectedBase(e.target.value)}
+              className="bg-transparent pl-0.5 pr-6 py-1 text-inherit font-inherit focus:outline-none cursor-pointer appearance-none"
+            >
+              {BASE_FILTERS.map((b) => (
+                <option key={b.id} value={b.id} className="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200">
+                  {b.label}
+                </option>
+              ))}
+            </select>
+            {selectedBase !== 'all' ? (
               <button
-                key={b.id}
                 type="button"
-                onClick={() => setSelectedBase(b.id)}
-                className={`px-2 py-1 rounded-md font-semibold text-[11px] transition-all cursor-pointer whitespace-nowrap ${
-                  selectedBase === b.id
-                    ? 'bg-amber-500 text-slate-950 shadow-2xs font-bold'
-                    : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200'
-                }`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedBase('all');
+                }}
+                className="absolute right-1.5 p-0.5 rounded hover:bg-white/20 dark:hover:bg-slate-900/20 text-current transition-colors cursor-pointer"
+                title="Clear base filter"
               >
-                {b.label}
+                <X className="w-3 h-3" />
               </button>
-            ))}
+            ) : (
+              <ChevronDown className="w-3.5 h-3.5 absolute right-2 pointer-events-none opacity-50" />
+            )}
           </div>
-        </div>
 
-        {/* Right: Sort & Filter Reset Status */}
-        <div className="flex items-center gap-2 shrink-0 ml-auto">
-          {/* Active Result Count */}
-          <span className="text-[11px] font-medium text-slate-400 dark:text-slate-500 hidden sm:inline font-mono">
-            <strong className="text-slate-700 dark:text-slate-300 font-semibold">{filteredProducts.length}</strong> items
-          </span>
-
-          {/* Merchant Cost Visibility Toggle (DP / Margin) */}
-          <button
-            type="button"
-            onClick={() => setShowCost(!showCost)}
-            className={`flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-semibold transition-all cursor-pointer border shadow-2xs ${
-              showCost
-                ? 'bg-amber-50 text-amber-900 border-amber-300 dark:bg-amber-950/60 dark:text-amber-200 dark:border-amber-800'
-                : 'bg-white dark:bg-slate-900 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200 border-slate-200/70 dark:border-slate-800'
-            }`}
-            title={showCost ? 'Hide Wholesale Dealer Price (DP)' : 'Show Wholesale Dealer Price (DP)'}
-          >
-            {showCost ? <Eye className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" /> : <EyeOff className="w-3.5 h-3.5" />}
-            <span>DP</span>
-          </button>
-
-          {/* Sort Selector */}
-          <div className="flex items-center gap-1.5 bg-white dark:bg-slate-900 border border-slate-200/70 dark:border-slate-800 rounded-lg px-2.5 py-1 shadow-2xs">
-            <ArrowUpDown className="w-3 h-3 text-slate-400 shrink-0" />
+          {/* 3. Sort Order Chip */}
+          <div className="relative flex items-center h-8 rounded-lg border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 pl-2.5 pr-2 text-xs font-medium text-slate-700 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-700 shadow-2xs transition-all">
+            <ArrowUpDown className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500 mr-1.5 shrink-0" />
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="bg-transparent text-[11px] font-semibold text-slate-700 dark:text-slate-200 focus:outline-none cursor-pointer pr-1"
+              className="bg-transparent pr-5 py-1 text-inherit font-inherit focus:outline-none cursor-pointer appearance-none"
             >
               {SORT_OPTIONS.map((o) => (
                 <option key={o.id} value={o.id} className="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200">
@@ -430,14 +447,40 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
                 </option>
               ))}
             </select>
+            <ChevronDown className="w-3.5 h-3.5 absolute right-2 pointer-events-none opacity-50" />
           </div>
 
-          {/* Reset Filters Button */}
+          {/* 4. Wholesale Dealer Price (DP) Toggle */}
+          <button
+            type="button"
+            onClick={() => setShowCost(!showCost)}
+            className={`flex items-center gap-1.5 h-8 px-2.5 rounded-lg text-xs font-medium transition-all cursor-pointer border shadow-2xs ${
+              showCost
+                ? 'bg-amber-50 text-amber-900 border-amber-300/80 dark:bg-amber-950/60 dark:text-amber-200 dark:border-amber-800'
+                : 'bg-white dark:bg-slate-900 text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200 border-slate-200/80 dark:border-slate-800'
+            }`}
+            title={showCost ? 'Hide Wholesale Dealer Price (DP)' : 'Show Wholesale Dealer Price (DP)'}
+          >
+            {showCost ? (
+              <Eye className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
+            ) : (
+              <EyeOff className="w-3.5 h-3.5 text-slate-400" />
+            )}
+            <span>DP</span>
+          </button>
+        </div>
+
+        {/* Right: Results Count & Reset Button */}
+        <div className="flex items-center gap-2.5 shrink-0 ml-auto">
+          <span className="text-xs font-medium text-slate-400 dark:text-slate-500 font-mono">
+            <strong className="text-slate-700 dark:text-slate-300 font-semibold">{filteredProducts.length}</strong> items
+          </span>
+
           {hasActiveFilters && (
             <button
               type="button"
               onClick={resetAllFilters}
-              className="flex items-center gap-1 px-2 py-1 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100 dark:bg-rose-950/40 dark:text-rose-400 text-[11px] font-semibold transition-all cursor-pointer border border-rose-200/60 dark:border-rose-900/40 shadow-2xs"
+              className="flex items-center gap-1 h-8 px-2.5 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100 dark:bg-rose-950/40 dark:text-rose-400 text-xs font-medium transition-all cursor-pointer border border-rose-200/60 dark:border-rose-900/40 shadow-2xs"
               title="Reset all filters"
             >
               <RotateCcw className="w-3 h-3" />

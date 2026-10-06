@@ -78,32 +78,6 @@ function getBaseBadgeClasses(base: string): string {
   }
 }
 
-function getCategoryShortLabel(categoryId: string): string {
-  switch (categoryId) {
-    case 'cat-interior':
-      return 'Interior';
-    case 'cat-exterior':
-      return 'Exterior';
-    case 'cat-primers':
-      return 'Primer';
-    case 'cat-enamel':
-      return 'Enamel';
-    case 'cat-wood':
-      return 'Wood';
-    case 'cat-auto':
-      return 'Auto';
-    case 'cat-marine':
-      return 'Marine';
-    case 'cat-waterproofing':
-      return 'Damp';
-    case 'cat-colorant':
-      return 'Colorant';
-    case 'cat-specialty':
-      return 'Putty';
-    default:
-      return 'Paint';
-  }
-}
 
 interface ProductCardProps {
   product: Product;
@@ -121,7 +95,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   const isOutOfStock = product.stock <= 0;
   const isLowStock = product.stock > 0 && product.stock <= product.minStockAlert;
   const { lineName, sizeTag, baseTag } = parseProductInfo(product.name);
-  const categoryLabel = getCategoryShortLabel(product.categoryId);
 
   return (
     <div
@@ -133,15 +106,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       }`}
     >
       {/* 🖼️ Product Packshot Canvas — Neutral Studio Gallery Pedestal */}
-      <div className="relative aspect-4/3 w-full overflow-hidden rounded-xl bg-gradient-to-b from-slate-50/90 to-slate-100/60 dark:from-slate-800/40 dark:to-slate-800/20 p-2 flex items-center justify-center mb-2 transition-colors">
+      <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-gradient-to-b from-slate-50/90 to-slate-100/60 dark:from-slate-800/40 dark:to-slate-800/20 p-3 flex items-center justify-center mb-2 transition-colors">
         {/* Soft Natural Ambient Shadow beneath Packshot */}
-        <div className="absolute bottom-2 h-1.5 w-3/5 rounded-[100%] bg-slate-900/[0.07] dark:bg-black/35 blur-[2.5px] pointer-events-none" />
+        <div className="absolute bottom-2.5 h-1.5 w-3/5 rounded-[100%] bg-slate-900/[0.07] dark:bg-black/35 blur-[2.5px] pointer-events-none" />
 
         {product.imageUrl ? (
           <img
             src={product.imageUrl}
             alt={product.name}
-            className="relative z-10 h-full w-full object-contain filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.06)] transition-transform duration-200 group-hover:scale-104"
+            className="relative z-10 h-full w-full object-contain filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.06)] transition-transform duration-200 group-hover:scale-105"
             loading="lazy"
           />
         ) : (
@@ -150,41 +123,34 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </div>
         )}
 
-        {/* Top-Left: Tint Base Micro-Chip or Subtle Category Pill */}
-        <div className="absolute top-2 left-2 z-20 flex items-center">
-          {baseTag ? (
+        {/* Top-Left: Tint Base Micro-Chip (ONLY when base exists — zero clutter on regular products) */}
+        {baseTag && (
+          <div className="absolute top-2 left-2 z-20 flex items-center">
             <span
-              className={`rounded-md border px-1.5 py-0.5 text-[10px] font-bold tracking-wider font-mono shadow-2xs ${getBaseBadgeClasses(
+              className={`rounded-md border px-1.5 py-0.5 text-[9px] font-bold tracking-wider font-mono shadow-2xs ${getBaseBadgeClasses(
                 baseTag
               )}`}
             >
               {baseTag}
             </span>
-          ) : (
-            <span className="rounded-md border border-slate-200/60 dark:border-slate-700/60 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xs text-slate-500 dark:text-slate-400 px-1.5 py-0.5 text-[9px] font-semibold tracking-tight shadow-2xs">
-              {categoryLabel}
-            </span>
-          )}
-        </div>
+          </div>
+        )}
 
-        {/* Top-Right: Quiet Stock Status Pill */}
-        <div className="absolute top-2 right-2 z-20 flex items-center">
-          {isOutOfStock ? (
-            <span className="rounded-md bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 border border-rose-200/80 dark:border-rose-800/60 backdrop-blur-xs px-1.5 py-0.5 text-[9px] font-semibold shadow-2xs">
+        {/* Top-Right: Stock Alert ONLY when Out of Stock or Low Stock */}
+        {isOutOfStock ? (
+          <div className="absolute top-2 right-2 z-20">
+            <span className="rounded-md bg-rose-50 dark:bg-rose-950/80 text-rose-700 dark:text-rose-300 border border-rose-200/80 dark:border-rose-800/60 backdrop-blur-xs px-1.5 py-0.5 text-[9px] font-semibold shadow-2xs">
               Out of stock
             </span>
-          ) : isLowStock ? (
-            <span className="rounded-md bg-amber-50 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 border border-amber-200/80 dark:border-amber-800/60 backdrop-blur-xs px-1.5 py-0.5 text-[9px] font-semibold shadow-2xs flex items-center gap-1">
+          </div>
+        ) : isLowStock ? (
+          <div className="absolute top-2 right-2 z-20">
+            <span className="rounded-md bg-amber-50 dark:bg-amber-950/80 text-amber-800 dark:text-amber-300 border border-amber-200/80 dark:border-amber-800/60 backdrop-blur-xs px-1.5 py-0.5 text-[9px] font-semibold shadow-2xs flex items-center gap-1">
               <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
-              Low: {product.stock} pcs
+              Low: {product.stock}
             </span>
-          ) : (
-            <span className="rounded-md bg-white/90 dark:bg-slate-900/90 text-slate-600 dark:text-slate-400 border border-slate-200/60 dark:border-slate-700/60 backdrop-blur-xs px-1.5 py-0.5 text-[9px] font-medium shadow-2xs flex items-center gap-1 font-mono">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
-              {product.stock} pcs
-            </span>
-          )}
-        </div>
+          </div>
+        ) : null}
 
         {/* Hover Quick-Add Tactile Indicator */}
         {!isOutOfStock && (
@@ -196,21 +162,21 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         )}
       </div>
 
-      {/* 🏷️ Product Typographic Details */}
+      {/* 🏷️ Product Typographic Details — Calm, Unboxed, Hero Image Focus */}
       <div className="flex-1 flex flex-col justify-between">
         <div>
           <h3
-            className="text-xs sm:text-[13px] font-semibold text-slate-800 dark:text-slate-100 truncate tracking-tight group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors"
+            className="text-xs sm:text-[13px] font-medium text-slate-800 dark:text-slate-100 truncate tracking-tight group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors"
             title={product.name}
           >
             {lineName}
           </h3>
         </div>
 
-        {/* 💳 Single-Line Price & Pack Size Row */}
-        <div className="flex items-center justify-between mt-2 pt-1.5 border-t border-slate-100 dark:border-slate-800/80">
+        {/* Clean Single-Line Price & Meta Row (Zero Border/Box Clutter) */}
+        <div className="flex items-baseline justify-between mt-1.5">
           <div className="flex flex-col">
-            <span className="text-sm sm:text-[15px] font-bold text-slate-900 dark:text-white font-mono tracking-tight leading-none">
+            <span className="text-sm sm:text-[14px] font-semibold text-slate-900 dark:text-white font-mono tracking-tight leading-none">
               {formatCurrency(product.salePrice, currencySymbol)}
             </span>
             {showCost && product.costPrice > 0 && (
@@ -220,18 +186,18 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             )}
           </div>
 
-          {sizeTag ? (
-            <span
-              className="rounded-md bg-slate-100/90 dark:bg-slate-800/90 text-slate-600 dark:text-slate-300 border border-slate-200/60 dark:border-slate-700/60 px-1.5 py-0.5 text-[10px] sm:text-[11px] font-semibold font-mono shadow-2xs shrink-0 tracking-tight"
-              title={`Pack Size: ${sizeTag}`}
-            >
-              {sizeTag}
-            </span>
-          ) : (
-            <span className="text-[10px] font-medium text-slate-400 dark:text-slate-500 font-mono">
-              {product.unit || '1 pc'}
-            </span>
-          )}
+          {/* Calm, unboxed size and stock label */}
+          <div className="flex items-center gap-1 text-[11px] font-mono text-slate-400 dark:text-slate-500">
+            {sizeTag && (
+              <span className="text-slate-600 dark:text-slate-300 font-medium">
+                {sizeTag}
+              </span>
+            )}
+            {sizeTag && !isOutOfStock && !isLowStock && <span>•</span>}
+            {!isOutOfStock && !isLowStock && (
+              <span>{product.stock} pcs</span>
+            )}
+          </div>
         </div>
       </div>
     </div>
