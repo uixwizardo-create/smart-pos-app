@@ -256,38 +256,33 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </h3>
         </div>
 
-        {/* Clean Single-Line Price & Meta Row */}
-        <div className="flex items-start justify-between mt-1.5 gap-2">
-          <div className="flex flex-col">
-            <span className="text-sm sm:text-[14px] font-bold text-slate-900 dark:text-white font-mono tracking-tight leading-none">
-              {formatCurrency(product.salePrice, currencySymbol)}
-            </span>
-            {showCost && product.costPrice > 0 && (
-              <div className="inline-flex items-center gap-1 mt-1 px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 text-[10px] font-mono leading-none w-fit">
-                <span className="font-semibold text-slate-700 dark:text-slate-200">
-                  DP {formatCurrency(product.costPrice, currencySymbol)}
-                </span>
-                <span className="font-bold text-emerald-600 dark:text-emerald-400">
-                  ({Math.round((1 - product.costPrice / product.salePrice) * 100)}%)
-                </span>
-              </div>
+        {/* Clean Price & Stock Row */}
+        <div className="flex items-baseline justify-between mt-1.5">
+          <span className="text-sm sm:text-[14px] font-bold text-slate-900 dark:text-white font-mono tracking-tight leading-none">
+            {formatCurrency(product.salePrice, currencySymbol)}
+          </span>
+          <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400 font-medium shrink-0">
+            {isOutOfStock ? (
+              <span className="text-rose-600 dark:text-rose-400 font-bold">0 pcs</span>
+            ) : (
+              <span>{product.stock} pcs</span>
             )}
-          </div>
-
-          {/* Size and Stock Details */}
-          <div className="flex items-center gap-1.5 text-[11px] font-mono shrink-0">
-            {sizeTag && (
-              <span className={`px-1.5 py-0.5 rounded text-[10px] font-bold font-mono tracking-tight ${getSizeBadgeClasses(sizeTag)}`}>
-                {sizeTag}
-              </span>
-            )}
-            {!isOutOfStock && !isLowStock && (
-              <span className="text-slate-500 dark:text-slate-400 font-medium">
-                {product.stock} pcs
-              </span>
-            )}
-          </div>
+          </span>
         </div>
+
+        {/* DP / Cost Row (Dedicated line, high-contrast, zero wrapping) */}
+        {showCost && product.costPrice > 0 && (
+          <div className="mt-1.5 flex items-center">
+            <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-200/90 dark:border-slate-700/80 text-[10px] font-mono whitespace-nowrap shadow-2xs">
+              <span className="font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">
+                DP: {formatCurrency(product.costPrice, currencySymbol)}
+              </span>
+              <span className="font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/80 px-1 py-0.2 rounded text-[9px] whitespace-nowrap">
+                +{Math.round((1 - product.costPrice / product.salePrice) * 100)}%
+              </span>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
