@@ -119,6 +119,37 @@ function getBaseBadgeClasses(base: string): string {
   }
 }
 
+export function getSizeBadgeClasses(sizeTag: string | null): string {
+  if (!sizeTag) return 'bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300';
+  const s = sizeTag.toLowerCase();
+
+  // 18L / 20L / 200L Large Drum -> Indigo
+  if (s.includes('18l') || s.includes('20l') || s.includes('200l')) {
+    return 'bg-indigo-600 text-white dark:bg-indigo-500 shadow-2xs';
+  }
+  // 3.64L / 4L / 5L Gallon -> Blue
+  if (s.includes('3.64l') || s.includes('3.6l') || s.includes('4l') || s.includes('5l')) {
+    return 'bg-blue-600 text-white dark:bg-blue-500 shadow-2xs';
+  }
+  // 0.91L / 1L Can -> Purple
+  if (s.includes('0.91l') || s.includes('0.9l') || s.includes('1l')) {
+    return 'bg-purple-600 text-white dark:bg-purple-500 shadow-2xs';
+  }
+  // 0.455L / Pint -> Teal
+  if (s.includes('0.455l') || s.includes('0.5l')) {
+    return 'bg-teal-600 text-white dark:bg-teal-500 shadow-2xs';
+  }
+  // 200ml / 0.200L / 100ml -> Emerald
+  if (s.includes('0.2') || s.includes('200ml') || s.includes('0.1') || s.includes('100ml')) {
+    return 'bg-emerald-600 text-white dark:bg-emerald-500 shadow-2xs';
+  }
+  // Putty / Bags -> Slate
+  if (s.includes('kg')) {
+    return 'bg-slate-700 text-white dark:bg-slate-300 dark:text-slate-900 shadow-2xs';
+  }
+  return 'bg-slate-800 text-white dark:bg-slate-200 dark:text-slate-900 shadow-2xs';
+}
+
 interface ProductCardProps {
   product: Product;
   currencySymbol: string;
@@ -181,21 +212,28 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </div>
         )}
 
-        {/* Top-Right: Stock Alert ONLY when Out of Stock or Low Stock */}
-        {isOutOfStock ? (
-          <div className="absolute top-2 right-2 z-20">
+        {/* Top-Right: Prominent Size Badge & Stock Alert */}
+        <div className="absolute top-2 right-2 z-20 flex flex-col items-end gap-1">
+          {sizeTag && (
+            <span
+              className={`rounded-md px-1.5 py-0.5 text-[10px] font-bold font-mono tracking-wide shadow-2xs ${getSizeBadgeClasses(
+                sizeTag
+              )}`}
+            >
+              {sizeTag}
+            </span>
+          )}
+          {isOutOfStock ? (
             <span className="rounded-md bg-rose-50 dark:bg-rose-950/80 text-rose-700 dark:text-rose-300 border border-rose-200/80 dark:border-rose-800/60 backdrop-blur-xs px-1.5 py-0.5 text-[9px] font-semibold shadow-2xs">
               Out of stock
             </span>
-          </div>
-        ) : isLowStock ? (
-          <div className="absolute top-2 right-2 z-20">
+          ) : isLowStock ? (
             <span className="rounded-md bg-amber-50 dark:bg-amber-950/80 text-amber-800 dark:text-amber-300 border border-amber-200/80 dark:border-amber-800/60 backdrop-blur-xs px-1.5 py-0.5 text-[9px] font-semibold shadow-2xs flex items-center gap-1">
               <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
               Low: {product.stock}
             </span>
-          </div>
-        ) : null}
+          ) : null}
+        </div>
 
         {/* Hover Quick-Add Tactile Indicator */}
         {!isOutOfStock && (
@@ -218,29 +256,35 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </h3>
         </div>
 
-        {/* Clean Single-Line Price & Meta Row (Zero Border/Box Clutter) */}
-        <div className="flex items-baseline justify-between mt-1.5">
+        {/* Clean Single-Line Price & Meta Row */}
+        <div className="flex items-start justify-between mt-1.5 gap-2">
           <div className="flex flex-col">
-            <span className="text-sm sm:text-[14px] font-semibold text-slate-900 dark:text-white font-mono tracking-tight leading-none">
+            <span className="text-sm sm:text-[14px] font-bold text-slate-900 dark:text-white font-mono tracking-tight leading-none">
               {formatCurrency(product.salePrice, currencySymbol)}
             </span>
             {showCost && product.costPrice > 0 && (
-              <span className="text-[9px] font-medium text-amber-600 dark:text-amber-400 font-mono mt-0.5">
-                DP: {formatCurrency(product.costPrice, currencySymbol)} ({Math.round((1 - product.costPrice / product.salePrice) * 100)}%)
-              </span>
+              <div className="inline-flex items-center gap-1 mt-1 px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 text-[10px] font-mono leading-none w-fit">
+                <span className="font-semibold text-slate-700 dark:text-slate-200">
+                  DP {formatCurrency(product.costPrice, currencySymbol)}
+                </span>
+                <span className="font-bold text-emerald-600 dark:text-emerald-400">
+                  ({Math.round((1 - product.costPrice / product.salePrice) * 100)}%)
+                </span>
+              </div>
             )}
           </div>
 
-          {/* Calm, unboxed size and stock label */}
-          <div className="flex items-center gap-1 text-[11px] font-mono text-slate-400 dark:text-slate-500">
+          {/* Size and Stock Details */}
+          <div className="flex items-center gap-1.5 text-[11px] font-mono shrink-0">
             {sizeTag && (
-              <span className="text-slate-600 dark:text-slate-300 font-medium">
+              <span className={`px-1.5 py-0.5 rounded text-[10px] font-bold font-mono tracking-tight ${getSizeBadgeClasses(sizeTag)}`}>
                 {sizeTag}
               </span>
             )}
-            {sizeTag && !isOutOfStock && !isLowStock && <span>•</span>}
             {!isOutOfStock && !isLowStock && (
-              <span>{product.stock} pcs</span>
+              <span className="text-slate-500 dark:text-slate-400 font-medium">
+                {product.stock} pcs
+              </span>
             )}
           </div>
         </div>

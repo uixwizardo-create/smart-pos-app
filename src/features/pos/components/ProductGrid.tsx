@@ -40,6 +40,7 @@ const SIZE_FILTERS = [
   { id: '3.64L', label: '3.64L Gallon' },
   { id: '0.91L', label: '0.91L Can' },
   { id: '0.455L', label: '0.455L Pint' },
+  { id: '0.2L', label: '200ml / 0.2L' },
   { id: 'putty', label: '20-25Kg Putty' },
   { id: 'colorant', label: '1000ml Colorant' },
 ];
@@ -155,8 +156,21 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
           return s === '0.91l' || s === '0.90l' || s === '0.900l' || s === '1l' || s === '1kg';
 
         case '0.455L':
-          // 0.455L, 0.500L, 0.333L, 0.200L, 0.100ml Half-Quarters & Mini Cans
-          return s === '0.455l' || s === '0.500l' || s === '0.333l' || s === '0.200l' || s === '0.100ml';
+          // 0.455L, 0.500L, 0.333L Half-Quarters / Pints
+          return s === '0.455l' || s === '0.500l' || s === '0.333l';
+
+        case '0.2L':
+        case '200ml':
+          // 0.200L (200ml), 0.100ml (100ml) Mini Cans
+          return (
+            s === '0.200l' ||
+            s === '0.2l' ||
+            s === '200ml' ||
+            s === '0.100ml' ||
+            s === '0.100l' ||
+            s === '0.1l' ||
+            s === '100ml'
+          );
 
         case 'putty':
         case '25kg':
