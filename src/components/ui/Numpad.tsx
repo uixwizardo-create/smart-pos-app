@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Delete, RotateCcw } from 'lucide-react';
 import { Button } from './Button';
 
@@ -51,37 +51,32 @@ export const Numpad: React.FC<NumpadProps> = ({
   return (
     <div className="space-y-3">
       {/* Quick Cash Presets */}
-      <div className="grid grid-cols-4 gap-2">
+      <div className="grid grid-cols-4 gap-1.5 sm:gap-2">
         {targetAmount !== undefined && (
           <button
             type="button"
             onClick={handleExactCash}
-            className="h-10 rounded-xl bg-sky-100 dark:bg-sky-950/60 text-sky-800 dark:text-sky-200 text-xs font-bold hover:bg-sky-200 transition-colors border border-sky-300 dark:border-sky-800"
+            className="h-11 sm:h-12 px-1 rounded-xl bg-sky-50 dark:bg-sky-950/60 text-sky-800 dark:text-sky-200 border border-sky-300 dark:border-sky-800 hover:bg-sky-100 dark:hover:bg-sky-900 transition-colors flex flex-col items-center justify-center cursor-pointer shadow-xs active:scale-95"
+            title={`Exact Amount: ${currencySymbol}${Math.ceil(targetAmount).toLocaleString('en-BD')}`}
           >
-            Exact ({currencySymbol}{Math.ceil(targetAmount)})
+            <span className="text-[9px] uppercase font-bold tracking-wider leading-none text-sky-600 dark:text-sky-400">
+              Exact
+            </span>
+            <span className="text-xs font-black font-mono leading-tight mt-0.5 truncate max-w-full">
+              {currencySymbol}{Math.ceil(targetAmount).toLocaleString('en-BD')}
+            </span>
           </button>
         )}
-        <button
-          type="button"
-          onClick={() => handleQuickAdd(100)}
-          className="h-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs font-bold hover:bg-slate-200 transition-colors border border-slate-200 dark:border-slate-700"
-        >
-          +100
-        </button>
-        <button
-          type="button"
-          onClick={() => handleQuickAdd(500)}
-          className="h-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs font-bold hover:bg-slate-200 transition-colors border border-slate-200 dark:border-slate-700"
-        >
-          +500
-        </button>
-        <button
-          type="button"
-          onClick={() => handleQuickAdd(1000)}
-          className="h-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs font-bold hover:bg-slate-200 transition-colors border border-slate-200 dark:border-slate-700"
-        >
-          +1000
-        </button>
+        {[100, 500, 1000].map((addAmount) => (
+          <button
+            key={addAmount}
+            type="button"
+            onClick={() => handleQuickAdd(addAmount)}
+            className="h-11 sm:h-12 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs sm:text-sm font-extrabold hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors border border-slate-200 dark:border-slate-700 flex items-center justify-center cursor-pointer shadow-xs active:scale-95"
+          >
+            +{addAmount}
+          </button>
+        ))}
       </div>
 
       {/* Main 4x3 Keypad Grid */}

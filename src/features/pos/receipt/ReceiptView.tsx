@@ -36,6 +36,7 @@ export const ReceiptView = React.forwardRef<HTMLDivElement, ReceiptViewProps>(
         className={`bg-white text-black p-4 font-mono leading-tight mx-auto text-xs ${
           is58mm ? 'max-w-[240px] text-[11px]' : 'max-w-[340px] text-[12px]'
         }`}
+        style={{ marginLeft: 'auto', marginRight: 'auto' }}
       >
         {/* Header */}
         <div className="text-center space-y-1 pb-3 border-b border-dashed border-gray-400">

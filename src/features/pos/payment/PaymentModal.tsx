@@ -67,11 +67,41 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
   const changeAmount = Math.max(0, tenderedNum - grandTotal);
   const dueAmount = paymentMethod === 'due' ? grandTotal : 0;
 
-  // Receipt Print ref
+  // Receipt Print ref with centered styling on all paper formats
   const receiptRef = useRef<HTMLDivElement>(null);
+  const printPageStyle = `
+    @page {
+      margin: 6mm auto;
+      size: auto;
+    }
+    @media print {
+      html, body {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: flex-start !important;
+        background: #ffffff !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      #printable-receipt {
+        position: relative !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        left: auto !important;
+        right: auto !important;
+        box-sizing: border-box !important;
+        box-shadow: none !important;
+      }
+    }
+  `;
+
   const handlePrint = useReactToPrint({
     contentRef: receiptRef,
     documentTitle: completedOrder ? `Invoice-${completedOrder.orderNumber}` : 'Invoice',
+    pageStyle: printPageStyle,
   });
 
   const handleOpenModal = () => {
@@ -194,7 +224,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
       isOpen={isOpen}
       onClose={completedOrder ? handleFinishAndNewSale : onClose}
       title={completedOrder ? 'Payment Successful' : 'Checkout & Payment'}
-      maxWidth={completedOrder ? 'md' : '3xl'}
+      maxWidth={completedOrder ? 'lg' : '4xl'}
     >
       {completedOrder ? (
         /* Order Completion View */
@@ -283,23 +313,23 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
           </div>
 
           {/* Action Buttons */}
-          <div className="flex gap-3 pt-2">
+          <div className="grid grid-cols-2 gap-3 pt-2">
             <Button
               variant="outline"
               size="lg"
-              className="flex-1"
+              className="w-full whitespace-nowrap text-xs sm:text-sm font-bold flex items-center justify-center"
               onClick={() => handlePrint()}
             >
-              <Printer className="w-5 h-5 mr-2" />
-              Print Receipt
+              <Printer className="w-4 h-4 mr-1.5 shrink-0" />
+              <span>Print Receipt</span>
             </Button>
             <Button
               variant="primary"
               size="lg"
-              className="flex-1"
+              className="w-full whitespace-nowrap text-xs sm:text-sm font-bold flex items-center justify-center"
               onClick={handleFinishAndNewSale}
             >
-              Next Customer (New Sale)
+              <span>Next Customer</span>
             </Button>
           </div>
         </div>
@@ -460,12 +490,15 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
             <Button
               variant="success"
               size="xl"
-              className="w-full h-14 text-base font-extrabold shadow-lg shadow-emerald-600/30"
+              className="w-full h-12 sm:h-14 text-sm sm:text-base font-extrabold shadow-lg shadow-emerald-600/30 whitespace-nowrap flex items-center justify-center gap-2"
               isLoading={isProcessing}
               onClick={handleCompletePayment}
             >
-              <CheckCircle className="w-6 h-6 mr-2" />
-              Complete & Print Bill (F9)
+              <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 shrink-0" />
+              <span>Complete & Print Bill</span>
+              <span className="px-1.5 py-0.5 text-xs font-mono font-bold bg-emerald-700/60 rounded text-emerald-100">
+                F9
+              </span>
             </Button>
           </div>
         </div>

@@ -28,9 +28,39 @@ export const SalesHistoryScreen: React.FC<SalesHistoryScreenProps> = ({ settings
   const [receiptPriceMode, setReceiptPriceMode] = useState<'mrp' | 'dp' | 'both'>('mrp');
 
   const receiptRef = useRef<HTMLDivElement>(null);
+  const printPageStyle = `
+    @page {
+      margin: 6mm auto;
+      size: auto;
+    }
+    @media print {
+      html, body {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: flex-start !important;
+        background: #ffffff !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      #printable-receipt {
+        position: relative !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        left: auto !important;
+        right: auto !important;
+        box-sizing: border-box !important;
+        box-shadow: none !important;
+      }
+    }
+  `;
+
   const handlePrint = useReactToPrint({
     contentRef: receiptRef,
     documentTitle: selectedOrder ? `Invoice-${selectedOrder.orderNumber}` : 'Invoice',
+    pageStyle: printPageStyle,
   });
 
   useEffect(() => {

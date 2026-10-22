@@ -89,24 +89,45 @@ body {
   background: transparent;
 }
 
-/* Receipt Print Media Queries */
+/* Receipt Print Media Queries - Centered Layout for Any Paper Size */
 @media print {
+  html,
+  body {
+    width: 100% !important;
+    min-height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
   body * {
     visibility: hidden;
   }
-  #printable-receipt, #printable-receipt * {
+
+  #printable-receipt,
+  #printable-receipt * {
     visibility: visible;
   }
+
   #printable-receipt {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    margin: 0;
-    padding: 0;
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    top: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
+    box-sizing: border-box !important;
+    box-shadow: none !important;
   }
+
   @page {
-    margin: 0;
+    margin: 6mm auto;
     size: auto;
   }
 }
