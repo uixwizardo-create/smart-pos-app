@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import {
   Settings,
   Store,
@@ -130,7 +130,7 @@ export const SettingsScreen: React.FC = () => {
             Receipt Printing & Taxes
           </h3>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4">
             <div>
               <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-1">
                 Thermal Paper Width
@@ -143,6 +143,29 @@ export const SettingsScreen: React.FC = () => {
                 >
                   <option value="80mm">80mm (Standard POS)</option>
                   <option value="58mm">58mm (Compact)</option>
+                </select>
+                <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-1">
+                Default Receipt Price
+              </label>
+              <div className="relative">
+                <select
+                  value={form.defaultReceiptPriceMode || 'mrp'}
+                  onChange={(e) =>
+                    setForm({
+                      ...form,
+                      defaultReceiptPriceMode: e.target.value as 'mrp' | 'dp' | 'both',
+                    })
+                  }
+                  className="h-10 w-full appearance-none rounded-2xl border border-slate-200 bg-white pl-3.5 pr-9 text-xs font-semibold focus:border-emerald-500 focus:outline-none dark:border-slate-700 dark:bg-slate-900 dark:text-white cursor-pointer"
+                >
+                  <option value="mrp">MRP Only (Retail)</option>
+                  <option value="dp">DP Only (Dealer)</option>
+                  <option value="both">Both (MRP & DP)</option>
                 </select>
                 <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
               </div>

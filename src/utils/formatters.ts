@@ -1,11 +1,14 @@
-﻿/**
+/**
  * Format currency amount with currency symbol
+ * Strips .00 if whole number to avoid visual clutter, but preserves true decimals (e.g. .50 or .75)
  */
-export function formatCurrency(amount: number, symbol: string = '৳'): string {
+export function formatCurrency(amount: number, symbol: string = '৳', forceDecimals: boolean = false): string {
+  const num = amount || 0;
+  const isWhole = Number.isInteger(num) || Math.abs(Math.round(num) - num) < 0.001;
   const formatted = new Intl.NumberFormat('en-BD', {
-    minimumFractionDigits: 2,
+    minimumFractionDigits: forceDecimals ? 2 : (isWhole ? 0 : 2),
     maximumFractionDigits: 2,
-  }).format(amount || 0);
+  }).format(num);
 
   return `${symbol}${formatted}`;
 }

@@ -5226,6 +5226,7 @@ export const DEFAULT_SETTINGS: StoreSettings = {
   receiptFooterNote: 'Thank you for choosing Rainbow Paints! Tinted custom colors are non-refundable.',
   enableSound: true,
   autoPrintReceipt: false,
+  defaultReceiptPriceMode: 'mrp',
   cashierName: 'Admin',
 };
 

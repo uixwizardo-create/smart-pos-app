@@ -53,6 +53,9 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
   const [transactionRef, setTransactionRef] = useState<string>('');
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
   const [completedOrder, setCompletedOrder] = useState<Order | null>(null);
+  const [receiptPriceMode, setReceiptPriceMode] = useState<'mrp' | 'dp' | 'both'>(
+    settings.defaultReceiptPriceMode || 'mrp'
+  );
 
   // Split Payment State
   const [splitCash, setSplitCash] = useState<string>('');
@@ -76,6 +79,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
     setCompletedOrder(null);
     setPaymentMethod('cash');
     setTransactionRef('');
+    setReceiptPriceMode(settings.defaultReceiptPriceMode || 'mrp');
   };
 
   React.useEffect(() => {
@@ -219,9 +223,63 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
             </div>
           )}
 
+          {/* Receipt Print Price Mode Selector */}
+          <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/60 p-3.5 space-y-2 text-left">
+            <div className="flex items-center justify-between text-xs">
+              <span className="font-bold text-slate-700 dark:text-slate-200">
+                Receipt Print Price:
+              </span>
+              <span className="font-mono font-bold text-emerald-600 dark:text-emerald-400 text-[11px]">
+                {receiptPriceMode === 'mrp' && 'MRP Only (Retail)'}
+                {receiptPriceMode === 'dp' && 'DP Only (Dealer)'}
+                {receiptPriceMode === 'both' && 'Both (MRP & DP)'}
+              </span>
+            </div>
+            <div className="grid grid-cols-3 gap-1.5 p-1 rounded-xl bg-slate-200/70 dark:bg-slate-900/80">
+              <button
+                type="button"
+                onClick={() => setReceiptPriceMode('mrp')}
+                className={`py-1.5 px-2 text-xs font-bold rounded-lg transition-all ${
+                  receiptPriceMode === 'mrp'
+                    ? 'bg-white dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 shadow-sm'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                }`}
+              >
+                MRP Only
+              </button>
+              <button
+                type="button"
+                onClick={() => setReceiptPriceMode('dp')}
+                className={`py-1.5 px-2 text-xs font-bold rounded-lg transition-all ${
+                  receiptPriceMode === 'dp'
+                    ? 'bg-white dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 shadow-sm'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                }`}
+              >
+                DP Only
+              </button>
+              <button
+                type="button"
+                onClick={() => setReceiptPriceMode('both')}
+                className={`py-1.5 px-2 text-xs font-bold rounded-lg transition-all ${
+                  receiptPriceMode === 'both'
+                    ? 'bg-white dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 shadow-sm'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                }`}
+              >
+                Both (MRP & DP)
+              </button>
+            </div>
+          </div>
+
           {/* Hidden Printable Receipt component */}
           <div className="hidden">
-            <ReceiptView ref={receiptRef} order={completedOrder} settings={settings} />
+            <ReceiptView
+              ref={receiptRef}
+              order={completedOrder}
+              settings={settings}
+              priceMode={receiptPriceMode}
+            />
           </div>
 
           {/* Action Buttons */}
@@ -233,7 +291,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
               onClick={() => handlePrint()}
             >
               <Printer className="w-5 h-5 mr-2" />
-              Re-Print Receipt
+              Print Receipt
             </Button>
             <Button
               variant="primary"

@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import {
   FileText,
@@ -25,6 +25,7 @@ export const SalesHistoryScreen: React.FC<SalesHistoryScreenProps> = ({ settings
   const [search, setSearch] = useState('');
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
   const [isReceiptModalOpen, setIsReceiptModalOpen] = useState(false);
+  const [receiptPriceMode, setReceiptPriceMode] = useState<'mrp' | 'dp' | 'both'>('mrp');
 
   const receiptRef = useRef<HTMLDivElement>(null);
   const handlePrint = useReactToPrint({
@@ -146,6 +147,7 @@ export const SalesHistoryScreen: React.FC<SalesHistoryScreenProps> = ({ settings
                         type="button"
                         onClick={() => {
                           setSelectedOrder(order);
+                          setReceiptPriceMode(settings.defaultReceiptPriceMode || 'mrp');
                           setIsReceiptModalOpen(true);
                         }}
                         className="inline-flex items-center gap-1 rounded-xl bg-emerald-50 dark:bg-emerald-950/50 px-2.5 py-1.5 text-xs font-bold text-emerald-700 dark:text-emerald-300 hover:bg-emerald-100 transition-colors cursor-pointer"
@@ -171,11 +173,61 @@ export const SalesHistoryScreen: React.FC<SalesHistoryScreenProps> = ({ settings
           maxWidth="md"
         >
           <div className="space-y-4">
+            {/* Price Mode Selector */}
+            <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-3 space-y-2">
+              <div className="flex items-center justify-between text-xs">
+                <span className="font-bold text-slate-700 dark:text-slate-200">
+                  Print Price Mode:
+                </span>
+                <span className="font-mono font-bold text-emerald-600 dark:text-emerald-400 text-[11px]">
+                  {receiptPriceMode === 'mrp' && 'MRP Only (Retail)'}
+                  {receiptPriceMode === 'dp' && 'DP Only (Dealer)'}
+                  {receiptPriceMode === 'both' && 'Both (MRP & DP)'}
+                </span>
+              </div>
+              <div className="grid grid-cols-3 gap-1.5 p-1 rounded-xl bg-slate-100 dark:bg-slate-800">
+                <button
+                  type="button"
+                  onClick={() => setReceiptPriceMode('mrp')}
+                  className={`py-1.5 px-2 text-xs font-bold rounded-lg transition-all ${
+                    receiptPriceMode === 'mrp'
+                      ? 'bg-white dark:bg-slate-700 text-emerald-600 dark:text-emerald-300 shadow-sm'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                  }`}
+                >
+                  MRP Only
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setReceiptPriceMode('dp')}
+                  className={`py-1.5 px-2 text-xs font-bold rounded-lg transition-all ${
+                    receiptPriceMode === 'dp'
+                      ? 'bg-white dark:bg-slate-700 text-emerald-600 dark:text-emerald-300 shadow-sm'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                  }`}
+                >
+                  DP Only
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setReceiptPriceMode('both')}
+                  className={`py-1.5 px-2 text-xs font-bold rounded-lg transition-all ${
+                    receiptPriceMode === 'both'
+                      ? 'bg-white dark:bg-slate-700 text-emerald-600 dark:text-emerald-300 shadow-sm'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                  }`}
+                >
+                  Both (MRP & DP)
+                </button>
+              </div>
+            </div>
+
             <div className="rounded-2xl border border-slate-200 bg-slate-50 dark:bg-slate-800/60 p-3 sm:p-4 max-h-[60vh] overflow-y-auto">
               <ReceiptView
                 ref={receiptRef}
                 order={selectedOrder}
                 settings={settings}
+                priceMode={receiptPriceMode}
               />
             </div>
 

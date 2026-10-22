@@ -1,4 +1,4 @@
-﻿export interface StoreSettings {
+export interface StoreSettings {
   id: string;
   storeName: string;
   storeNameBn: string;
@@ -17,5 +17,6 @@
   receiptFooterNote: string;
   enableSound: boolean;
   autoPrintReceipt: boolean;
+  defaultReceiptPriceMode?: 'mrp' | 'dp' | 'both';
   cashierName: string;
 }
