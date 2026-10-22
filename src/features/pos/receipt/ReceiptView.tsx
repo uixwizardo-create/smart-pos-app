@@ -96,89 +96,80 @@ export const ReceiptView = React.forwardRef<HTMLDivElement, ReceiptViewProps>(
           </div>
         </div>
 
-        {/* Itemized Table */}
-        <div className="py-2 border-b border-dashed border-gray-400">
-          <table className="w-full text-left">
-            <thead>
-              <tr className="border-b border-gray-300 text-[10px] uppercase font-bold">
-                <th className="pb-1">Item</th>
-                <th className="pb-1 text-center">Qty</th>
-                <th className="pb-1 text-right">
-                  {effectivePriceMode === 'mrp' && 'Price'}
-                  {effectivePriceMode === 'dp' && 'DP Rate'}
-                  {effectivePriceMode === 'both' && 'Rate (MRP/DP)'}
-                </th>
-                <th className="pb-1 text-right">Total</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-100">
-              {order.items.map((item, idx) => {
-                const itemDpTotal = (item.costPrice || 0) * item.quantity;
-                const itemMrpTotal = item.unitPrice * item.quantity;
+        {/* Itemized List - 2-Line Thermal Standard Format (Zero Collision Guarantee) */}
+        <div className="py-2 border-b border-dashed border-gray-400 space-y-2">
+          <div className="flex justify-between text-[10px] uppercase font-bold text-gray-700 pb-1 border-b border-gray-300">
+            <span>Description / Item</span>
+            <span>Total</span>
+          </div>
 
-                return (
-                  <tr key={idx} className="align-top text-[11px]">
-                    <td className="py-1 pr-1">
-                      <div className="font-semibold">{item.name}</div>
-                      {item.discount > 0 && effectivePriceMode === 'mrp' && (
-                        <div className="text-[9px] text-gray-500">
-                          (Disc: -{formatCurrency(item.discount, settings.currencySymbol)})
-                        </div>
-                      )}
-                      {effectivePriceMode === 'both' && item.costPrice < item.unitPrice && (
-                        <div className="text-[9px] text-emerald-700">
-                          (DP Save: {formatCurrency(item.unitPrice - item.costPrice, settings.currencySymbol)}/pc)
-                        </div>
-                      )}
-                    </td>
-                    <td className="py-1 text-center font-medium">
-                      {item.quantity}
-                    </td>
+          <div className="divide-y divide-gray-100">
+            {order.items.map((item, idx) => {
+              const itemDpTotal = (item.costPrice || 0) * item.quantity;
+              const activeTotal =
+                effectivePriceMode === 'mrp' ? item.subtotal : itemDpTotal;
 
-                    {/* Unit Rate Column */}
-                    <td className="py-1 text-right text-gray-700">
+              return (
+                <div key={idx} className="py-1.5 text-[11px] space-y-0.5">
+                  {/* Line 1: Item Name (Full Width, never truncated) */}
+                  <div className="font-bold text-gray-900 leading-snug">
+                    {item.name}
+                  </div>
+
+                  {/* Line 2: Qty × Rate Breakdown on Left, Line Total on Right */}
+                  <div className="flex items-baseline justify-between text-gray-700 pt-0.5">
+                    <div className="flex items-center gap-1.5 flex-wrap text-[10px]">
+                      <span className="font-semibold text-black">
+                        {item.quantity} {item.unit || 'pc'} ×
+                      </span>
+
                       {effectivePriceMode === 'mrp' && (
                         <span>{formatCurrency(item.unitPrice, settings.currencySymbol)}</span>
                       )}
-                      {effectivePriceMode === 'dp' && (
-                        <span>{formatCurrency(item.costPrice || 0, settings.currencySymbol)}</span>
-                      )}
-                      {effectivePriceMode === 'both' && (
-                        <div className="leading-tight">
-                          <div className="text-[10px] text-gray-400 line-through">
-                            {formatCurrency(item.unitPrice, settings.currencySymbol)}
-                          </div>
-                          <div className="font-bold text-gray-900">
-                            {formatCurrency(item.costPrice || 0, settings.currencySymbol)}
-                          </div>
-                        </div>
-                      )}
-                    </td>
 
-                    {/* Subtotal Column */}
-                    <td className="py-1 text-right font-bold">
-                      {effectivePriceMode === 'mrp' && (
-                        <span>{formatCurrency(item.subtotal, settings.currencySymbol)}</span>
-                      )}
                       {effectivePriceMode === 'dp' && (
-                        <span>{formatCurrency(itemDpTotal, settings.currencySymbol)}</span>
+                        <span>
+                          <span className="font-bold text-black">
+                            {formatCurrency(item.costPrice || 0, settings.currencySymbol)}
+                          </span>{' '}
+                          <span className="text-[9px] text-gray-500">(DP)</span>
+                        </span>
                       )}
+
                       {effectivePriceMode === 'both' && (
-                        <div className="leading-tight">
-                          <div className="text-[10px] text-gray-400 line-through font-normal">
-                            {formatCurrency(itemMrpTotal, settings.currencySymbol)}
-                          </div>
-                          <div className="font-bold text-gray-900">
-                            {formatCurrency(itemDpTotal, settings.currencySymbol)}
-                          </div>
-                        </div>
+                        <span className="inline-flex items-center gap-1 font-mono">
+                          <span className="line-through text-gray-400">
+                            {formatCurrency(item.unitPrice, settings.currencySymbol)}
+                          </span>
+                          <span>→</span>
+                          <span className="font-bold text-gray-900">
+                            {formatCurrency(item.costPrice || 0, settings.currencySymbol)}
+                          </span>
+                        </span>
                       )}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+
+                      {effectivePriceMode === 'both' && item.costPrice < item.unitPrice && (
+                        <span className="text-[9px] font-bold text-emerald-700 bg-emerald-50 px-1 py-0.2 rounded">
+                          Save: {formatCurrency((item.unitPrice - item.costPrice) * item.quantity, settings.currencySymbol)}
+                        </span>
+                      )}
+
+                      {item.discount > 0 && effectivePriceMode === 'mrp' && (
+                        <span className="text-[9px] text-gray-500">
+                          (Disc: -{formatCurrency(item.discount, settings.currencySymbol)})
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Right-aligned Line Total */}
+                    <div className="font-black text-gray-900 font-mono text-[11px] shrink-0 pl-2">
+                      {formatCurrency(activeTotal, settings.currencySymbol)}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         {/* Summary Breakdown */}

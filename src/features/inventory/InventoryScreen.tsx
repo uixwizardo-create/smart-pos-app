@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Package,
   Plus,
@@ -6,15 +6,13 @@ import {
   AlertTriangle,
   Edit2,
   Trash2,
-  Barcode,
   ChevronDown,
 } from 'lucide-react';
 import type { Product, Category, StoreSettings } from '../../types';
 import { ProductService } from '../../services/product.service';
-import { Modal } from '../../components/ui/Modal';
 import { Button } from '../../components/ui/Button';
-import { Input } from '../../components/ui/Input';
 import { Badge } from '../../components/ui/Badge';
+import { ProductFormModal } from './components/ProductFormModal';
 import { formatCurrency } from '../../utils/formatters';
 import { useToastStore } from '../../store/useToastStore';
 
@@ -33,19 +31,6 @@ export const InventoryScreen: React.FC<InventoryScreenProps> = ({ settings }) =>
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
 
-  // Form Fields
-  const [formName, setFormName] = useState('');
-  const [formNameBn, setFormNameBn] = useState('');
-  const [formCategory, setFormCategory] = useState('');
-  const [formSku, setFormSku] = useState('');
-  const [formBarcode, setFormBarcode] = useState('');
-  const [formCost, setFormCost] = useState('');
-  const [formPrice, setFormPrice] = useState('');
-  const [formStock, setFormStock] = useState('');
-  const [formMinAlert, setFormMinAlert] = useState('5');
-  const [formUnit, setFormUnit] = useState<Product['unit']>('pcs');
-  const [formImageUrl, setFormImageUrl] = useState('');
-
   const showToast = useToastStore((s) => s.showToast);
 
   useEffect(() => {
@@ -59,80 +44,42 @@ export const InventoryScreen: React.FC<InventoryScreenProps> = ({ settings }) =>
     ]);
     setProducts(prods);
     setCategories(cats.filter((c) => c.id !== 'cat-all'));
-    if (cats.length > 0 && !formCategory) {
-      setFormCategory(cats[1]?.id || cats[0]?.id);
-    }
   };
 
   const handleOpenAddModal = () => {
     setEditingProduct(null);
-    setFormName('');
-    setFormNameBn('');
-    setFormSku(`SKU-${Date.now().toString().slice(-6)}`);
-    setFormBarcode(`894${Math.floor(10000000 + Math.random() * 90000000)}`);
-    setFormCost('');
-    setFormPrice('');
-    setFormStock('10');
-    setFormMinAlert('5');
-    setFormUnit('pcs');
-    setFormImageUrl('');
     setIsModalOpen(true);
   };
 
   const handleOpenEditModal = (p: Product) => {
     setEditingProduct(p);
-    setFormName(p.name);
-    setFormNameBn(p.nameBn || '');
-    setFormCategory(p.categoryId);
-    setFormSku(p.sku);
-    setFormBarcode(p.barcode);
-    setFormCost(p.costPrice.toString());
-    setFormPrice(p.salePrice.toString());
-    setFormStock(p.stock.toString());
-    setFormMinAlert(p.minStockAlert.toString());
-    setFormUnit(p.unit);
-    setFormImageUrl(p.imageUrl || '');
     setIsModalOpen(true);
   };
 
-  const handleSaveProduct = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formName.trim() || !formPrice) return;
-
+  const handleSaveProduct = async (productData: {
+    name: string;
+    nameBn?: string;
+    categoryId: string;
+    sku: string;
+    barcode: string;
+    costPrice: number;
+    salePrice: number;
+    stock: number;
+    minStockAlert: number;
+    unit: Product['unit'];
+    imageUrl?: string;
+  }) => {
     try {
       if (editingProduct) {
-        await ProductService.updateProduct(editingProduct.id, {
-          name: formName.trim(),
-          nameBn: formNameBn.trim() || undefined,
-          categoryId: formCategory,
-          sku: formSku.trim(),
-          barcode: formBarcode.trim(),
-          costPrice: parseFloat(formCost) || 0,
-          salePrice: parseFloat(formPrice) || 0,
-          stock: parseInt(formStock, 10) || 0,
-          minStockAlert: parseInt(formMinAlert, 10) || 5,
-          unit: formUnit,
-          imageUrl: formImageUrl.trim() || undefined,
-        });
-        showToast('Product Updated', `${formName} was updated successfully.`, 'success');
+        await ProductService.updateProduct(editingProduct.id, productData);
+        showToast('Product Updated', `${productData.name} updated successfully.`, 'success');
       } else {
         await ProductService.createProduct({
-          name: formName.trim(),
-          nameBn: formNameBn.trim() || undefined,
-          categoryId: formCategory,
-          sku: formSku.trim(),
-          barcode: formBarcode.trim(),
-          costPrice: parseFloat(formCost) || 0,
-          salePrice: parseFloat(formPrice) || 0,
-          stock: parseInt(formStock, 10) || 0,
-          minStockAlert: parseInt(formMinAlert, 10) || 5,
-          unit: formUnit,
-          imageUrl: formImageUrl.trim() || undefined,
+          ...productData,
           isActive: true,
         });
-        showToast('Product Created', `${formName} added to inventory.`, 'success');
+        showToast('Product Created', `${productData.name} added to inventory.`, 'success');
       }
-
       await loadData();
       setIsModalOpen(false);
     } catch (err) {
@@ -143,8 +90,8 @@ export const InventoryScreen: React.FC<InventoryScreenProps> = ({ settings }) =>
   const handleDeleteProduct = async (id: string, name: string) => {
     if (window.confirm(`Are you sure you want to delete "${name}"?`)) {
       await ProductService.deleteProduct(id);
+      showToast('Product Deleted', `Removed "${name}" from stock`, 'info');
       await loadData();
-      showToast('Product Deleted', `${name} removed from inventory.`, 'info');
     }
   };
 
@@ -194,7 +141,7 @@ export const InventoryScreen: React.FC<InventoryScreenProps> = ({ settings }) =>
           />
         </div>
 
-        {/* 🎯 FIXED DROPDOWN WITH CHEVRON ICON & PERFECT PADDING */}
+        {/* Dropdown with Chevron */}
         <div className="relative">
           <select
             value={selectedCategory}
@@ -251,7 +198,9 @@ export const InventoryScreen: React.FC<InventoryScreenProps> = ({ settings }) =>
               ) : (
                 filteredProducts.map((p) => {
                   const cat = categories.find((c) => c.id === p.categoryId);
+                  const isOutOfStock = p.stock <= 0;
                   const isLow = p.stock <= p.minStockAlert;
+
                   return (
                     <tr
                       key={p.id}
@@ -263,40 +212,46 @@ export const InventoryScreen: React.FC<InventoryScreenProps> = ({ settings }) =>
                             <img
                               src={p.imageUrl}
                               alt={p.name}
-                              className="h-9 w-9 rounded-xl object-cover bg-slate-100 shrink-0 border border-slate-200/60 dark:border-slate-700"
+                              className="h-10 w-10 rounded-xl object-contain bg-slate-50 dark:bg-slate-800 p-0.5 border border-slate-200/80 dark:border-slate-700 shrink-0"
                             />
                           ) : (
-                            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-100 text-slate-400 dark:bg-slate-800 shrink-0 border border-slate-200/60 dark:border-slate-700">
-                              <Package className="h-4 w-4" />
+                            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-400 shrink-0">
+                              <Package className="w-5 h-5 stroke-1" />
                             </div>
                           )}
                           <div className="min-w-0">
-                            <div className="font-bold text-slate-900 dark:text-white truncate max-w-[160px] md:max-w-none text-xs sm:text-sm">
+                            <div className="font-bold text-slate-900 dark:text-white truncate text-xs sm:text-sm">
                               {p.name}
                             </div>
-                            <div className="text-[10px] text-slate-400 sm:hidden">
-                              {p.barcode}
-                            </div>
+                            {p.nameBn && (
+                              <div className="text-[11px] text-slate-400 truncate">
+                                {p.nameBn}
+                              </div>
+                            )}
                           </div>
                         </div>
                       </td>
-                      <td className="px-4 py-3 font-mono text-[11px] text-slate-600 dark:text-slate-300 hidden sm:table-cell">
+                      <td className="px-4 py-3 font-mono text-xs text-slate-500 hidden sm:table-cell">
                         <div>{p.barcode}</div>
                         <div className="text-[10px] text-slate-400">{p.sku}</div>
                       </td>
-                      <td className="px-4 py-3 hidden md:table-cell">
-                        <span className="rounded-lg bg-slate-100 dark:bg-slate-800 px-2.5 py-1 text-xs text-slate-700 dark:text-slate-300 font-semibold">
-                          {cat ? cat.name : p.categoryId}
+                      <td className="px-4 py-3 text-xs hidden md:table-cell">
+                        <span className="rounded-lg bg-slate-100 dark:bg-slate-800 px-2 py-1 text-slate-600 dark:text-slate-300 font-medium">
+                          {cat?.name || 'Uncategorized'}
                         </span>
                       </td>
-                      <td className="px-4 py-3 text-right text-slate-500 dark:text-slate-400 hidden sm:table-cell text-xs font-mono">
+                      <td className="px-4 py-3 text-right font-mono text-xs text-slate-500 hidden sm:table-cell">
                         {formatCurrency(p.costPrice, settings.currencySymbol)}
                       </td>
-                      <td className="px-4 py-3 text-right font-black text-slate-900 dark:text-white text-xs sm:text-sm font-mono">
+                      <td className="px-4 py-3 text-right font-mono font-bold text-emerald-600 dark:text-emerald-400 text-xs sm:text-sm">
                         {formatCurrency(p.salePrice, settings.currencySymbol)}
                       </td>
                       <td className="px-4 py-3 text-center">
-                        {isLow ? (
+                        {isOutOfStock ? (
+                          <Badge variant="danger" size="sm">
+                            0 {p.unit}
+                          </Badge>
+                        ) : isLow ? (
                           <Badge variant="warning" size="sm">
                             {p.stock} {p.unit}
                           </Badge>
@@ -311,7 +266,7 @@ export const InventoryScreen: React.FC<InventoryScreenProps> = ({ settings }) =>
                           <button
                             type="button"
                             onClick={() => handleOpenEditModal(p)}
-                            className="rounded-xl p-2 text-slate-400 hover:bg-slate-100 hover:text-emerald-600 dark:hover:bg-slate-800 transition-colors"
+                            className="rounded-xl p-2 text-slate-400 hover:bg-slate-100 hover:text-emerald-600 dark:hover:bg-slate-800 transition-colors cursor-pointer"
                             title="Edit"
                           >
                             <Edit2 className="w-3.5 h-3.5" />
@@ -319,7 +274,7 @@ export const InventoryScreen: React.FC<InventoryScreenProps> = ({ settings }) =>
                           <button
                             type="button"
                             onClick={() => handleDeleteProduct(p.id, p.name)}
-                            className="rounded-xl p-2 text-slate-400 hover:bg-rose-50 hover:text-rose-600 dark:hover:bg-rose-950/30 transition-colors"
+                            className="rounded-xl p-2 text-slate-400 hover:bg-rose-50 hover:text-rose-600 dark:hover:bg-rose-950/30 transition-colors cursor-pointer"
                             title="Delete"
                           >
                             <Trash2 className="w-3.5 h-3.5" />
@@ -335,142 +290,15 @@ export const InventoryScreen: React.FC<InventoryScreenProps> = ({ settings }) =>
         </div>
       </div>
 
-      {/* Product Add / Edit Modal */}
-      <Modal
+      {/* Product Add / Edit Modal Component */}
+      <ProductFormModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        title={editingProduct ? 'Edit Product Details' : 'Add New Inventory Product'}
-        maxWidth="xl"
-      >
-        <form onSubmit={handleSaveProduct} className="space-y-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-            <Input
-              label="Product English Name *"
-              required
-              value={formName}
-              onChange={(e) => setFormName(e.target.value)}
-              placeholder="e.g. Coca Cola 500ml"
-            />
-            <Input
-              label="Product Bangla Name"
-              value={formNameBn}
-              onChange={(e) => setFormNameBn(e.target.value)}
-              placeholder="যেমন: কোকা কোলা ৫০০ মি.লি."
-            />
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-            <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-1">
-                Category *
-              </label>
-              <div className="relative">
-                <select
-                  value={formCategory}
-                  onChange={(e) => setFormCategory(e.target.value)}
-                  className="h-10 w-full appearance-none rounded-2xl border border-slate-200 bg-white pl-3.5 pr-9 text-xs font-semibold focus:border-emerald-500 focus:outline-none dark:border-slate-700 dark:bg-slate-900 dark:text-white cursor-pointer"
-                >
-                  {categories.map((c) => (
-                    <option key={c.id} value={c.id}>
-                      {c.name}
-                    </option>
-                  ))}
-                </select>
-                <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-1">
-                Unit Type *
-              </label>
-              <div className="relative">
-                <select
-                  value={formUnit}
-                  onChange={(e) => setFormUnit(e.target.value as Product['unit'])}
-                  className="h-10 w-full appearance-none rounded-2xl border border-slate-200 bg-white pl-3.5 pr-9 text-xs font-semibold focus:border-emerald-500 focus:outline-none dark:border-slate-700 dark:bg-slate-900 dark:text-white cursor-pointer"
-                >
-                  <option value="pcs">Pieces (pcs)</option>
-                  <option value="packet">Packet</option>
-                  <option value="box">Box</option>
-                  <option value="kg">Kilogram (kg)</option>
-                  <option value="gm">Gram (gm)</option>
-                  <option value="ltr">Liter (ltr)</option>
-                </select>
-                <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-              </div>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-            <Input
-              label="Barcode *"
-              required
-              value={formBarcode}
-              onChange={(e) => setFormBarcode(e.target.value)}
-              icon={<Barcode className="w-4 h-4" />}
-            />
-            <Input
-              label="SKU Code *"
-              required
-              value={formSku}
-              onChange={(e) => setFormSku(e.target.value)}
-            />
-          </div>
-
-          <div className="grid grid-cols-2 gap-3.5">
-            <Input
-              label={`Cost (${settings.currencySymbol})`}
-              type="number"
-              value={formCost}
-              onChange={(e) => setFormCost(e.target.value)}
-            />
-            <Input
-              label={`Price (${settings.currencySymbol}) *`}
-              type="number"
-              required
-              value={formPrice}
-              onChange={(e) => setFormPrice(e.target.value)}
-            />
-          </div>
-
-          <div className="grid grid-cols-2 gap-3.5">
-            <Input
-              label="Stock Units *"
-              type="number"
-              required
-              value={formStock}
-              onChange={(e) => setFormStock(e.target.value)}
-            />
-            <Input
-              label="Low Alert Limit"
-              type="number"
-              value={formMinAlert}
-              onChange={(e) => setFormMinAlert(e.target.value)}
-            />
-          </div>
-
-          <Input
-            label="Image URL"
-            value={formImageUrl}
-            onChange={(e) => setFormImageUrl(e.target.value)}
-            placeholder="https://images.unsplash.com/..."
-          />
-
-          <div className="flex justify-end gap-2 pt-2 border-t border-slate-100 dark:border-slate-800">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => setIsModalOpen(false)}
-            >
-              Cancel
-            </Button>
-            <Button type="submit" variant="primary">
-              {editingProduct ? 'Save Changes' : 'Create Product'}
-            </Button>
-          </div>
-        </form>
-      </Modal>
+        editingProduct={editingProduct}
+        categories={categories}
+        currencySymbol={settings.currencySymbol}
+        onSave={handleSaveProduct}
+      />
     </div>
   );
 };
