@@ -21,6 +21,10 @@ export const SettingsScreen: React.FC = () => {
   const [form, setForm] = useState<StoreSettings>({ ...settings });
   const [isSaving, setIsSaving] = useState(false);
 
+  React.useEffect(() => {
+    setForm({ ...settings });
+  }, [settings]);
+
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSaving(true);

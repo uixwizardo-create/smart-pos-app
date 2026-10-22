@@ -1,10 +1,14 @@
-﻿import { db } from '../db/database';
+import { db } from '../db/database';
 import { DEFAULT_SETTINGS } from '../db/seedData';
 import type { StoreSettings } from '../types';
 
 export class SettingsService {
   static async getSettings(): Promise<StoreSettings> {
-    const settings = await db.settings.get('default-settings');
+    const settings =
+      (await db.settings.get(DEFAULT_SETTINGS.id)) ||
+      (await db.settings.get('default-settings')) ||
+      (await db.settings.toCollection().first());
+
     if (!settings) {
       await db.settings.put(DEFAULT_SETTINGS);
       return DEFAULT_SETTINGS;
@@ -14,7 +18,7 @@ export class SettingsService {
 
   static async updateSettings(updates: Partial<StoreSettings>): Promise<StoreSettings> {
     const current = await this.getSettings();
-    const merged: StoreSettings = { ...current, ...updates };
+    const merged: StoreSettings = { ...current, ...updates, id: DEFAULT_SETTINGS.id };
     await db.settings.put(merged);
     return merged;
   }

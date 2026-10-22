@@ -56,9 +56,7 @@ export const ReceiptView = React.forwardRef<HTMLDivElement, ReceiptViewProps>(
             </p>
           )}
           <div className="pt-1 text-[10px] font-bold tracking-widest uppercase">
-            {effectivePriceMode === 'mrp' && '*** RETAIL INVOICE ***'}
-            {effectivePriceMode === 'dp' && '*** DEALER INVOICE (DP) ***'}
-            {effectivePriceMode === 'both' && '*** DEALER & MRP INVOICE ***'}
+            *** RETAIL INVOICE ***
           </div>
         </div>
 
@@ -86,14 +84,6 @@ export const ReceiptView = React.forwardRef<HTMLDivElement, ReceiptViewProps>(
               <span>{order.customerPhone}</span>
             </div>
           )}
-          <div className="flex justify-between text-[10px] text-gray-600">
-            <span>Price Mode:</span>
-            <span className="font-bold uppercase">
-              {effectivePriceMode === 'mrp' && 'MRP (Retail)'}
-              {effectivePriceMode === 'dp' && 'DP (Dealer)'}
-              {effectivePriceMode === 'both' && 'Both (MRP & DP)'}
-            </span>
-          </div>
         </div>
 
         {/* Itemized List - 2-Line Thermal Standard Format (Zero Collision Guarantee) */}
@@ -128,11 +118,8 @@ export const ReceiptView = React.forwardRef<HTMLDivElement, ReceiptViewProps>(
                       )}
 
                       {effectivePriceMode === 'dp' && (
-                        <span>
-                          <span className="font-bold text-black">
-                            {formatCurrency(item.costPrice || 0, settings.currencySymbol)}
-                          </span>{' '}
-                          <span className="text-[9px] text-gray-500">(DP)</span>
+                        <span className="font-bold text-black">
+                          {formatCurrency(item.costPrice || 0, settings.currencySymbol)}
                         </span>
                       )}
 
@@ -205,12 +192,12 @@ export const ReceiptView = React.forwardRef<HTMLDivElement, ReceiptViewProps>(
           {effectivePriceMode === 'dp' && (
             <>
               <div className="flex justify-between">
-                <span>DP Total ({order.itemsCount} items):</span>
+                <span>Subtotal ({order.itemsCount} items):</span>
                 <span>{formatCurrency(dpSubtotal, settings.currencySymbol)}</span>
               </div>
 
               <div className="flex justify-between text-sm font-black pt-1 border-t border-gray-300">
-                <span>NET DP PAYABLE:</span>
+                <span>NET TOTAL:</span>
                 <span>{formatCurrency(dpSubtotal, settings.currencySymbol)}</span>
               </div>
             </>
@@ -219,22 +206,22 @@ export const ReceiptView = React.forwardRef<HTMLDivElement, ReceiptViewProps>(
           {effectivePriceMode === 'both' && (
             <>
               <div className="flex justify-between text-gray-600">
-                <span>Total MRP Value:</span>
+                <span>Total (Regular MRP):</span>
                 <span className="line-through">{formatCurrency(mrpSubtotal, settings.currencySymbol)}</span>
               </div>
 
               <div className="flex justify-between font-semibold text-emerald-700">
-                <span>Dealer Discount:</span>
+                <span>Special Discount:</span>
                 <span>-{formatCurrency(dealerSavings, settings.currencySymbol)} ({savingsPercent}%)</span>
               </div>
 
               <div className="flex justify-between text-sm font-black pt-1 border-t border-gray-300">
-                <span>NET DP PAYABLE:</span>
+                <span>NET TOTAL:</span>
                 <span>{formatCurrency(dpSubtotal, settings.currencySymbol)}</span>
               </div>
 
               <div className="text-center pt-1 text-[10px] font-bold text-gray-700 uppercase">
-                *** You Save: {formatCurrency(dealerSavings, settings.currencySymbol)} at Dealer Rate ***
+                *** You Save: {formatCurrency(dealerSavings, settings.currencySymbol)} ***
               </div>
             </>
           )}
